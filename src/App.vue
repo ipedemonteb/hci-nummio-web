@@ -1,13 +1,16 @@
 <template>
   <v-app>
+    <AppHeader />
+    
     <v-main>
-      <HelloWorld />
+      <SideMenu />
     </v-main>
 
-    <AppFooter />
+    <!-- <AppFooter /> -->
   </v-app>
 </template>
 
 <script setup>
-  //
+  import AppHeader from './components/AppHeader.vue';
+  import SideMenu from './components/SideMenu.vue';
 </script>
