@@ -1,12 +1,13 @@
 <template>
   <v-app>
-    <AppHeader />
+    <!-- <AppHeader /> -->
     
     <v-main>
-      <SideMenu />
-      <!-- <UserBalance />
+      <!-- <SideMenu /> -->
+      <UserBalance />
       <UserMovements />
-      <FrequentlyContact /> -->
+      <FrequentlyContact />
+      <WalletCards />
     </v-main>
 
     <!-- <AppFooter /> -->
@@ -23,4 +24,5 @@ import FrequentlyContact from './components/FrequentlyContact.vue';
   import SideMenu from './components/SideMenu.vue';
   import UserBalance from './components/UserBalance.vue';
 import UserMovements from './components/UserMovements.vue';
+import WalletCards from './components/WalletCards.vue';
 </script>
