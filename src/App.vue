@@ -1,7 +1,7 @@
 <template>
   <!-- <v-app> -->
     <main class="mainPage">
-      <div class="col full-width">
+      <div class="mainContent full-width">
         <AppHeader />
         <div class="row app-content">
           <SideMenu />
@@ -16,14 +16,17 @@
 </template>
 
 <style>
-  .row {
+  .contentContainer {
+    margin: 30px;
     display: flex;
     flex-direction: row;
   }
 
-  .col {
+  .columnContainer {
+    margin: 0px 20px;
     display: flex;
     flex-direction: column;
+    gap: 30px;
   }
 
   .full-width {
@@ -40,12 +43,18 @@
     height: 100vh;
     overflow: hidden;
   }
+
+  .mainContent {
+    display: flex;
+    flex-direction: column;
+  }
   
   .app-content {
     margin-top: 110px;
     display: flex;
     height: calc(100vh - 110px);
   }
+
 
   .view-container {
     width: 85%; /* @TODO: ver si hay manera de que se detecte el ancho restante en vez de hacer esto */
