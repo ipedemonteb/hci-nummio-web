@@ -67,4 +67,5 @@
 <script setup>
   import AppHeader from './components/AppHeader.vue';
   import SideMenu from './components/SideMenu.vue';
+  import AppFooter from './components/AppFooter.vue';
 </script>

@@ -12,9 +12,9 @@
 
 <style scoped>
     .search-container {
-    display: flex;
-    justify-content: center;
-  }
+        display: flex;
+        justify-content: center;
+    }
 
 </style>
 

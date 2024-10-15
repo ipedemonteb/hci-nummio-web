@@ -2,16 +2,17 @@
     <div class="repeatMovement">
         <div class="repeatMovementContainer">
             <h1>Repetir Transferencia:</h1>
-            <div class="searchBar">
+            <!-- <div class="searchBar">
                 <SearchBar/>
-            </div>
+            </div> -->
             <div class="repeatMovements">
-                <MovementBox />
-                <MovementBox />
-                <MovementBox />
-                <MovementBox />
-                <MovementBox />
-                <MovementBox />
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
             </div>
             <div class="buttonContainer">
                 <v-btn variant="outlined" rounded="xl" class="button">
@@ -24,10 +25,10 @@
 
 <style scoped>
     .repeatMovement {
-        margin: 30px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         border: 1px solid #ccc;
         border-radius: 10px;
+        flex: 1;
     }
 
     .repeatMovementContainer {
@@ -48,6 +49,12 @@
 
     .button {
         width: 200px;
+    }
+
+    .repeatMovements {
+        display: flex;
+        flex-direction: column;
+        margin: 20px 0px;
     }
 
 </style>

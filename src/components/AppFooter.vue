@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <v-footer height="40" app>
     <a
       v-for="item in items"
@@ -77,3 +77,31 @@
     &:hover
       color: rgba(25, 118, 210, 1)
 </style>
+ -->
+
+
+ <template>
+  <v-footer color="grey lighten-2" app>
+    <v-divider></v-divider>
+    <v-row class="pa-4" justify="center">
+      <v-col class="text-center">
+        <p class="white--text">© 2024 Nombre de la Empresa</p>
+        <p class="white--text">Dirección de la Empresa</p>
+        <p class="white--text">Teléfono: (123) 456-7890</p>
+        <p class="white--text">Email: contacto@empresa.com</p>
+      </v-col>
+    </v-row>
+  </v-footer>
+</template>
+
+<style scoped>
+  .v-footer {
+    background-color: #f5f5f5;
+  }
+  .white--text {
+    color: #FFFFFF !important;
+  }
+</style>
+
+<script setup>
+</script>

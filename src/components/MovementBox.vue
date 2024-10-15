@@ -8,10 +8,13 @@
                     <h5>Por {{ source }}</h5>
                 </div>
             </div>
-            <div class="amountContainer">
-                <h3>$ {{ amount }}</h3>
-                <h5>hace {{ timeAgo }}</h5>
-            </div>
+            <div class="rightContainer">
+                <div class="amountContainer">
+                    <h3>$ {{ amount }}</h3>
+                    <h5>hace {{ timeAgo }}</h5>
+                </div>
+                <v-icon class="moreOptions" color="black" size="large" icon="mdi-dots-vertical"/> 
+            </div>   
         </div>
 
     </div>
@@ -34,6 +37,15 @@
     .iconInfoContainer {
         display: flex;
         align-items: center;
+    }
+
+    .rightContainer {
+        display: flex;
+        align-items: center;
+    }
+
+    .moreOptions {
+        margin-left: 10px;
     }
 
     .actionContainer h5 {
