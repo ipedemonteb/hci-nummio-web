@@ -1,21 +1,19 @@
 <template>
     <div class="movements">
-        <div class="movementsContainer">
-            <h2>Últimos Movimientos:</h2>
+        <h2>Últimos Movimientos:</h2>
 
-            <div class="historyContainer">
-                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            </div>
-            <div class="buttonContainer">
-                <v-btn variant="outlined" rounded="xl" class="button">
-                     Ver Más
-                </v-btn>
-            </div>
+        <div class="historyContainer">
+            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+        </div>
+        <div class="buttonContainer">
+            <v-btn variant="outlined" rounded="xl" class="button">
+                    Ver Más
+            </v-btn>
         </div>
     </div>
 </template>
@@ -25,11 +23,8 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         border: 1px solid #ccc;
         border-radius: 10px;
+        padding: 30px 40px;
         flex: 1;
-    }
-
-    .movementsContainer {
-        margin: 30px 40px;
     }
 
     .historyContainer {

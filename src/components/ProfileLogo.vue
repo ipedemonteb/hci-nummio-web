@@ -1,11 +1,13 @@
 <template>
-<div class="profileContainer">
+    <div class="profileContainer">
         <img src="/pfp.jpg" alt="Profil picture for user" class="profilePicture"/>
         <h3 class="profileName text-primary">Fernando Alonso</h3>
-</div>
+    </div>
 </template>
 
-<script setup></script>
+<script setup>
+
+</script>
 
 <style scoped>
     .profileContainer{

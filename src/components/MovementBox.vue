@@ -55,7 +55,7 @@
 </style>
 
 <script setup>
-import { defineProps } from 'vue';
-defineProps(['action', 'source', 'amount', 'timeAgo']);
+    import { defineProps } from 'vue';
+    defineProps(['action', 'source', 'amount', 'timeAgo']);
 </script>
 

@@ -1,6 +1,7 @@
 <template>
     <div class="searchContainer">
         <v-text-field 
+            clearable
             variant="outlined" 
             label="Buscar" 
             prepend-inner-icon="mdi-magnify"

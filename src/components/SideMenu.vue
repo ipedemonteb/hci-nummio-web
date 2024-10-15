@@ -1,88 +1,84 @@
 <template>
     <div class="sideMenu">
-        <div class="menuContainer">
-            <div class="multOptionContainer">
-                <RouterLink to="/" class="optionContainer">
-                        <v-icon color="black" size="large" icon="mdi-home"/>
-                        <h3 class="optionText">Inicio</h3>
-                </RouterLink>
+        <div class="multOptionContainer">
+            <RouterLink to="/" class="optionContainer">
+                    <v-icon color="black" size="large" icon="mdi-home"/>
+                    <h3 class="optionText">Inicio</h3>
+            </RouterLink>
+        </div>
+        <v-divider />
+        <div class="multOptionContainer">
+            <RouterLink to="/transferir" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-arrow-right-circle-outline"/>
+                <h3 class="optionText">Transferir</h3>
+            </RouterLink>
+            <div class="optionContainer" @click="showInfoPopup=true">
+                <v-icon color="black" size="large" icon="mdi-card-account-details-outline"/>
+                <h3 class="optionText">Mis Datos</h3>
+                <InfoPopUp :showInfoPopup="showInfoPopup" @update:showInfoPopup="showInfoPopup = $event" />
             </div>
-            <v-divider />
-            <div class="multOptionContainer">
-                <RouterLink to="/transferir" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-arrow-right-circle-outline"/>
-                    <h3 class="optionText">Transferir</h3>
-                </RouterLink>
-                <div class="optionContainer" @click="showInfoPopup=true">
-                    <v-icon color="black" size="large" icon="mdi-card-account-details-outline"/>
-                    <h3 class="optionText">Mis Datos</h3>
-                    <InfoPopUp :showInfoPopup="showInfoPopup" @update:showInfoPopup="showInfoPopup = $event" />
-                </div>
-                <RouterLink to="/movimientos" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-history"/>
-                    <h3 class="optionText">Movimientos</h3>
-                </RouterLink>
-            </div>
-            <v-divider />
-            <div class="multOptionContainer">
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-credit-card-outline"/>
-                    <h3 class="optionText">Tus Tarjetas</h3>
-                </RouterLink>
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-account-credit-card-outline"/>
-                    <h3 class="optionText">Pagar</h3>
-                </RouterLink>
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-cash-multiple"/>
-                    <h3 class="optionText">Retirar</h3>
-                </RouterLink>
-            </div>
-            <v-divider />
-            <div class="multOptionContainer">
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-finance"/>
-                    <h3 class="optionText">Inversiones</h3>
-                </RouterLink>
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-file-document-outline"/>
-                    <h3 class="optionText">Pago de Servicios</h3>
-                </RouterLink>
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-sale"/>
-                    <h3 class="optionText">Beneficios</h3>
-                </RouterLink>
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-account-multiple-outline"/>
-                    <h3 class="optionText">Contactos</h3>
-                </RouterLink>
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-plus"/>
-                    <h3 class="optionText">Ayuda</h3>
-                </RouterLink>
-            </div>
-            <v-divider />
-            <div class="multOptionContainer">
-                <RouterLink to="/" class="optionContainer">
-                    <v-icon color="black" size="large" icon="mdi-logout"/>
-                    <h3 class="optionText">Cerrar Sesión</h3>
-                </RouterLink>
-            </div>
+            <RouterLink to="/movimientos" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-history"/>
+                <h3 class="optionText">Movimientos</h3>
+            </RouterLink>
+        </div>
+        <v-divider />
+        <div class="multOptionContainer">
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-credit-card-outline"/>
+                <h3 class="optionText">Tus Tarjetas</h3>
+            </RouterLink>
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-account-credit-card-outline"/>
+                <h3 class="optionText">Pagar</h3>
+            </RouterLink>
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-cash-multiple"/>
+                <h3 class="optionText">Retirar</h3>
+            </RouterLink>
+        </div>
+        <v-divider />
+        <div class="multOptionContainer">
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-finance"/>
+                <h3 class="optionText">Inversiones</h3>
+            </RouterLink>
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-file-document-outline"/>
+                <h3 class="optionText">Pago de Servicios</h3>
+            </RouterLink>
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-sale"/>
+                <h3 class="optionText">Beneficios</h3>
+            </RouterLink>
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-account-multiple-outline"/>
+                <h3 class="optionText">Contactos</h3>
+            </RouterLink>
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-plus"/>
+                <h3 class="optionText">Ayuda</h3>
+            </RouterLink>
+        </div>
+        <v-divider />
+        <div class="multOptionContainer">
+            <RouterLink to="/" class="optionContainer">
+                <v-icon color="black" size="large" icon="mdi-logout"/>
+                <h3 class="optionText">Cerrar Sesión</h3>
+            </RouterLink>
         </div>
     </div>
 </template>
 
 <style scoped>
     .sideMenu {
+        padding: 20px 30px;
         position: relative;
         background-color: #E7E7FF;
         width: 15%;
         height: 100%;
         overflow-y: auto;
         z-index: 999;
-    }
-    .menuContainer {
-        margin: 20px 30px;
     }
 
     .multOptionContainer {

@@ -2,6 +2,7 @@
   import UserBalance from '@/components/UserBalance.vue';
   import UserMovements from '@/components/UserMovements.vue';
   import FrequentlyContact from '@/components/FrequentlyContact.vue';
+  import WalletCards from '@/components/WalletCards.vue';
 </script>
 
 <template>

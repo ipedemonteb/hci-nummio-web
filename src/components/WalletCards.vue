@@ -1,15 +1,13 @@
 <template>
     <div class="wallet">
-        <div class="walletContainer">
-            <h2>Billetera:</h2>
+        <h2>Billetera:</h2>
 
-            <WalletBox />
+        <WalletBox />
 
-            <div class="buttonContainer">
-                <v-btn variant="outlined" rounded="xl" class="button">
-                     Ver Todas
-                </v-btn>
-            </div>
+        <div class="buttonContainer">
+            <v-btn variant="outlined" rounded="xl" class="button">
+                    Ver Todas
+            </v-btn>
         </div>
     </div>
 </template>
@@ -19,10 +17,7 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         border: 1px solid #ccc;
         border-radius: 10px;
-    }
-
-    .walletContainer {
-        margin: 30px 40px;
+        padding: 30px 40px;
     }
 
     .buttonContainer {
