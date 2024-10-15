@@ -5,7 +5,7 @@
                 <img src="/pfp.jpg" alt="Profil picture for user" class="profilePicture"/>
                 <h3 class="profileName">Fernando Alonso</h3>
             </div>
-            
+
             <div class="logoContainer">
                 <h1>nummio</h1>
             </div>
