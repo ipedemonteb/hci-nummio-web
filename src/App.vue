@@ -1,35 +1,39 @@
 <template>
-  <v-app>
-    <!-- <AppHeader /> -->
-    
-    <v-main>
-      <!-- <SideMenu /> -->
-      <UserBalance />
-      <UserMovements />
-      <FrequentlyContact />
-      <WalletCards />
-      <RecentContacts />
-      <MakeTransfer />
-      <RepeatMovement />
-    </v-main>
-
+  <!-- <v-app> -->
+    <main>
+      <div class="column">
+        <AppHeader />
+        <div class="row app-content">
+          <SideMenu />
+          <div class="viewContainer">
+            <RouterView />
+          </div>
+        </div>
+      </div>
+    </main>
     <!-- <AppFooter /> -->
-  </v-app>
+  <!-- </v-app> -->
 </template>
 
-<style scoped>
+<style>
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
 
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+</style>
+
+<style scoped>
+  .app-content {
+    margin-top: 110px;
+  }
 </style>
 
 <script setup>
   import AppHeader from './components/AppHeader.vue';
-import FrequentlyContact from './components/FrequentlyContact.vue';
-import MakeTransfer from './components/MakeTransfer.vue';
-import RecentContacts from './components/RecentContacts.vue';
-import RepeatMovement from './components/RepeatMovement.vue';
-import SearchBar from './components/SearchBar.vue';
   import SideMenu from './components/SideMenu.vue';
-  import UserBalance from './components/UserBalance.vue';
-import UserMovements from './components/UserMovements.vue';
-import WalletCards from './components/WalletCards.vue';
 </script>

@@ -4,14 +4,14 @@
             <div class="multOptionContainer">
                 <div class="optionContainer">
                     <v-icon color="black" size="large" icon="mdi-home"/>
-                    <h3 class="optionText">Inicio</h3>
+                    <RouterLink to="/"><h3 class="optionText">Inicio</h3></RouterLink>
                 </div>
             </div>
             <v-divider />
             <div class="multOptionContainer">
                 <div class="optionContainer">
                     <v-icon color="black" size="large" icon="mdi-arrow-right-circle-outline"/>
-                    <h3 class="optionText">Transferir</h3>
+                    <RouterLink to="/transfer"><h3 class="optionText">Transferir</h3></RouterLink>
                 </div>
                 <div class="optionContainer">
                     <v-icon color="black" size="large" icon="mdi-card-account-details-outline"/>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="optionContainer">
                     <v-icon color="black" size="large" icon="mdi-history"/>
-                    <h3 class="optionText">Movimientos</h3>
+                    <RouterLink to="/movements"><h3 class="optionText">Movimientos</h3></RouterLink>
                 </div>
             </div>
             <v-divider />
@@ -73,8 +73,7 @@
 
 <style scoped>
     .sideMenu {
-        position: absolute;
-        top: 110px;
+        position: relative;
         background-color: #cecece;
         width: 250px;
         z-index: 999;
