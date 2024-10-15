@@ -6,8 +6,8 @@ import TransferView from "./views/TransferView.vue";
 
 const routes = [
   { path: "/", component: HomeView },
-  { path: "/movements", component: MovementsView },
-  { path: "/transfer", component: TransferView },
+  { path: "/movimientos", component: MovementsView },
+  { path: "/transferir", component: TransferView },
 ];
 
 const router = createRouter({

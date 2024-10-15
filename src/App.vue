@@ -37,12 +37,11 @@
 
 <style scoped>
   .app-content {
-    margin-top: 6%;
+    margin-top: 110px;
     width: 100%;
   }
 
   .view-container {
-    float: right;
     width: 85%; /* @TODO: ver si hay manera de que se detecte el ancho restante en vez de hacer esto */
   }
 </style>

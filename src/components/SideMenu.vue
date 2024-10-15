@@ -11,15 +11,16 @@
             <div class="multOptionContainer">
                 <div class="optionContainer">
                     <v-icon color="black" size="large" icon="mdi-arrow-right-circle-outline"/>
-                    <RouterLink to="/transfer"><h3 class="optionText">Transferir</h3></RouterLink>
+                    <RouterLink to="/transferir"><h3 class="optionText">Transferir</h3></RouterLink>
                 </div>
-                <div class="optionContainer">
+                <div class="optionContainer" @click="showInfoPopup=true">
                     <v-icon color="black" size="large" icon="mdi-card-account-details-outline"/>
                     <h3 class="optionText">Mis Datos</h3>
+                    <InfoPopUp :showInfoPopup="showInfoPopup" @update:showInfoPopup="showInfoPopup = $event" />
                 </div>
                 <div class="optionContainer">
                     <v-icon color="black" size="large" icon="mdi-history"/>
-                    <RouterLink to="/movements"><h3 class="optionText">Movimientos</h3></RouterLink>
+                    <RouterLink to="/movimientos"><h3 class="optionText">Movimientos</h3></RouterLink>
                 </div>
             </div>
             <v-divider />
@@ -74,8 +75,10 @@
 <style scoped>
     .sideMenu {
         position: relative;
-        background-color: #cecece;
+        background-color: #E7E7FF;
         width: 15%;
+        height: 100vh;
+        overflow-y: auto;
         z-index: 999;
     }
     .menuContainer {
@@ -99,5 +102,8 @@
 </style>
 
 <script setup>
+    import { ref } from 'vue';
+    import InfoPopUp from './InfoPopUp.vue';
 
+    const showInfoPopup = ref(false);
 </script>
