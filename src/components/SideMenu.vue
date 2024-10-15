@@ -75,7 +75,7 @@
     .sideMenu {
         position: relative;
         background-color: #cecece;
-        width: 250px;
+        width: 15%;
         z-index: 999;
     }
     .menuContainer {

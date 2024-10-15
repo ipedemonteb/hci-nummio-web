@@ -1,11 +1,11 @@
 <template>
   <!-- <v-app> -->
     <main>
-      <div class="column">
+      <div class="col full-width">
         <AppHeader />
         <div class="row app-content">
           <SideMenu />
-          <div class="viewContainer">
+          <div class="view-container">
             <RouterView />
           </div>
         </div>
@@ -21,15 +21,29 @@
     flex-direction: row;
   }
 
-  .column {
+  .col {
     display: flex;
     flex-direction: column;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .half-width {
+    width: 50%;
   }
 </style>
 
 <style scoped>
   .app-content {
-    margin-top: 110px;
+    margin-top: 6%;
+    width: 100%;
+  }
+
+  .view-container {
+    float: right;
+    width: 85%; /* @TODO: ver si hay manera de que se detecte el ancho restante en vez de hacer esto */
   }
 </style>
 

@@ -1,10 +1,10 @@
 <template>
-  <div class="row">
-    <div class="column">
+  <div class="row full-width">
+    <div class="col half-width">
       <MakeTransfer/>
       <RecentContacts/>
     </div>
-    <div class="column">
+    <div class="col half-width">
       <RepeatMovement/>
     </div>
   </div>

@@ -5,12 +5,12 @@
 </script>
 
 <template>
-  <div class="row">
-    <div class="col">
-      <UserBalance/>
-      <UserMovements/>
+  <div class="row full-width">
+      <div class="col half-width">
+        <UserBalance/>
+        <UserMovements/>
     </div>
-    <div class="col">
+    <div class="col half-width">
       <FrequentlyContact/>
       <WalletCards/>
     </div>

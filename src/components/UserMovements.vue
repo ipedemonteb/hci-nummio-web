@@ -2,14 +2,14 @@
     <div class="movements">
         <div class="movementsContainer">
             <h2>Últimos Movimientos:</h2>
-            
+
             <div class="historyContainer">
-                <MovementBox />
-                <MovementBox />
-                <MovementBox />
-                <MovementBox />
-                <MovementBox />
-                <MovementBox />
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+                <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
             </div>
             <div class="buttonContainer">
                 <v-btn variant="outlined" rounded="xl" class="button">

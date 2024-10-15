@@ -22,9 +22,8 @@
     .balanceContainer {
         background-color: rgb(255, 255, 255);
         margin: 20px 30px;
-
     }
-    
+
     .infoContainer {
         display: flex;
         justify-content: space-between;
