@@ -77,7 +77,7 @@
         position: relative;
         background-color: #E7E7FF;
         width: 15%;
-        height: 100vh;
+        height: 100%;
         overflow-y: auto;
         z-index: 999;
     }
