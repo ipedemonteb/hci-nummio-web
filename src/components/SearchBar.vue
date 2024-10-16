@@ -1,6 +1,7 @@
 <template>
     <div class="searchContainer">
         <v-text-field 
+            density="compact"
             clearable
             variant="outlined" 
             label="Buscar" 
@@ -16,7 +17,6 @@
         display: flex;
         justify-content: center;
     }
-
 </style>
 
 <script setup>

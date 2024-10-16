@@ -38,6 +38,7 @@ const totalPages = computed(() => Math.ceil(movements.value.length / itemsPerPag
       
       <div class="searchContainer">
         <v-select 
+          density="compact"
           clearable
           label="Filtrar Por"
           :items="['Mas Recientes', 'Mas Antiguos', 'Monto Mayor', 'Monto Menor']"
@@ -91,7 +92,8 @@ const totalPages = computed(() => Math.ceil(movements.value.length / itemsPerPag
   }
 
   .searchBar {
-        width: 300px;
+    width: 300px;
+    margin-top: 0px;
   }
 
 </style>

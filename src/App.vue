@@ -1,6 +1,6 @@
 <template>
-  <!-- <v-app> -->
     <main class="mainPage">
+      <!-- <LoginView /> -->
       <div class="mainContent full-width">
         <AppHeader />
         <div class="row app-content">
@@ -12,7 +12,6 @@
       </div>
     </main>
     <!-- <AppFooter /> -->
-  <!-- </v-app> -->
 </template>
 
 <style>
@@ -67,4 +66,5 @@
 <script setup>
   import AppHeader from './components/AppHeader.vue';
   import SideMenu from './components/SideMenu.vue';
+  import LoginView from './views/LoginView.vue';
 </script>

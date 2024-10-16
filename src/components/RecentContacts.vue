@@ -2,7 +2,7 @@
     <div class="recentContacts">
         <h1>Contactos:</h1>
         <div class="recentInfo">
-            <h2>Recientes:</h2>
+            <h2 class="necessarySpace">Recientes:</h2>
             <SearchBar class="searchBar"/>
         </div>
         <div class="contactsContainer">
@@ -27,12 +27,16 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-top: 15px;
     }
 
     .searchBar {
         width: 200px;
     }
 
+    .necessarySpace {
+        margin-bottom: 22px;
+    }
 </style>
 
 <script setup>
