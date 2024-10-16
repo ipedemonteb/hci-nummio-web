@@ -34,6 +34,4 @@
 
 <script setup>
 import WalletBox from './WalletBox.vue';
-
-
 </script>

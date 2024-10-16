@@ -6,7 +6,7 @@
                     <h3 class="optionText">Inicio</h3>
             </RouterLink>
         </div>
-        <v-divider />
+        <v-divider class="customDivider" :thickness="2"/>
         <div class="multOptionContainer">
             <RouterLink to="/transferir" class="optionContainer">
                 <v-icon color="black" size="large" icon="mdi-arrow-right-circle-outline"/>
@@ -22,9 +22,9 @@
                 <h3 class="optionText">Movimientos</h3>
             </RouterLink>
         </div>
-        <v-divider />
+        <v-divider class="customDivider" :thickness="2"/>
         <div class="multOptionContainer">
-            <RouterLink to="/" class="optionContainer">
+            <RouterLink to="/billetera" class="optionContainer">
                 <v-icon color="black" size="large" icon="mdi-credit-card-outline"/>
                 <h3 class="optionText">Tus Tarjetas</h3>
             </RouterLink>
@@ -37,7 +37,7 @@
                 <h3 class="optionText">Retirar</h3>
             </RouterLink>
         </div>
-        <v-divider />
+        <v-divider class="customDivider" :thickness="2"/>
         <div class="multOptionContainer">
             <RouterLink to="/" class="optionContainer">
                 <v-icon color="black" size="large" icon="mdi-finance"/>
@@ -60,7 +60,7 @@
                 <h3 class="optionText">Ayuda</h3>
             </RouterLink>
         </div>
-        <v-divider />
+        <v-divider class="customDivider" :thickness="2"/>
         <div class="multOptionContainer">
             <RouterLink to="/" class="optionContainer">
                 <v-icon color="black" size="large" icon="mdi-logout"/>
@@ -96,6 +96,11 @@
 
     .optionText {
         margin-left: 7px;
+    }
+
+    .customDivider {
+        color: black;
+        thickness: 9;
     }
 
 </style>
