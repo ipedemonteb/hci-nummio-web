@@ -51,7 +51,7 @@
                 <v-icon color="black" size="large" icon="mdi-sale"/>
                 <h3 class="optionText">Beneficios</h3>
             </RouterLink>
-            <RouterLink to="/" class="optionContainer">
+            <RouterLink to="/contactos" class="optionContainer">
                 <v-icon color="black" size="large" icon="mdi-account-multiple-outline"/>
                 <h3 class="optionText">Contactos</h3>
             </RouterLink>
