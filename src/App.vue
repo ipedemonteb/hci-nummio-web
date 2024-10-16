@@ -11,7 +11,6 @@
         </div>
       </div>
     </main>
-    <!-- <AppFooter /> -->
 </template>
 
 <style>
@@ -39,6 +38,7 @@
 
 <style scoped>
   .mainPage {
+    font-family: 'SF Pro Display', 'Roboto', sans-serif;
     height: 100vh;
     overflow: hidden;
   }

@@ -22,6 +22,10 @@ export default defineConfig({
         families: [{
           name: 'Roboto',
           styles: 'wght@100;300;400;500;700;900',
+        },
+        {
+          name: 'SF Pro Display',
+          styles: 'wght@400;500;600;700',
         }],
       },
     }),
