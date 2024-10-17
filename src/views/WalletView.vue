@@ -14,8 +14,8 @@ import RecentPurchase from '@/components/RecentPurchase.vue';
         <RecentPurchase />
       </div>
     </div>
-  </template>
+</template>
 
-  <style scoped>
+<style scoped>
   
-  </style>
+</style>

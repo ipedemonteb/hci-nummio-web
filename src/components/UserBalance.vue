@@ -3,7 +3,7 @@
         <div class="balanceContainer">
             <h2>Saldo</h2>
             <div class="infoContainer">
-                <h2>$ 1,000.00</h2>
+                <h2>$ 1000.00</h2>
                 <v-icon color="black" size="large" icon="mdi-eye"></v-icon>
             </div>
         </div>

@@ -5,6 +5,7 @@ import MovementsView from "./views/MovementsView.vue";
 import TransferView from "./views/TransferView.vue";
 import WalletView from "./views/WalletView.vue";
 import ContactView from "./views/ContactView.vue";
+import InvestView from "./views/InvestView.vue";
 
 const routes = [
   { path: "/", component: HomeView },
@@ -12,6 +13,7 @@ const routes = [
   { path: "/transferir", component: TransferView },
   { path: "/billetera", component: WalletView},
   { path: "/contactos", component: ContactView},
+  { path: "/inversiones", component: InvestView},
 ];
 
 const router = createRouter({

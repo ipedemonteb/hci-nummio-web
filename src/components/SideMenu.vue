@@ -39,7 +39,7 @@
         </div>
         <v-divider class="customDivider" :thickness="2"/>
         <div class="multOptionContainer">
-            <RouterLink to="/" class="optionContainer">
+            <RouterLink to="/inversiones" class="optionContainer">
                 <v-icon size="large" icon="mdi-finance"/>
                 <h3 class="optionText">Inversiones</h3>
             </RouterLink>
@@ -101,7 +101,6 @@
 
     .customDivider {
         color: black;
-        thickness: 9;
     }
 
 </style>
