@@ -3,13 +3,17 @@
   import UserMovements from '@/components/UserMovements.vue';
   import FrequentlyContact from '@/components/FrequentlyContact.vue';
   import WalletCards from '@/components/WalletCards.vue';
+
+  import { useMovementsStore } from '@/stores/movements';
+
+  const movementsStore = useMovementsStore();
 </script>
 
 <template>
   <div class="contentContainer">
     <div class="columnContainer half-width">
       <UserBalance/>
-      <UserMovements/>
+      <UserMovements :lastMovements="movementsStore.recentMovements"/>
     </div>
     <div class="columnContainer half-width">
       <FrequentlyContact/>

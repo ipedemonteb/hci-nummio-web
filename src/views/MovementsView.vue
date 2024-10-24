@@ -2,21 +2,9 @@
 import { ref, computed } from 'vue';
 import SearchBar from '@/components/SearchBar.vue';
 import MovementBox from '@/components/MovementBox.vue';
+import { useMovementsStore } from '@/stores/movements';
 
-const movements = ref([
-  { action: "Transferencia enviada", source: "Fernando Alonso", amount: "5000.00", timeAgo: "2 horas" },
-  { action: "Transferencia recibida", source: "Carlos Sainz", amount: "3000.00", timeAgo: "1 hora" },
-  { action: "Transferencia enviada", source: "Sebastian Vettel", amount: "7000.00", timeAgo: "4 horas" },
-  { action: "Transferencia enviada", source: "Lewis Hamilton", amount: "1500.00", timeAgo: "3 horas" },
-  { action: "Transferencia enviada", source: "Fernando Alonso", amount: "5000.00", timeAgo: "2 horas" },
-  { action: "Transferencia recibida", source: "Carlos Sainz", amount: "3000.00", timeAgo: "1 hora" },
-  { action: "Transferencia enviada", source: "Sebastian Vettel", amount: "7000.00", timeAgo: "4 horas" },
-  { action: "Transferencia enviada", source: "Lewis Hamilton", amount: "1500.00", timeAgo: "3 horas" },  
-  { action: "Transferencia enviada", source: "Fernando Alonso", amount: "5000.00", timeAgo: "2 horas" },
-  { action: "Transferencia recibida", source: "Carlos Sainz", amount: "3000.00", timeAgo: "1 hora" },
-  { action: "Transferencia enviada", source: "Sebastian Vettel", amount: "7000.00", timeAgo: "4 horas" },
-  { action: "Transferencia enviada", source: "Lewis Hamilton", amount: "1500.00", timeAgo: "3 horas" },
-]);
+const movementsStore = useMovementsStore();
 
 const itemsPerPage = 8;
 const currentPage = ref(1);
@@ -24,10 +12,10 @@ const currentPage = ref(1);
 const paginatedMovements = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return movements.value.slice(start, end);
+  return movementsStore.movements.slice(start, end); 
 });
 
-const totalPages = computed(() => Math.ceil(movements.value.length / itemsPerPage));
+const totalPages = computed(() => Math.ceil(movementsStore.movements.length / itemsPerPage));
 
 </script>
 
@@ -50,17 +38,19 @@ const totalPages = computed(() => Math.ceil(movements.value.length / itemsPerPag
 
       <div class="movementsContainer">
         <MovementBox 
-          v-for="(movement, index) in paginatedMovements" 
-          :key="index" 
+          v-for="(movement) in movementsStore.movements" 
+          :key="movement.id" 
           :action="movement.action" 
           :source="movement.source" 
           :amount="movement.amount" 
           :timeAgo="movement.timeAgo"
+          :isSent="movement.isSent"
         />
       </div>
 
       <div class="paginationContainer">
-        <v-pagination
+        <v-pagination 
+          v-show="totalPages > 1"
           v-model="currentPage"
           :length="totalPages"
           total-visible="7"

@@ -2,7 +2,11 @@
     <div class="movement">
         <div class="movementContainer">
             <div class="iconInfoContainer">
-                <v-icon color="black" size="45px" icon="mdi-arrow-top-right-bold-box-outline" />
+                <v-icon 
+                    color="black" 
+                    size="45px" 
+                    :icon="isSent ? 'mdi-arrow-top-right-bold-box-outline' : 'mdi-arrow-bottom-left-bold-box-outline'" 
+                />
                 <div class="actionContainer">
                     <h4>{{ action }}</h4>
                     <h5>Por {{ source }}</h5>
@@ -56,6 +60,12 @@
 
 <script setup>
     import { defineProps } from 'vue';
-    defineProps(['action', 'source', 'amount', 'timeAgo']);
+    const props = defineProps({
+        action: String,
+        source: String,
+        amount: String,
+        timeAgo: String,
+        isSent: Boolean
+    });
 </script>
 

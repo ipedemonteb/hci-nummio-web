@@ -3,17 +3,22 @@
         <h2>Últimos Movimientos:</h2>
 
         <div class="historyContainer">
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <MovementBox 
+                v-for="(movement, index) in lastMovements" 
+                :key="movement.id" 
+                :action="movement.action" 
+                :source="movement.source" 
+                :amount="movement.amount" 
+                :timeAgo="movement.timeAgo"
+                :isSent="movement.isSent"
+            />
         </div>
         <div class="buttonContainer">
-            <v-btn variant="outlined" rounded="xl" class="button">
+            <RouterLink to="/movimientos">
+                <v-btn variant="outlined" rounded="xl" class="button">
                     Ver Más
-            </v-btn>
+                </v-btn>
+            </RouterLink>
         </div>
     </div>
 </template>
@@ -47,4 +52,13 @@
 
 <script setup>
 import MovementBox from './MovementBox.vue';
+import { defineProps } from 'vue';
+
+const props = defineProps({
+    lastMovements: {
+        type: Array,
+        required: true,
+        default: () => []
+    }
+});
 </script>
