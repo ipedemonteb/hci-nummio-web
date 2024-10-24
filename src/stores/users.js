@@ -37,6 +37,8 @@ export const useUsersStore = defineStore('users', () => {
 
     const userLoggedInKey = 'userLoggedIn'
 
+    localStorage.setItem(userLoggedInKey, JSON.stringify(initialUsers[0]))
+
     const users = ref(initialUsers)
 
     //Esto debería chequear cantidad de transferencias y ordenar por eso
@@ -67,11 +69,15 @@ export const useUsersStore = defineStore('users', () => {
 
     //Devuelve null si no hay usuario logueado
     function getUserLoggedIn() {
-        return localStorage.getItem(userLoggedInKey)
+        return JSON.parse(localStorage.getItem(userLoggedInKey))
     }
 
     function getUserByCVU(cvu) {
         return users.value.find(user => user.cvu === cvu)
+    }
+
+    function getUserById(id) {
+        return users.value.find(user => user.id === id)
     }
 
     //@TODO: Analizar si dejar o reemplazar por llamado a la API
@@ -83,5 +89,5 @@ export const useUsersStore = defineStore('users', () => {
     }
     loadUsers()
     */
-    return {users, recentContacts, signup, login, getUserLoggedIn, getUserByCVU}
+    return {users, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserById}
 })

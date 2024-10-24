@@ -13,7 +13,7 @@
   <div class="contentContainer">
     <div class="columnContainer half-width">
       <UserBalance/>
-      <UserMovements :lastMovements="movementsStore.recentMovements"/>
+      <UserMovements :lastMovements="movementsStore.getUserMovements()"/>
     </div>
     <div class="columnContainer half-width">
       <FrequentlyContact/>

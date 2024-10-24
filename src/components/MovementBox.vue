@@ -8,14 +8,14 @@
                     :icon="isSent ? 'mdi-arrow-top-right-bold-box-outline' : 'mdi-arrow-bottom-left-bold-box-outline'" 
                 />
                 <div class="actionContainer">
-                    <h4>{{ action }}</h4>
-                    <h5>Por {{ source }}</h5>
+                    <h4>{{ isSent ? "Transferencia enviada" : "Transferencia recibida" }}</h4>
+                    <h5>Por {{ otherUser }}</h5>
                 </div>
             </div>
             <div class="rightContainer">
                 <div class="amountContainer">
                     <h3>$ {{ amount }}</h3>
-                    <h5>hace {{ timeAgo }}</h5>
+                    <h5>{{ timeAgo.toDateString() }}</h5>
                 </div>
                 <v-icon class="moreOptions" color="black" size="large" icon="mdi-dots-vertical"/> 
             </div>   
@@ -61,10 +61,9 @@
 <script setup>
     import { defineProps } from 'vue';
     const props = defineProps({
-        action: String,
-        source: String,
-        amount: String,
-        timeAgo: String,
+        otherUser: String,
+        amount: Number,
+        timeAgo: Date,
         isSent: Boolean
     });
 </script>

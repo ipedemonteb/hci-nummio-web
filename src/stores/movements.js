@@ -3,19 +3,12 @@ import { defineStore } from 'pinia'
 import { useUsersStore } from './users'
 
 export const useMovementsStore = defineStore('movements', () => {
-    /* const initialMovements = [
-        { id: 1, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
-        { id: 2, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
-        { id: 3, action: "Transferencia recibida", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: false },
-        { id: 4, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
-        { id: 5, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
-        { id: 6, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
-    ] */
 
     const userStore = useUsersStore()
 
     const initialMovements = [
         { id: 1, source: 1, target: 2, amount: 500, date: new Date('2024-08-12') },
+        { id: 2, source: 2, target: 1, amount: 4000, date: new Date('2024-07-12') },
     ]
 
     const movements = ref(initialMovements)
@@ -34,12 +27,12 @@ export const useMovementsStore = defineStore('movements', () => {
         //  localStorage.setItem('movements', JSON.stringify(movements.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
     } */
 
-    function createMovement(target, amount) {
+    function createMovement(cvu, amount) {
         const user = userStore.getUserLoggedIn()
         const newMovement = {
             id: movements.value.length + 1,
-            source: user.id,
-            target,
+            source: user,
+            target: userStore.getUserByCVU(cvu),
             amount,
             date: new Date()
         }
@@ -51,8 +44,20 @@ export const useMovementsStore = defineStore('movements', () => {
         const user = userStore.getUserLoggedIn()
         const userMovements = []
         movements.value.forEach(movement => {
-            if([movements.source, movements.target].includes(user.id))
-                userMovements.push(movement)
+            if([movement.source, movement.target].includes(user.id)) {
+                const sourceUser = userStore.getUserById(movement.source)
+                const targetUser = userStore.getUserById(movement.target)
+                console.log(sourceUser, targetUser)
+                console.log(sourceUser.firstName)
+                const movementData = {
+                    id: movement.id,
+                    isSent: sourceUser.id === user.id,
+                    amount: movement.amount,
+                    timeAgo: movement.date,
+                    otherUser: sourceUser.id === user.id? `${targetUser.firstName} ${targetUser.lastName}` : `${sourceUser.firstName} ${sourceUser.lastName}`
+                }
+                userMovements.push(movementData)
+            }
         })
         return userMovements
     }

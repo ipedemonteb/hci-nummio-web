@@ -12,10 +12,10 @@ const currentPage = ref(1);
 const paginatedMovements = computed(() => {
   const start = (currentPage.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
-  return movementsStore.movements.slice(start, end); 
+  return movementsStore.getUserMovements().slice(start, end); 
 });
 
-const totalPages = computed(() => Math.ceil(movementsStore.movements.length / itemsPerPage));
+const totalPages = computed(() => Math.ceil(movementsStore.getUserMovements().length / itemsPerPage));
 
 </script>
 
@@ -38,10 +38,9 @@ const totalPages = computed(() => Math.ceil(movementsStore.movements.length / it
 
       <div class="movementsContainer">
         <MovementBox 
-          v-for="(movement) in movementsStore.movements" 
+          v-for="(movement) in movementsStore.getUserMovements()" 
           :key="movement.id" 
-          :action="movement.action" 
-          :source="movement.source" 
+          :otherUser="movement.otherUser" 
           :amount="movement.amount" 
           :timeAgo="movement.timeAgo"
           :isSent="movement.isSent"

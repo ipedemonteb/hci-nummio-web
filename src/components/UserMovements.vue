@@ -4,11 +4,10 @@
 
         <div class="historyContainer">
             <MovementBox 
-                v-for="(movement, index) in lastMovements" 
+                v-for="(movement) in lastMovements" 
                 :key="movement.id" 
-                :action="movement.action" 
-                :source="movement.source" 
-                :amount="movement.amount" 
+                :otherUser="movement.otherUser"
+                :amount="movement.amount"
                 :timeAgo="movement.timeAgo"
                 :isSent="movement.isSent"
             />
