@@ -10,7 +10,7 @@ export const useUsersStore = defineStore('users', () => {
             cvu: 1234567890,
             alias: 'john.doe',
             profileImage: '/pfp.jpg',
-            username: 'johndoe',
+            email: 'johndoe@gmail.com',
             password: 'password123'
         },
         {
@@ -20,7 +20,7 @@ export const useUsersStore = defineStore('users', () => {
             cvu: 9876543210,
             alias: 'jane.smith',
             profileImage: '/pfp.jpg',
-            username: 'janesmith',
+            email: 'janesmith@gmail.com',
             password: 'password123'
         },
         {
@@ -30,10 +30,12 @@ export const useUsersStore = defineStore('users', () => {
             cvu: 1122334455,
             alias: 'alice.johnson',
             profileImage: '/pfp.jpg',
-            username: 'alicejohnson',
+            email: 'alicejohnson@gmail.com',
             password: 'password123'
         }
     ]
+
+    const userLoggedInKey = 'userLoggedIn'
 
     const users = ref(initialUsers)
 
@@ -41,31 +43,31 @@ export const useUsersStore = defineStore('users', () => {
     const recentContacts = computed(() => users.value.slice(0, 6))
 
     function signup(user) {
+        if (users.value.find(u => u.email === newUser.email))
+            return null
         const newUser = {
             id: users.value.length + 1,
             ...user
         }
-        if (users.value.find(u => u.username === newUser.username))
-            return null
         users.value.push(newUser)
         //localStorage.setItem('users', JSON.stringify(users.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
-        localStorage.setItem('userLoggedIn', JSON.stringify(users.value))
+        localStorage.setItem(userLoggedInKey, JSON.stringify(users.value))
         return newUser
     }
 
     function login(loginInformation) {
-        const { username, password } = loginInformation
-        const user = users.value.find(user => user.username === username && user.password === password)
+        const { email, password } = loginInformation
+        const user = users.value.find(user => user.email === email && user.password === password)
         if (user) {
-            localStorage.setItem('userLoggedin', user)
+            localStorage.setItem(userLoggedInKey, user)
             return user
         }
         return null
     }
 
     //Devuelve null si no hay usuario logueado
-    function getUserLoggedin() {
-        return localStorage.getItem('userLoggedin')
+    function getUserLoggedIn() {
+        return localStorage.getItem(userLoggedInKey)
     }
 
     function getUserByCVU(cvu) {
@@ -81,5 +83,5 @@ export const useUsersStore = defineStore('users', () => {
     }
     loadUsers()
     */
-    return {users, recentContacts, addUser, getUserLoggedin}
+    return {users, recentContacts, signup, login, getUserLoggedIn, getUserByCVU}
 })

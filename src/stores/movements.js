@@ -1,19 +1,27 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useUsersStore } from './users'
 
 export const useMovementsStore = defineStore('movements', () => {
-    const initialMovements = [
+    /* const initialMovements = [
         { id: 1, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
         { id: 2, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
         { id: 3, action: "Transferencia recibida", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: false },
         { id: 4, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
         { id: 5, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
         { id: 6, action: "Transferencia enviada", source: "Fernando Alonso", amount: "500.00", timeAgo: "2 horas", isSent: true },
-    ]
-    const movements = ref(initialMovements)
-    const recentMovements = computed(() => movements.value.slice(0, 6))
+    ] */
 
-    function makeTransaction(movement) {
+    const userStore = useUsersStore()
+
+    const initialMovements = [
+        { id: 1, source: 1, target: 2, amount: 500, date: new Date('2024-08-12') },
+    ]
+
+    const movements = ref(initialMovements)
+    const recentMovements = computed(() => getUserMovements().sort((a,b) => a.date - b.date).slice(0, 6))
+
+    /* function makeTransaction(movement) {
         const newMovement = {
             id: movements.value.length + 1,
             action: "Transferencia enviada",
@@ -24,14 +32,40 @@ export const useMovementsStore = defineStore('movements', () => {
         }
         movements.value.push(newMovement)
         //  localStorage.setItem('movements', JSON.stringify(movements.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
+    } */
+
+    function createMovement(target, amount) {
+        const user = userStore.getUserLoggedIn()
+        const newMovement = {
+            id: movements.value.length + 1,
+            source: user.id,
+            target,
+            amount,
+            date: new Date()
+        }
+        movements.value.push(newMovement)
+        // localStorage.setItem('movements', JSON.stringify(movements.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
+    }
+
+    function getUserMovements() {
+        const user = userStore.getUserLoggedIn()
+        const userMovements = []
+        movements.value.forEach(movement => {
+            if([movements.source, movements.target].includes(user.id))
+                userMovements.push(movement)
+        })
+        return userMovements
     }
 
     function getBalance() {
-        return movements.value.reduce((acc, movement) => 
-            acc + (movement.isSent ? -1 : 1) * parseFloat(movement.amount), 0)
+        const user = userStore.getUserLoggedIn()
+        return movements.value.reduce((acc, movement) => {
+            let mult = movement.source === user.id ? -1 : (movement.target === user.id ? 1 : 0);
+            return acc + mult*movement.amount;
+        }, 0)
     }
 
-    function receiveTransaction(movement) {
+    /* function receiveTransaction(movement) {
         const newMovement = {
             id: movements.value.length + 1,
             action: "Transferencia recibida",
@@ -42,7 +76,7 @@ export const useMovementsStore = defineStore('movements', () => {
         }
         movements.value.push(newMovement)
         // localStorage.setItem('movements', JSON.stringify(movements.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
-    }
+    } */
 
     // Esto se ejecuta 1 vez al iniciar la store
     /*function loadMovements() {
@@ -53,5 +87,5 @@ export const useMovementsStore = defineStore('movements', () => {
     }
     loadMovements()*/
 
-    return { movements, recentMovements, makeTransaction, receiveTransaction, getBalance }
+    return { recentMovements, createMovement, getUserMovements, getBalance }
 })
