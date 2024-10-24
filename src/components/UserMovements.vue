@@ -11,7 +11,7 @@
             <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
         </div>
         <div class="buttonContainer">
-            <v-btn variant="outlined" rounded="xl" class="button">
+            <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
                     Ver Más
             </v-btn>
         </div>
@@ -47,4 +47,12 @@
 
 <script setup>
 import MovementBox from './MovementBox.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+const goToPage = () => {
+  router.push('/movimientos')
+}
+
 </script>
