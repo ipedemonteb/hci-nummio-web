@@ -13,7 +13,7 @@ export const useMovementsStore = defineStore('movements', () => {
     const movements = ref(initialMovements)
     const recentMovements = computed(() => movements.value.slice(0, 6))
 
-    const makeTransaction = (movement) => {
+    function makeTransaction(movement) {
         const newMovement = {
             id: movements.value.length + 1,
             action: "Transferencia enviada",
@@ -23,10 +23,15 @@ export const useMovementsStore = defineStore('movements', () => {
             isSent: true,
         }
         movements.value.push(newMovement)
-        localStorage.setItem('movements', JSON.stringify(movements.value))
+        //  localStorage.setItem('movements', JSON.stringify(movements.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
     }
 
-    const receiveTransaction = (movement) => {
+    function getBalance() {
+        return movements.value.reduce((acc, movement) => 
+            acc + (movement.isSent ? -1 : 1) * parseFloat(movement.amount), 0)
+    }
+
+    function receiveTransaction(movement) {
         const newMovement = {
             id: movements.value.length + 1,
             action: "Transferencia recibida",
@@ -36,17 +41,17 @@ export const useMovementsStore = defineStore('movements', () => {
             isSent: false,
         }
         movements.value.push(newMovement)
-        localStorage.setItem('movements', JSON.stringify(movements.value))
+        // localStorage.setItem('movements', JSON.stringify(movements.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
     }
 
     // Esto se ejecuta 1 vez al iniciar la store
-    function loadMovements() {
+    /*function loadMovements() {
         const storedMovements = localStorage.getItem('movements')
         if (storedMovements) {
             movements.value = JSON.parse(storedMovements)
         }
     }
-    loadMovements()
+    loadMovements()*/
 
-    return { movements, recentMovements, makeTransaction, receiveTransaction }
+    return { movements, recentMovements, makeTransaction, receiveTransaction, getBalance }
 })
