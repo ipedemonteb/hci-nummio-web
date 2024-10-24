@@ -30,19 +30,15 @@
             </RouterLink>
             <RouterLink to="/" class="optionContainer">
                 <v-icon size="large" icon="mdi-account-credit-card-outline"/>
-                <h3 class="optionText">Pagar</h3>
+                <h3 class="optionText">Recibir Pago</h3>
             </RouterLink>
-            <RouterLink to="/" class="optionContainer">
-                <v-icon size="large" icon="mdi-cash-multiple"/>
-                <h3 class="optionText">Retirar</h3>
-            </RouterLink>
-        </div>
-        <v-divider class="customDivider" :thickness="2"/>
-        <div class="multOptionContainer">
             <RouterLink to="/inversiones" class="optionContainer">
                 <v-icon size="large" icon="mdi-finance"/>
                 <h3 class="optionText">Inversiones</h3>
             </RouterLink>
+        </div>
+        <v-divider class="customDivider" :thickness="2"/>
+        <div class="multOptionContainer">
             <RouterLink to="/" class="optionContainer">
                 <v-icon size="large" icon="mdi-file-document-outline"/>
                 <h3 class="optionText">Pago de Servicios</h3>

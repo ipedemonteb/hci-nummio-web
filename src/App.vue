@@ -1,8 +1,8 @@
 <template>
     <main class="mainPage">
-      <LoginView />
+      <!-- <LoginView /> -->
        
-      <!-- <div class="mainContent full-width">
+      <div class="mainContent full-width">
         <AppHeader />
         <div class="row app-content">
           <SideMenu />
@@ -10,7 +10,7 @@
             <RouterView />
           </div>
         </div>
-      </div> -->
+      </div>
     </main>
 </template>
 
