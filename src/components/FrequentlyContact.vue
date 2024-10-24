@@ -1,6 +1,6 @@
 <template>
     <div class="frequentlyContact">
-        <h2>Contactos Frecuentes:</h2>
+        <h1>Contactos Frecuentes:</h1>
         
         <div class="contactsContainer">
             <ContactBox />

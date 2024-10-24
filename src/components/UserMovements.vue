@@ -1,6 +1,6 @@
 <template>
     <div class="movements">
-        <h2>Últimos Movimientos:</h2>
+        <h1>Últimos Movimientos:</h1>
 
         <div class="historyContainer">
             <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>

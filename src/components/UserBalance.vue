@@ -1,13 +1,18 @@
 <template>
     <div class="balance">
         <div class="balanceContainer">
-            <h2>Saldo</h2>
+            <h1>Saldo Actual:</h1>
             <div class="infoContainer">
-                <h2>$ 1000.00</h2>
-                <v-icon color="black" size="large" icon="mdi-eye"></v-icon>
+                <h2>{{ isVisible ? '$ 1000.00' : '$ • • • • • • •' }}</h2>
+                <v-icon 
+                    color="black" 
+                    size="large" 
+                    @click="toggleVisibility"
+                >
+                    {{ isVisible ? 'mdi-eye' : 'mdi-eye-off' }}
+                </v-icon>
             </div>
         </div>
-
     </div>
 </template>
 
@@ -25,14 +30,19 @@
     }
 
     .infoContainer {
+        margin-top: 10px;
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
-
 </style>
 
 <script setup>
+import { ref } from 'vue';
 
+const isVisible = ref(true);
+
+function toggleVisibility() {
+    isVisible.value = !isVisible.value;
+}
 </script>
-

@@ -1,6 +1,6 @@
 <template>
     <div class="wallet">
-        <h2>Billetera:</h2>
+        <h1>Billetera:</h1>
 
         <WalletBox />
 

@@ -2,7 +2,7 @@
     <div class="movement">
         <div class="movementContainer">
             <div class="iconInfoContainer">
-                <v-icon color="black" size="45px" icon="mdi-arrow-top-right-bold-box-outline" />
+                <v-icon color="black" size="48px" icon="mdi-arrow-top-right-bold-box-outline" />
                 <div class="actionContainer">
                     <h4>{{ action }}</h4>
                     <h5>Por {{ source }}</h5>
@@ -13,7 +13,17 @@
                     <h3>$ {{ amount }}</h3>
                     <h5>hace {{ timeAgo }}</h5>
                 </div>
-                <v-icon class="moreOptions" color="black" size="large" icon="mdi-dots-vertical"/> 
+                <v-menu>
+                    <template v-slot:activator="{ props }">
+                        <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
+                    </template>
+
+                    <v-list>
+                        <v-list-item>
+                            <v-btn class="detailsButton" prepend-icon="mdi-format-list-bulleted">Detalles</v-btn>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
             </div>   
         </div>
 
@@ -52,6 +62,15 @@
         margin-top: 0px;
         color: grey;
     }
+
+    .amountContainer {
+        margin-right: 5px;
+    }
+
+    .detailsButton {
+        width: 100%;
+    }
+
 </style>
 
 <script setup>
