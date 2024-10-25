@@ -7,12 +7,13 @@ export const useMovementsStore = defineStore('movements', () => {
     const userStore = useUsersStore()
 
     const initialMovements = [
-        { id: 1, source: 1, target: 2, amount: 500, date: new Date('2024-08-12') },
-        { id: 2, source: 2, target: 1, amount: 4000, date: new Date('2024-07-12') },
+        // @TODO: arreglar tema timezone para no tener que ponerle a las 3 am
+        { id: 1, source: 1, target: 2, amount: 500, date: new Date('2024-08-12T03:00:00') },
+        { id: 2, source: 2, target: 1, amount: 4000, date: new Date('2024-07-12T03:00:00') },
     ]
 
     const movements = ref(initialMovements)
-    const recentMovements = computed(() => getUserMovements().sort((a,b) => a.date - b.date).slice(0, 6))
+    const recentMovements = computed(() => getUserMovements().slice(0, 6))
 
     /* function makeTransaction(movement) {
         const newMovement = {
@@ -43,7 +44,7 @@ export const useMovementsStore = defineStore('movements', () => {
     function getUserMovements() {
         const user = userStore.getUserLoggedIn()
         const userMovements = []
-        movements.value.forEach(movement => {
+        movements.value.sort((a,b) => b.date - a.date).forEach(movement => {
             if([movement.source, movement.target].includes(user.id)) {
                 const sourceUser = userStore.getUserById(movement.source)
                 const targetUser = userStore.getUserById(movement.target)

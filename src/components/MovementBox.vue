@@ -2,25 +2,24 @@
     <div class="movement">
         <div class="movementContainer">
             <div class="iconInfoContainer">
-                <v-icon 
-                    color="black" 
-                    size="45px" 
-                    :icon="isSent ? 'mdi-arrow-top-right-bold-box-outline' : 'mdi-arrow-bottom-left-bold-box-outline'" 
+                <v-icon
+                    color="black"
+                    size="45px"
+                    :icon="isSent ? 'mdi-arrow-top-right-bold-box-outline' : 'mdi-arrow-bottom-left-bold-box-outline'"
                 />
                 <div class="actionContainer">
                     <h4>{{ isSent ? "Transferencia enviada" : "Transferencia recibida" }}</h4>
-                    <h5>Por {{ otherUser }}</h5>
+                    <h5>{{ isSent ? "A " : "De "}} {{ otherUser }}</h5>
                 </div>
             </div>
             <div class="rightContainer">
                 <div class="amountContainer">
                     <h3>$ {{ amount }}</h3>
-                    <h5>{{ timeAgo.toDateString() }}</h5>
+                    <h5>{{ timeAgo.toLocaleDateString() }}</h5>
                 </div>
-                <v-icon class="moreOptions" color="black" size="large" icon="mdi-dots-vertical"/> 
-            </div>   
+                <v-icon class="moreOptions" color="black" size="large" icon="mdi-dots-vertical"/>
+            </div>
         </div>
-
     </div>
 </template>
 
@@ -67,4 +66,3 @@
         isSent: Boolean
     });
 </script>
-
