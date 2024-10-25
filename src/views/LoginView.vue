@@ -129,7 +129,9 @@ const handlePasswordInput = (event) => {
   password.value = event.target.value
 }
 const loginHandler = () => {
-  usersStore.login({email: email.value, password: password.value})
+  const user = usersStore.login({email: email.value, password: password.value})
+  if(user != null)
+    window.location.reload()
 }
 </script>
 

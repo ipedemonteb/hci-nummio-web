@@ -110,6 +110,7 @@ const usersStore = useUsersStore()
 
 const logoutHandler = () => {
   usersStore.logout()
+  window.location.reload()
 }
 
 </script>
