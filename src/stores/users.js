@@ -37,7 +37,8 @@ export const useUsersStore = defineStore('users', () => {
 
     const userLoggedInKey = 'userLoggedIn'
 
-    localStorage.setItem(userLoggedInKey, JSON.stringify(initialUsers[0]))
+    //localStorage.setItem(userLoggedInKey, JSON.stringify(initialUsers[0]))
+    //localStorage.clear()
 
     const users = ref(initialUsers)
 
@@ -61,8 +62,8 @@ export const useUsersStore = defineStore('users', () => {
         const { email, password } = loginInformation
         const user = users.value.find(user => user.email === email && user.password === password)
         if (user) {
-            localStorage.setItem(userLoggedInKey, user)
-            return user
+          localStorage.setItem(userLoggedInKey, JSON.stringify(user))
+          return user
         }
         return null
     }

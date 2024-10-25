@@ -1,14 +1,3 @@
-<script>
-export default {
-  data() {
-    return {
-      visible: false,
-      isRegistering: false
-    };
-  },
-};
-</script>
-
 <template>
   <div class="login">
     <div class="leftContainer">
@@ -16,34 +5,36 @@ export default {
       <p class="virtualWalletText">Tu billetera virtual</p>
     </div>
     <div class="rightContainer">
-      <h1 class="loginTitle">{{ isRegistering ? "Registrate" : "Inicio de Sesión" }}</h1>
-
+      <h1 class="loginTitle">{{ isRegistering ? "Registrate" : "Inicio de sesión" }}</h1>
       <div class="inputsContainer">
         <template v-if="!isRegistering">
           <div>
-            <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+            <div class="text-subtitle-1 text-medium-emphasis">Cuenta</div>
             <v-text-field
-              placeholder="Email address"
+              @input="handleEmailInput"
+              class="input"
+              placeholder="Direccion de correo electrónico"
               prepend-inner-icon="mdi-email-outline"
               variant="outlined"
             ></v-text-field>
           </div>
           <div>
             <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-              Password
+              Contraseña
               <a
                 class="forgotPassword text-decoration-none"
                 href="#"
                 rel="noopener noreferrer"
                 target="_blank"
               >
-                Forgot login password?
+              ¿Olvidaste tu contraseña?
               </a>
             </div>
             <v-text-field
               :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
               :type="visible ? 'text' : 'password'"
-              placeholder="Enter your password"
+              @input="handlePasswordInput"
+              placeholder="Contraseña"
               prepend-inner-icon="mdi-lock-outline"
               variant="outlined"
               @click:append-inner="visible = !visible"
@@ -97,7 +88,7 @@ export default {
 
       <div class="buttonsContainer">
         <template v-if="!isRegistering">
-          <v-btn class="loginBtn" size="large">Iniciar Sesión</v-btn>
+          <v-btn class="loginBtn" size="large" @click="loginHandler()">Iniciar Sesión</v-btn>
           <v-btn class="registerBtn" size="large" @click="isRegistering = true">Registrarse</v-btn>
         </template>
 
@@ -121,6 +112,26 @@ export default {
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import { useUsersStore } from '@/stores/users';
+import { ref } from 'vue';
+
+const usersStore = useUsersStore()
+var visible = false
+var isRegistering = false
+const email = ref("")
+const password = ref("")
+const handleEmailInput = (event) => {
+  email.value = event.target.value
+}
+const handlePasswordInput = (event) => {
+  password.value = event.target.value
+}
+const loginHandler = () => {
+  usersStore.login({email: email.value, password: password.value})
+}
+</script>
 
 <style scoped>
     .login {
