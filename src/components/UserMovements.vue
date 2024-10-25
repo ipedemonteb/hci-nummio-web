@@ -1,11 +1,11 @@
 <template>
     <div class="movements">
-        <h2>Últimos Movimientos:</h2>
+        <h1>Últimos Movimientos:</h1>
 
         <div class="historyContainer">
-            <MovementBox 
-                v-for="(movement) in lastMovements" 
-                :key="movement.id" 
+            <MovementBox
+                v-for="(movement) in lastMovements"
+                :key="movement.id"
                 :otherUser="movement.otherUser"
                 :amount="movement.amount"
                 :timeAgo="movement.timeAgo"
@@ -13,11 +13,9 @@
             />
         </div>
         <div class="buttonContainer">
-            <RouterLink to="/movimientos">
-                <v-btn variant="outlined" rounded="xl" class="button">
-                    Ver Más
-                </v-btn>
-            </RouterLink>
+          <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
+              Ver Más
+          </v-btn>
         </div>
     </div>
 </template>
@@ -52,6 +50,7 @@
 <script setup>
 import MovementBox from './MovementBox.vue';
 import { defineProps } from 'vue';
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
     lastMovements: {
@@ -60,4 +59,11 @@ const props = defineProps({
         default: () => []
     }
 });
+
+const router = useRouter()
+
+const goToPage = () => {
+  router.push('/movimientos')
+}
+
 </script>

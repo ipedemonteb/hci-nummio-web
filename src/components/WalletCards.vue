@@ -1,11 +1,11 @@
 <template>
     <div class="wallet">
-        <h2>Billetera:</h2>
+        <h1>Billetera:</h1>
 
         <WalletBox />
 
         <div class="buttonContainer">
-            <v-btn variant="outlined" rounded="xl" class="button">
+            <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
                     Ver Todas
             </v-btn>
         </div>
@@ -34,4 +34,12 @@
 
 <script setup>
 import WalletBox from './WalletBox.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
+
+const goToPage = () => {
+  router.push('/billetera')
+}
+
 </script>

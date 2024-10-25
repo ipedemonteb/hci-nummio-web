@@ -11,7 +11,7 @@
         </div>
         </v-col>
         <v-col cols="4" class="d-flex justify-center align-center">
-        <img src="/logos/mastercard.png" alt="Visa" class="cardLogo"/>
+        <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
         </v-col>
     </v-row>
     </v-card>

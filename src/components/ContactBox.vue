@@ -8,7 +8,21 @@
                     <h5>Cuenta Galicia</h5>
                 </div>
             </div> 
-            <v-icon color="black" size="large" icon="mdi-dots-vertical"/>      
+
+            <v-menu>
+                <template v-slot:activator="{ props }">
+                    <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
+                </template>
+
+                <v-list>
+                    <v-list-item>
+                        <v-btn class="editButton" prepend-icon="mdi-pencil-outline">Editar</v-btn>
+                    </v-list-item>
+                    <v-list-item>
+                        <v-btn class="deleteButton" prepend-icon="mdi-delete-outline">Eliminar</v-btn>
+                    </v-list-item>
+                </v-list>
+            </v-menu>   
         </div>
     </div>
 
@@ -48,6 +62,15 @@
     .iconInfo h5 {
         margin-top: 0px;
         color: grey;
+    }
+
+    .editButton {
+        width: 100%;
+    }
+
+    .deleteButton {
+        width: 100%;
+        color: red;
     }
 
 </style>

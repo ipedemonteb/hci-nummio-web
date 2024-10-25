@@ -1,6 +1,6 @@
 <template>
     <div class="frequentlyContact">
-        <h2>Contactos Frecuentes:</h2>
+        <h1>Contactos Frecuentes:</h1>
         
         <div class="contactsContainer">
             <ContactBox />
@@ -9,7 +9,7 @@
         </div>
 
         <div class="buttonContainer">
-            <v-btn variant="outlined" rounded="xl" class="button">
+            <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
                     Ver Todos
             </v-btn>
         </div>
@@ -44,6 +44,12 @@
 
 <script setup>
 import ContactBox from './ContactBox.vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
+
+const goToPage = () => {
+  router.push('/contactos')
+}
 
 </script>

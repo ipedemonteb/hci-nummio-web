@@ -2,71 +2,124 @@
 export default {
   data() {
     return {
-      visible: false
+      visible: false,
+      isRegistering: false
     };
-  }
+  },
 };
 </script>
 
 <template>
-    <div class="login">
-        <div class="leftContainer">
-            <h1 class="nummioText">nummio</h1>
-            <p class="virtualWalletText">Tu billetera virtual</p>
-        </div>
-        <div class="rightContainer">
-            <h1 class="loginTitle">Inicio de Sesión</h1>
-            <div class="inputsContainer">
-                <div>
-                    <div class="text-subtitle-1 text-medium-emphasis">Account</div>
-                    <v-text-field
-                        placeholder="Email address"
-                        prepend-inner-icon="mdi-email-outline"
-                        variant="outlined"
-                    ></v-text-field>
-                </div>
-                <div>
-                    <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
-                        Password
-                        <a
-                            class="forgotPassword text-decoration-none"
-                            href="#"
-                            rel="noopener noreferrer"
-                            target="_blank"
-                        >
-                            Forgot login password?
-                        </a>
-                    </div>
-
-                    <v-text-field
-                        :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
-                        :type="visible ? 'text' : 'password'"
-                        placeholder="Enter your password"
-                        prepend-inner-icon="mdi-lock-outline"
-                        variant="outlined"
-                        @click:append-inner="visible = !visible"
-                    ></v-text-field>
-                </div>
-            </div>
-
-            <div class="buttonsContainer">
-                <v-btn class="loginBtn" size="large">Iniciar Sesión</v-btn>
-                <v-btn class="registerBtn" size="large">Registrarse</v-btn>
-            </div>
-
-            <div class="socialIcons">
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
-                    <v-icon small class="socialIcon">mdi-twitter</v-icon>
-                </a>
-                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
-                    <v-icon small class="socialIcon">mdi-facebook</v-icon>
-                </a>
-                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
-                    <v-icon small class="socialIcon">mdi-instagram</v-icon>
-                </a>
-            </div>
-        </div>
+  <div class="login">
+    <div class="leftContainer">
+      <h1 class="nummioText">nummio</h1>
+      <p class="virtualWalletText">Tu billetera virtual</p>
     </div>
+    <div class="rightContainer">
+      <h1 class="loginTitle">{{ isRegistering ? "Registrate" : "Inicio de Sesión" }}</h1>
+
+      <div class="inputsContainer">
+        <template v-if="!isRegistering">
+          <div>
+            <div class="text-subtitle-1 text-medium-emphasis">Account</div>
+            <v-text-field
+              placeholder="Email address"
+              prepend-inner-icon="mdi-email-outline"
+              variant="outlined"
+            ></v-text-field>
+          </div>
+          <div>
+            <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+              Password
+              <a
+                class="forgotPassword text-decoration-none"
+                href="#"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Forgot login password?
+              </a>
+            </div>
+            <v-text-field
+              :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+              :type="visible ? 'text' : 'password'"
+              placeholder="Enter your password"
+              prepend-inner-icon="mdi-lock-outline"
+              variant="outlined"
+              @click:append-inner="visible = !visible"
+            ></v-text-field>
+          </div>
+        </template>
+
+        <template v-else>
+          <v-text-field
+            label="Nombre"
+            placeholder="Tu nombre"
+            prepend-inner-icon="mdi-account-outline"
+            variant="outlined"
+          ></v-text-field>
+
+          <v-text-field
+            label="Apellido"
+            placeholder="Tu apellido"
+            prepend-inner-icon="mdi-account-outline"
+            variant="outlined"
+          ></v-text-field>
+
+          <v-text-field
+            label="Email"
+            placeholder="Tu correo"
+            prepend-inner-icon="mdi-email-outline"
+            variant="outlined"
+          ></v-text-field>
+
+          <v-text-field
+            label="Contraseña"
+            placeholder="Contraseña"
+            prepend-inner-icon="mdi-lock-outline"
+            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visible ? 'text' : 'password'"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+          ></v-text-field>
+
+          <v-text-field
+            label="Repetir Contraseña"
+            placeholder="Repetir contraseña"
+            prepend-inner-icon="mdi-lock-outline"
+            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visible ? 'text' : 'password'"
+            variant="outlined"
+            @click:append-inner="visible = !visible"
+          ></v-text-field>
+        </template>
+      </div>
+
+      <div class="buttonsContainer">
+        <template v-if="!isRegistering">
+          <v-btn class="loginBtn" size="large">Iniciar Sesión</v-btn>
+          <v-btn class="registerBtn" size="large" @click="isRegistering = true">Registrarse</v-btn>
+        </template>
+
+        <template v-else>
+          <v-btn class="confirmBtn" size="large" @click="isRegistering = false">Confirmar</v-btn>
+          <v-btn class="accountBtn" size="large" @click="isRegistering = false">Ya tengo cuenta</v-btn>
+        </template>
+      </div>
+
+      <div class="socialIcons">
+        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+          <v-icon small class="socialIcon">mdi-twitter</v-icon>
+        </a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+          <v-icon small class="socialIcon">mdi-facebook</v-icon>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+          <v-icon small class="socialIcon">mdi-instagram</v-icon>
+        </a>
+      </div>
+    </div>
+  </div>
 </template>
 
 <style scoped>
@@ -75,7 +128,6 @@ export default {
         align-items: center;
         height: 100vh;
     }
-
 
     .leftContainer {
         background-color: #9990FF;
@@ -114,7 +166,7 @@ export default {
         width: 100%;
         margin: 20px 0px;
         display: grid;
-        gap: 8px;     
+        gap: 8px;
     }
 
     .buttonsContainer {
@@ -126,17 +178,17 @@ export default {
 
     .forgotPassword {
         font-size: 16px;
-        color:#5538EE;
+        color: #5538EE;
     }
 
-    .loginBtn {
+    .loginBtn, .confirmBtn {
         border-radius: 20px;
         background-color: #5538EE;
         color: white;
         width: 70%;
     }
 
-    .registerBtn {
+    .registerBtn, .accountBtn {
         border-radius: 20px;
         background-color: #E7E7FF;
         color: black;
@@ -155,5 +207,4 @@ export default {
         cursor: pointer;
         text-decoration: none;
     }
-
 </style>

@@ -1,6 +1,7 @@
 <template>
     <main class="mainPage">
       <!-- <LoginView /> -->
+       
       <div class="mainContent full-width">
         <AppHeader />
         <div class="row app-content">

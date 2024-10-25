@@ -4,7 +4,7 @@
             <div class="iconInfoContainer">
                 <v-icon
                     color="black"
-                    size="45px"
+                    size="48px"
                     :icon="isSent ? 'mdi-arrow-top-right-bold-box-outline' : 'mdi-arrow-bottom-left-bold-box-outline'"
                 />
                 <div class="actionContainer">
@@ -15,9 +15,19 @@
             <div class="rightContainer">
                 <div class="amountContainer">
                     <h3>$ {{ amount }}</h3>
-                    <h5>{{ timeAgo.toLocaleDateString() }}</h5>
+                    <h5>{{ timeAgo.toLocaleDateString('en-GB') }}</h5>
                 </div>
-                <v-icon class="moreOptions" color="black" size="large" icon="mdi-dots-vertical"/>
+                <v-menu>
+                    <template v-slot:activator="{ props }">
+                        <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
+                    </template>
+
+                    <v-list>
+                        <v-list-item>
+                            <v-btn class="detailsButton" prepend-icon="mdi-format-list-bulleted">Detalles</v-btn>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
             </div>
         </div>
     </div>
@@ -55,6 +65,15 @@
         margin-top: 0px;
         color: grey;
     }
+
+    .amountContainer {
+        margin-right: 5px;
+    }
+
+    .detailsButton {
+        width: 100%;
+    }
+
 </style>
 
 <script setup>
