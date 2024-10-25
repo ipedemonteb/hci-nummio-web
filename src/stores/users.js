@@ -68,6 +68,10 @@ export const useUsersStore = defineStore('users', () => {
         return null
     }
 
+    function logout() {
+      localStorage.removeItem(userLoggedInKey)
+    }
+
     //Devuelve null si no hay usuario logueado
     function getUserLoggedIn() {
         const item = localStorage.getItem(userLoggedInKey)
@@ -86,5 +90,5 @@ export const useUsersStore = defineStore('users', () => {
         return users.value.find(user => user.id === id)
     }
 
-    return {users, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserById}
+    return {users, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserById, logout}
 })
