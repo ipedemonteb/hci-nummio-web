@@ -2,7 +2,7 @@
     <div class="recentPurchase">
         <h1>Consumos Recientes:</h1>
         <div class="selectors">
-            <v-select 
+            <v-select
           clearable
           label="Filtrar Por"
           :items="['Mas Recientes', 'Mas Antiguos', 'Monto Mayor', 'Monto Menor']"
@@ -12,14 +12,16 @@
             <SearchBar class="searchBar"/>
         </div>
         <div class="purchaseContainer">
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <!-- @TODO: analizar tema ya no dice Pago Realizado.
+                        quizas lo mas correcto es hacer otra componente pues la data es distinta -->
+            <MovementBox
+                v-for="(movement) in sourceMovements"
+                :key="movement.id"
+                :otherUser="movement.otherUser"
+                :amount="movement.amount"
+                :timeAgo="movement.timeAgo"
+                :isSent="movement.isSent"
+            />
         </div>
     </div>
 </template>
@@ -60,4 +62,9 @@
 
 <script setup>
     import SearchBar from './SearchBar.vue';
+    import { useMovementsStore } from '@/stores/movements';
+
+    const movementsStore = useMovementsStore()
+    const sourceMovements = movementsStore.getSourceMovements()
+
 </script>

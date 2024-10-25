@@ -5,13 +5,14 @@
             <SearchBar/>
         </div> -->
         <div class="repeatMovements">
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <MovementBox
+                v-for="(movement) in sourceMovements"
+                :key="movement.id"
+                :otherUser="movement.otherUser"
+                :amount="movement.amount"
+                :timeAgo="movement.timeAgo"
+                :isSent="movement.isSent"
+            />
         </div>
         <div class="buttonContainer">
             <v-btn variant="outlined" rounded="xl" class="button">
@@ -56,7 +57,9 @@
 
 <script setup>
 import MovementBox from './MovementBox.vue';
-import SearchBar from './SearchBar.vue';
+import { useMovementsStore } from '@/stores/movements';
 
+const movementsStore = useMovementsStore()
+const sourceMovements = movementsStore.getSourceMovements()
 
 </script>

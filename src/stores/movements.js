@@ -15,19 +15,6 @@ export const useMovementsStore = defineStore('movements', () => {
     const movements = ref(initialMovements)
     const recentMovements = computed(() => getUserMovements().slice(0, 6))
 
-    /* function makeTransaction(movement) {
-        const newMovement = {
-            id: movements.value.length + 1,
-            action: "Transferencia enviada",
-            source: movement.source,
-            amount: movement.amount.toFixed(2).toString(),
-            timeAgo: "Just now",
-            isSent: true,
-        }
-        movements.value.push(newMovement)
-        //  localStorage.setItem('movements', JSON.stringify(movements.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
-    } */
-
     function createMovement(cvu, amount) {
         const user = userStore.getUserLoggedIn()
         const newMovement = {
@@ -48,14 +35,13 @@ export const useMovementsStore = defineStore('movements', () => {
             if([movement.source, movement.target].includes(user.id)) {
                 const sourceUser = userStore.getUserById(movement.source)
                 const targetUser = userStore.getUserById(movement.target)
-                console.log(sourceUser, targetUser)
-                console.log(sourceUser.firstName)
                 const movementData = {
                     id: movement.id,
                     isSent: sourceUser.id === user.id,
                     amount: movement.amount,
                     timeAgo: movement.date,
-                    otherUser: sourceUser.id === user.id? `${targetUser.firstName} ${targetUser.lastName}` : `${sourceUser.firstName} ${sourceUser.lastName}`
+                    otherUser: sourceUser.id === user.id? `${targetUser.firstName} ${targetUser.lastName}` : `${sourceUser.firstName} ${sourceUser.lastName}`,
+                    ...movement
                 }
                 userMovements.push(movementData)
             }
@@ -64,34 +50,31 @@ export const useMovementsStore = defineStore('movements', () => {
     }
 
     function getBalance() {
+        const userMovements = getUserMovements()
         const user = userStore.getUserLoggedIn()
-        return movements.value.reduce((acc, movement) => {
-            let mult = movement.source === user.id ? -1 : (movement.target === user.id ? 1 : 0);
+        return userMovements.reduce((acc, movement) => {
+            let mult = movement.source === user.id ? -1 : 1;
             return acc + mult*movement.amount;
         }, 0)
     }
 
-    /* function receiveTransaction(movement) {
-        const newMovement = {
-            id: movements.value.length + 1,
-            action: "Transferencia recibida",
-            source: movement.source,
-            amount: movement.amount.toFixed(2).toString(),
-            timeAgo: "Just now",
-            isSent: false,
-        }
-        movements.value.push(newMovement)
-        // localStorage.setItem('movements', JSON.stringify(movements.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
-    } */
-
-    // Esto se ejecuta 1 vez al iniciar la store
-    /*function loadMovements() {
-        const storedMovements = localStorage.getItem('movements')
-        if (storedMovements) {
-            movements.value = JSON.parse(storedMovements)
-        }
+    function getMovementsByType(type) {
+        const userMovements = getUserMovements()
+        const movementsResponse = []
+        userMovements.forEach(movement => {
+            if((type == 'source' && movement.isSent) || (type == 'target' && !movement.isSent))
+                movementsResponse.push(movement)
+        })
+        return movementsResponse
     }
-    loadMovements()*/
 
-    return { recentMovements, createMovement, getUserMovements, getBalance }
+    function getSourceMovements() {
+        return getMovementsByType('source')
+    }
+
+    function getTargetMovements() {
+        return getMovementsByType('target')
+    }
+
+    return { recentMovements, createMovement, getUserMovements, getBalance, getSourceMovements, getTargetMovements }
 })

@@ -77,7 +77,6 @@
 </style>
 
 <script setup>
-    import { defineProps } from 'vue';
     const props = defineProps({
         otherUser: String,
         amount: Number,

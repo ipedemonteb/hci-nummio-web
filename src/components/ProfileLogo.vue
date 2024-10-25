@@ -1,11 +1,15 @@
 <template>
     <div class="profileContainer">
         <img src="/pfp.jpg" alt="Profil picture for user" class="profilePicture"/>
-        <h3 class="profileName text-primary">Fernando Alonso</h3>
+        <h3 class="profileName text-primary">{{ name }}</h3>
     </div>
 </template>
 
 <script setup>
+
+const props = defineProps({
+  name: String
+})
 
 </script>
 

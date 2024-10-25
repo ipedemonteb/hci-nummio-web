@@ -1,8 +1,8 @@
 <template>
   <v-dialog class="popUpContainer" :model-value="showInfoPopup" @update:model-value="updateShowPopup">
     <v-card class="popup-card">
-      
-    <v-icon 
+
+    <v-icon
     color="#6B4EFF"
     @click="closeDialog"
     class="close-button"
@@ -10,14 +10,14 @@
       <v-card-title class="cardTitle">
         Mis Datos
       </v-card-title>
-      <ProfileLogo class="profileDisplay"/>
+      <ProfileLogo :name="name" class="profileDisplay"/>
       <div class="infoText">
         Tu CVU:
       </div>
       <div class="cvu-container">
         <div class="infoCard">
           <div class="copyableText">
-            {{dummyCVU}}
+            {{cvu}}
           </div>
         </div>
         <button class="copyButton" @click="copyCvu">
@@ -31,7 +31,7 @@
       <div class="cvu-container">
         <div class="infoCard">
           <div class="copyableText">
-            {{dummyAlias}}
+            {{alias}}
           </div>
         </div>
         <button class="copyButton" @click="copyAlias">
@@ -44,6 +44,11 @@
 
 <script setup>
     import ProfileLogo from './ProfileLogo.vue';
+    import { useUsersStore } from '@/stores/users';
+
+    const usersStore = useUsersStore()
+    const {firstName, lastName, alias, cvu} = usersStore.getUserLoggedIn()
+    const name = `${firstName} ${lastName}`
 
     const props = defineProps({
         showInfoPopup: {
@@ -52,17 +57,17 @@
         },
     });
 
-    
+
     const emit = defineEmits();
-    
+
     const closeDialog = () => {
       emit('update:showInfoPopup', false);
     };
-    
+
     const updateShowPopup = (value) => {
       emit('update:showInfoPopup', value);
     };
-    
+
     const dummyCVU = '33333333333333333333'; //@TODO: Ver por qué con ref no funca
     const dummyAlias = 'FernandoAlonso';
     const copyCvu = () => {
@@ -100,7 +105,7 @@
       padding: 10px;
       margin-right: 10px;
       margin-left: 50px;
-      
+
     }
 
     .copyableText {

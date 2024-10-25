@@ -12,7 +12,7 @@
 <template>
   <div class="contentContainer">
     <div class="columnContainer half-width">
-      <UserBalance/>
+      <UserBalance :balance="movementsStore.getBalance()"/>
       <UserMovements :lastMovements="movementsStore.getUserMovements()"/>
     </div>
     <div class="columnContainer half-width">

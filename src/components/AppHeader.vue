@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <div class="headerContainer">
-            <ProfileLogo/>
+            <ProfileLogo :name="name"/>
 
             <div class="logoContainer">
                 <h1 class="text-primary">nummio</h1>
@@ -41,5 +41,9 @@
 
 <script setup>
     import ProfileLogo from './ProfileLogo.vue';
+    import { useUsersStore } from '@/stores/users';
 
+    const usersStore = useUsersStore();
+    const user = usersStore.getUserLoggedIn()
+    const name = `${user.firstName} ${user.lastName}`
 </script>

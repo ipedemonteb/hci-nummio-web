@@ -69,25 +69,21 @@ export const useUsersStore = defineStore('users', () => {
 
     //Devuelve null si no hay usuario logueado
     function getUserLoggedIn() {
-        return JSON.parse(localStorage.getItem(userLoggedInKey))
+        const item = localStorage.getItem(userLoggedInKey)
+        return item == null ? null : JSON.parse(item)
     }
 
     function getUserByCVU(cvu) {
         return users.value.find(user => user.cvu === cvu)
     }
 
+    function getUserByAlias(alias) {
+        return users.value.find(user => user.alias === alias)
+    }
+
     function getUserById(id) {
         return users.value.find(user => user.id === id)
     }
 
-    //@TODO: Analizar si dejar o reemplazar por llamado a la API
-    /*function loadUsers() {
-        const storedUsers = localStorage.getItem('users')
-        if (storedUsers) {
-            users.value = JSON.parse(storedUsers)
-        }
-    }
-    loadUsers()
-    */
     return {users, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserById}
 })
