@@ -8,8 +8,12 @@
             </div>
 
             <div class="configurationContainer">
-                <v-icon color="#6B4EFF" size="large" icon="mdi-cog"></v-icon>
+                <v-icon color="#6B4EFF" size="large" icon="mdi-cog" @click="openEditDialog"></v-icon>
             </div>
+
+            <v-dialog v-model="isEditDialogVisible" max-width="700">
+                <EditData @closeDialog="closeEditDialog" />
+            </v-dialog>
 
         </div>
     </div>
@@ -40,6 +44,17 @@
 </style>
 
 <script setup>
-    import ProfileLogo from './ProfileLogo.vue';
+import ProfileLogo from './ProfileLogo.vue';
+import { ref } from 'vue';
+
+const isEditDialogVisible = ref(false);
+
+const openEditDialog = () => {
+    isEditDialogVisible.value = true;
+};
+
+const closeEditDialog = () => {
+    isEditDialogVisible.value = false;
+};
 
 </script>
