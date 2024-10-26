@@ -1,19 +1,19 @@
 <template>
     <v-card class="cardContainer">
-    <v-row>
-        <v-col cols="8" class="d-flex flex-column justify-center">
-        <div class="cardDetails">
-            <h3 class="bankName">Banco Galicia</h3>
-            <div class="cardNumberCont">
-            <p class="cardNumber">****</p>
-            <p class="cardNumber">1234</p>
-            </div>
-        </div>
-        </v-col>
-        <v-col cols="4" class="d-flex justify-center align-center">
-        <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
-        </v-col>
-    </v-row>
+      <v-row>
+          <v-col cols="8" class="d-flex flex-column justify-center">
+          <div class="cardDetails">
+              <h3 class="bankName">Banco Galicia</h3>
+              <div class="cardNumberCont">
+              <p class="cardNumber">****</p>
+              <p class="cardNumber">1234</p>
+              </div>
+          </div>
+          </v-col>
+          <v-col cols="4" class="d-flex justify-center align-center">
+          <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
+          </v-col>
+      </v-row>
     </v-card>
   </template>
   
