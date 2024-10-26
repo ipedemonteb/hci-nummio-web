@@ -18,7 +18,7 @@ export const useUsersStore = defineStore('users', () => {
             id: 2,
             firstName: 'Jane',
             lastName: 'Smith',
-            cvu: 9876543210,
+            cvu: '9876543210987654321098',
             alias: 'jane.smith',
             profileImage: '/pfp.jpg',
             email: 'janesmith@gmail.com',
@@ -28,7 +28,7 @@ export const useUsersStore = defineStore('users', () => {
             id: 3,
             firstName: 'Alice',
             lastName: 'Johnson',
-            cvu: 1122334455,
+            cvu: '1122334455112233445511',
             alias: 'alice.johnson',
             profileImage: '/pfp.jpg',
             email: 'alicejohnson@gmail.com',
@@ -36,7 +36,7 @@ export const useUsersStore = defineStore('users', () => {
         }
     ]
 
-    const cvuCounter = ref(1000000000)
+    const cvuCounter = ref(10000000000)
     const userLoggedInKey = 'userLoggedIn'
 
     const movementsStore = useMovementsStore()
@@ -56,7 +56,7 @@ export const useUsersStore = defineStore('users', () => {
         const newUser = {
             id: users.value.length + 1,
             ...user,
-            cvu: cvuCounter.value,
+            cvu: `03271989546${cvuCounter.value}`,
         }
         cvuCounter.value++
         newUser.repeatPassword = undefined

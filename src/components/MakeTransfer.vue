@@ -57,9 +57,12 @@ var userToTransfer = ref(null)
 
 const handleClick = () => {
     if (inputValue.value) {
-      userToTransfer.value = usersStore.getUserByCVU(inputValue.value)
+      if(/^[0-9]{22}$/.test(inputValue.value))
+        userToTransfer.value = usersStore.getUserByCVU(inputValue.value)
+      else
+        userToTransfer.value = null
       if(!userToTransfer.value) {
-        user = usersStore.getUserByAlias(inputValue.value)
+        userToTransfer.value = usersStore.getUserByAlias(inputValue.value)
         if(!userToTransfer.value) {
           snackbar.value = true
           snackbarMessage.value = "No existe usuario con ese CVU o alias"
