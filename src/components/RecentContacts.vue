@@ -6,10 +6,12 @@
             <SearchBar class="searchBar"/>
         </div>
         <div class="contactsContainer">
-            <ContactBox />
-            <ContactBox />
-            <ContactBox />
-            <ContactBox />
+            <ContactBox 
+                v-for="contact in freqContacts"
+                :key="contact.id"
+                :name="contact.name"
+            />
+           
         </div>
     </div>
 </template>
@@ -42,5 +44,13 @@
 <script setup>
     import ContactBox from './ContactBox.vue';
     import SearchBar from './SearchBar.vue';
+
+    const props = defineProps({
+        freqContacts: {
+            type: Array,
+            required: true,
+            default: () => []
+        }
+    });
 
 </script>

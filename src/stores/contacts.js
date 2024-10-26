@@ -21,8 +21,13 @@ export const useContactsStore = defineStore('contacts', () => {
     const user = usersStore.getUserLoggedIn()
     const userContacts = []
     contacts.value.forEach(contact => {
-      if(contact.user === user.id)
-        userContacts.push(contact.contactUser)
+      if(contact.user === user.id) {
+        const contactData = {
+          id: contact.id,
+          name: contact.contactUser.name
+        }
+        userContacts.push(contactData)
+      }
     })
     return userContacts
   }

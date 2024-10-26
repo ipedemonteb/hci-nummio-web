@@ -70,7 +70,7 @@ const handleClick = () => {
         }
       }
       snackbar.value = false
-      openDialog();
+      openDialog()
     } else {
       snackbar.value = true
     }

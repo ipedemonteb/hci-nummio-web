@@ -3,9 +3,11 @@
         <h1>Contactos Frecuentes:</h1>
 
         <div class="contactsContainer">
-            <ContactBox name="Fernando Alonso"/>
-            <ContactBox name="Fernando Alonso"/>
-            <ContactBox name="Fernando Alonso"/>
+            <ContactBox 
+                v-for="contact in freqContacts" 
+                :key="contact.id" 
+                :name="contact.name"
+            />
         </div>
 
         <div class="buttonContainer">
@@ -51,5 +53,13 @@ const router = useRouter()
 const goToPage = () => {
   router.push('/contactos')
 }
+
+const props = defineProps({
+    freqContacts: {
+        type: Array,
+        required: true,
+        default: () => []
+    }
+});
 
 </script>

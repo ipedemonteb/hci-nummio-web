@@ -5,8 +5,10 @@
   import WalletCards from '@/components/WalletCards.vue';
 
   import { useMovementsStore } from '@/stores/movements';
+  import { useContactsStore } from '@/stores/contacts';
 
   const movementsStore = useMovementsStore();
+  const contactsStore = useContactsStore();
 </script>
 
 <template>
@@ -16,7 +18,7 @@
       <UserMovements :lastMovements="movementsStore.getUserMovements()"/>
     </div>
     <div class="columnContainer half-width">
-      <FrequentlyContact/>
+      <FrequentlyContact :freqContacts="contactsStore.getContacts()"/>
       <WalletCards/>
     </div>
   </div>

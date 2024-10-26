@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <LoginView v-if="!loggedIn"/>
+      <LoginView v-else/>
     </main>
 </template>
 
