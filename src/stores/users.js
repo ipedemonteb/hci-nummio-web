@@ -55,11 +55,13 @@ export const useUsersStore = defineStore('users', () => {
             return null
         const newUser = {
             id: users.value.length + 1,
-            ...user,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            email: user.email,
+            password: user.password,
             cvu: `03271989546${cvuCounter.value}`,
         }
         cvuCounter.value++
-        newUser.repeatPassword = undefined
         users.value.push(newUser)
         //localStorage.setItem('users', JSON.stringify(users.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
         localStorage.setItem(userLoggedInKey, JSON.stringify(newUser))
@@ -79,13 +81,30 @@ export const useUsersStore = defineStore('users', () => {
         return null
     }
 
-    function setAlias(alias) {
+    function updateAlias(newAlias) {
+      const userLoggedIn = getUserLoggedIn()
+      if(users.value.find(user => user.id !== userLoggedIn.id && user.alias === newAlias))
+        return false
+      var i = 0;
+      var found = false
+      users.value.forEach(user => {
+        if(!found && user.id === userLoggedIn.id){
+          found = true
+        }
+        if(!found) i++
+      })
+      users.value[i].alias = newAlias
+      localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
+      return true
+    }
+
+    /*function setAlias(alias) {
       if(!alias || alias === "" || users.value.find(user => user.alias === alias))
         return false
       const user = getUserLoggedIn()
       user.alias = alias
       return true
-    }
+    }*/
 
     function logout() {
       localStorage.removeItem(userLoggedInKey)
@@ -114,5 +133,5 @@ export const useUsersStore = defineStore('users', () => {
         return users.value.find(user => user.id === id)
     }
 
-    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserByAlias, getUserById, logout}
+    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserByAlias, getUserById, updateAlias, logout}
 })

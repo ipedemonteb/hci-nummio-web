@@ -5,29 +5,12 @@ import { ref } from 'vue';
 
 const usersStore = useUsersStore()
 const {firstName, lastName, alias, cvu} = usersStore.getUserLoggedIn()
-const copyAlias = alias ? alias : ""
+const copyAlias = ref(alias ? alias : "")
 const name = `${firstName} ${lastName}`
 
 const props = defineProps({
   closeModal: Function
 });
-
-const emit = defineEmits();
-
-const closeDialog = () => {
-  emit('update:showInfoPopup', false);
-};
-
-const updateShowPopup = (value) => {
-  emit('update:showInfoPopup', value);
-};
-
-const dummyCVU = '33333333333333333333'; //@TODO: Ver por qué con ref no funca
-const dummyAlias = 'FernandoAlonso';
-const copyCvu = () => {
-    navigator.clipboard.writeText(dummyCVU);
-};
-//const alias = ref("PERRO.GATO.PERILLA");
 const isEditingAlias = ref(false);
 const copyMessage = ref('');
 const aliasError = ref('');
@@ -47,18 +30,21 @@ const copyToClipboard = (text) => {
 
 const editAlias = () => {
     isEditingAlias.value = !isEditingAlias.value;
-    aliasError.value = '';
+    if(!isEditingAlias.value)
+      updateAlias()
 };
 
 const updateAlias = () => {
-    if (alias.value.length < 10) {
-        aliasError.value = 'Alias inválido. Debe tener al menos 10 caracteres.';
+    if (copyAlias.value.length < 10) {
+      aliasError.value = 'Alias inválido. Debe tener al menos 10 caracteres.'
+      isEditingAlias.value = true
+    } else if(!usersStore.updateAlias(copyAlias.value)) {
+      isEditingAlias.value = true
+      aliasError.value = 'Ya existe un usuario con ese alias'
     } else {
-        aliasError.value = '';
-        isEditingAlias.value = false;
+      aliasError.value = ''
     }
 };
-
 
 const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -78,7 +64,7 @@ const handleKeyDown = (event) => {
         <v-row>
             <div class="profileContainer">
                 <img src="/pfp.jpg" alt="Profil picture for user" class="profilePicture"/>
-                <h4 class="profileName text-primary">Fernando Alonso</h4>
+                <h4 class="profileName text-primary">{{ name }}</h4>
             </div>
         </v-row>
         <v-row>
@@ -98,14 +84,13 @@ const handleKeyDown = (event) => {
                 <div class="cvu fixed-height">
                     <template v-if="isEditingAlias">
                         <input
-                            v-model="alias"
+                            v-model="copyAlias"
                             class="aliasInput"
-                            @blur="updateAlias"
                             @keydown="handleKeyDown"
                         />
                     </template>
                     <template v-else>
-                        <p>{{ alias ? alias : "Sin definir"}}</p>
+                        <p>{{ copyAlias ? copyAlias : "Sin definir"}}</p>
                     </template>
                 </div>
                 <v-icon icon="mdi-pencil-outline" class="copy" @click="editAlias" />
