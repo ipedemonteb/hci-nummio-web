@@ -17,7 +17,7 @@
                 <ConfirmTransfer :closeDialog="closeDialog" />
             </v-dialog>
 
-            <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar> <!-- Mensaje de error -->
+            <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar>
         </div>
     </div>
 </template>
