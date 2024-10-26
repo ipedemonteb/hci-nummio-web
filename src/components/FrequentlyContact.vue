@@ -1,11 +1,11 @@
 <template>
     <div class="frequentlyContact">
         <h1>Contactos Frecuentes:</h1>
-        
+
         <div class="contactsContainer">
-            <ContactBox />
-            <ContactBox />
-            <ContactBox />
+            <ContactBox name="Fernando Alonso"/>
+            <ContactBox name="Fernando Alonso"/>
+            <ContactBox name="Fernando Alonso"/>
         </div>
 
         <div class="buttonContainer">

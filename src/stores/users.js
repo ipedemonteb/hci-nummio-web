@@ -103,7 +103,7 @@ export const useUsersStore = defineStore('users', () => {
     }
 
     function getUserByAlias(alias) {
-        return cvu != '' && users.value.find(user => user.alias === alias)
+        return alias != '' && users.value.find(user => user.alias === alias)
     }
 
     function getUserById(id) {

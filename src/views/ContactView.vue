@@ -1,9 +1,10 @@
 <script setup>
 import ContactBox from '@/components/ContactBox.vue';
 import SearchBar from '@/components/SearchBar.vue';
+import { useContactsStore } from '@/stores/contacts';
 import { ref, computed } from 'vue';
 
-const allContacts = ref([
+/*const allContacts = ref([
   { id: 1, name: 'Contacto 1' },
   { id: 2, name: 'Contacto 2' },
   { id: 3, name: 'Contacto 3' },
@@ -18,7 +19,9 @@ const allContacts = ref([
   { id: 12, name: 'Contacto 12' },
   { id: 13, name: 'Contacto 13' },
   { id: 14, name: 'Contacto 14' },
-]);
+]);*/
+const contactsStore = useContactsStore()
+const allContacts = computed(() => contactsStore.getContacts())
 
 const currentPage = ref(1);
 const contactsPerPage = 10;
@@ -40,33 +43,34 @@ const paginatedContacts = computed(() => {
     <div class="contentContainer">
       <div class="allContacts full-width">
         <h1>Contactos: </h1>
-        
+
         <div class="searchContainer">
           <SearchBar class="searchBar"/>
           <v-btn size="large" append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined"/>
         </div>
-  
+
         <div class="movementsContainer">
             <ContactBox
                 v-for="contact in paginatedContacts"
                 :key="contact.id"
+                :name="contact.name"
                 :contact="contact"
             />
         </div>
-  
+
         <div class="paginationContainer">
           <v-pagination
             v-model="currentPage"
             :length="totalPages"
             total-visible="7"
             color="primary"
-          ></v-pagination> 
+          ></v-pagination>
         </div>
-  
+
       </div>
     </div>
   </template>
-  
+
   <style scoped>
     .allContacts {
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -74,20 +78,20 @@ const paginatedContacts = computed(() => {
       padding: 30px 40px;
       border-radius: 10px;
     }
-  
+
     .searchContainer {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-top: 15px;
     }
-  
+
     .selectContainer {
       max-width: 200px;
     }
-  
+
     .searchBar {
           width: 300px;
     }
-  
+
   </style>

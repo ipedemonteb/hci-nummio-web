@@ -4,10 +4,10 @@
             <div class="iconInfoContainer">
                 <img src="/pfp.jpg" alt="Profil picture for user" class="profilePicture"/>
                 <div class="iconInfo">
-                    <h4>Franco Colapinto</h4>
-                    <h5>Cuenta Galicia</h5>
+                    <h4>{{ name }}</h4>
+                    <h5>Cuenta nummio</h5>
                 </div>
-            </div> 
+            </div>
 
             <v-menu>
                 <template v-slot:activator="{ props }">
@@ -22,7 +22,7 @@
                         <v-btn class="deleteButton" prepend-icon="mdi-delete-outline">Eliminar</v-btn>
                     </v-list-item>
                 </v-list>
-            </v-menu>   
+            </v-menu>
         </div>
     </div>
 
@@ -34,7 +34,7 @@
         border-radius: 10px;
         margin: 5px 0px;
     }
-    
+
     .contactBoxContainer {
         margin: 12px;
         display: flex;
@@ -75,6 +75,11 @@
 
 </style>
 
-<script setup>
+<script setup lang="ts">
+
+const props = defineProps({
+  name: String,
+
+})
 
 </script>
