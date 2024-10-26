@@ -7,31 +7,34 @@
             <v-container class="dataContainer">
                 <div class="dataItem">
                     <h3>Destinatario:</h3>
-                    <p>Fernando Alonso</p>
+                    <p>{{ `${userToTransfer.firstName} ${userToTransfer.lastName}` }}</p>
                 </div>
                 <div class="dataItem">
                     <h3>CVU:</h3>
-                    <p>00000000000123456673</p>
+                    <p>{{ userToTransfer.cvu }}</p>
                 </div>
             </v-container>
-        </v-row> 
+        </v-row>
         <v-row>
             <v-container class="amountContainer">
-                <v-text-field 
-                    v-model="inputValue" 
+                <v-text-field
+                    @input="handleAmountInput"
                     clearable
-                    variant="outlined" 
+                    variant="outlined"
                     label="Ingrese el monto"
                     class="input"
                 >
                 </v-text-field>
-                <p>Saldo Disponible: $1.000,00</p>
+                <div class="dataItem">
+                  <h3>Saldo disponible:</h3>
+                  <p>${{ movementsStore.getBalance() }}</p>
+                </div>
             </v-container>
         </v-row>
         <v-row class="buttonsRow">
             <v-col class="d-flex justify-center" cols="12">
                 <v-btn class="cancelButton mx-2" @click="closeDialog">Cancelar</v-btn>
-                <v-btn class="confirmButton mx-2" append-icon="mdi-arrow-right">Confirmar</v-btn>
+                <v-btn class="confirmButton mx-2" @click="confirmTransfer()" append-icon="mdi-arrow-right">Confirmar</v-btn>
             </v-col>
         </v-row>
     </v-container>
@@ -69,7 +72,7 @@
     }
 
     .buttonsRow {
-        margin-top: 30px !important; 
+        margin-top: 30px !important;
         padding: 0px;
     }
 
@@ -88,18 +91,25 @@
     }
 </style>
 
-<script>
-export default {
-    props: {
-        closeDialog: {
-            type: Function,
-            required: true
-        }
-    },
-    data() {
-        return {
-            inputValue: ''
-        };
-    }
-};
+<script setup lang="ts">
+import { useMovementsStore } from '@/stores/movements';
+import { ref } from 'vue';
+
+const props = defineProps({
+  closeDialog: Function,
+  userToTransfer: Object
+})
+const movementsStore = useMovementsStore()
+const inputValue = ref('')
+
+const handleAmountInput = (event) => {
+  inputValue.value = event.target.value
+}
+
+const confirmTransfer = () => {
+  const amountToNumber = parseFloat(inputValue.value)
+  movementsStore.createMovement(props.userToTransfer, amountToNumber)
+  props.closeDialog()
+}
+
 </script>

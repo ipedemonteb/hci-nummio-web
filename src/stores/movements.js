@@ -20,12 +20,12 @@ export const useMovementsStore = defineStore('movements', () => {
       movements.value.push({ id: movements.value.length + 1, source: 1, target: user.id, amount: 1000, date: new Date()})
     }
 
-    function createMovement(cvu, amount) {
+    function createMovement(userToTransfer, amount) {
         const user = userStore.getUserLoggedIn()
         const newMovement = {
             id: movements.value.length + 1,
-            source: user,
-            target: userStore.getUserByCVU(cvu),
+            source: user.id,
+            target: userToTransfer.id,
             amount,
             date: new Date()
         }

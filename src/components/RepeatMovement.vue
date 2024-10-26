@@ -56,10 +56,11 @@
 </style>
 
 <script setup>
+import { computed } from 'vue';
 import MovementBox from './MovementBox.vue';
 import { useMovementsStore } from '@/stores/movements';
 
 const movementsStore = useMovementsStore()
-const sourceMovements = movementsStore.getSourceMovements()
+const sourceMovements = computed(() => movementsStore.getSourceMovements())
 
 </script>

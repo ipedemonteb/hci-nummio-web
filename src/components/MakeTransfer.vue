@@ -14,7 +14,7 @@
             </v-text-field>
 
             <v-dialog v-model="dialog" max-width="600px">
-                <ConfirmTransfer :closeDialog="closeDialog" />
+                <ConfirmTransfer :userToTransfer="userToTransfer" :closeDialog="closeDialog" />
             </v-dialog>
 
             <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar> <!-- Mensaje de error -->
@@ -53,21 +53,23 @@ const snackbar = ref(false);
 const inputValue = ref('');
 const snackbarMessage = ref('Ingrese un alias o CBU/CVU para continuar.');
 const usersStore = useUsersStore()
+var userToTransfer = ref(null)
 
 const handleClick = () => {
     if (inputValue.value) {
-      const byCVU = usersStore.getUserByCVU(inputValue.value)
-      if(!byCVU) {
-        const byAlias = usersStore.getUserByAlias(inputValue.value)
-        if(!byAlias) {
+      userToTransfer.value = usersStore.getUserByCVU(inputValue.value)
+      if(!userToTransfer.value) {
+        user = usersStore.getUserByAlias(inputValue.value)
+        if(!userToTransfer.value) {
           snackbar.value = true
           snackbarMessage.value = "No existe usuario con ese CVU o alias"
           return
         }
       }
+      snackbar.value = false
       openDialog();
     } else {
-        snackbar.value = true;
+      snackbar.value = true
     }
 };
 
@@ -75,8 +77,7 @@ const openDialog = () => {
     dialog.value = true;
 };
 
-
 const closeDialog = () => {
-    dialog.value = false;
+    dialog.value = false
 };
 </script>
