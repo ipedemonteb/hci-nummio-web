@@ -1,6 +1,6 @@
 <template>
     <main class="mainPage">
-      <div class="mainContent full-width" v-if="user != null">
+      <div class="mainContent full-width" v-if="loggedIn">
         <AppHeader />
         <div class="row app-content">
           <SideMenu />
@@ -10,7 +10,7 @@
         </div>
       </div>
 
-      <LoginView v-if="user == null"/>
+      <LoginView v-if="!loggedIn"/>
     </main>
 </template>
 
@@ -69,8 +69,8 @@
   import SideMenu from './components/SideMenu.vue';
   import LoginView from './views/LoginView.vue';
   import { useUsersStore } from './stores/users';
-  import { ref } from 'vue';
+import { computed } from 'vue';
 
   const usersStore = useUsersStore()
-  const user = ref(usersStore.getUserLoggedIn())
+  const loggedIn = computed(() => usersStore.loggedIn)
 </script>

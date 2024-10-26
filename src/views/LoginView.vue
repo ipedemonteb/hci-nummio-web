@@ -45,6 +45,7 @@
         <template v-else>
           <v-text-field
             label="Nombre"
+            @input="handleFirstNameSignupInput"
             placeholder="Tu nombre"
             prepend-inner-icon="mdi-account-outline"
             variant="outlined"
@@ -52,6 +53,7 @@
 
           <v-text-field
             label="Apellido"
+            @input="handleLastNameSignupInput"
             placeholder="Tu apellido"
             prepend-inner-icon="mdi-account-outline"
             variant="outlined"
@@ -59,6 +61,7 @@
 
           <v-text-field
             label="Email"
+            @input="handleEmailSignupInput"
             placeholder="Tu correo"
             prepend-inner-icon="mdi-email-outline"
             variant="outlined"
@@ -67,6 +70,7 @@
           <v-text-field
             label="Contraseña"
             placeholder="Contraseña"
+            @input="handlePasswordSignupInput"
             prepend-inner-icon="mdi-lock-outline"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
@@ -77,6 +81,7 @@
           <v-text-field
             label="Repetir Contraseña"
             placeholder="Repetir contraseña"
+            @input="handleRepeatPasswordSignupInput"
             prepend-inner-icon="mdi-lock-outline"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
@@ -93,7 +98,7 @@
         </template>
 
         <template v-else>
-          <v-btn class="confirmBtn" size="large" @click="isRegistering = false">Confirmar</v-btn>
+          <v-btn class="confirmBtn" size="large" @click="signupHandler()">Confirmar</v-btn>
           <v-btn class="accountBtn" size="large" @click="isRegistering = false">Ya tengo cuenta</v-btn>
         </template>
       </div>
@@ -119,20 +124,59 @@ import { ref } from 'vue';
 
 const usersStore = useUsersStore()
 var visible = false
-var isRegistering = false
+var isRegistering = ref(false)
+
 const email = ref("")
 const password = ref("")
+
+const firstName = ref("")
+const lastName = ref("")
+const emailSignup = ref("")
+const passwordSignup = ref("")
+const repeatPasswordSignup = ref("")
+
 const handleEmailInput = (event) => {
   email.value = event.target.value
 }
+
 const handlePasswordInput = (event) => {
   password.value = event.target.value
 }
+
 const loginHandler = () => {
   const user = usersStore.login({email: email.value, password: password.value})
-  if(user != null)
-    window.location.reload()
 }
+
+const handleFirstNameSignupInput = (event) => {
+  firstName.value = event.target.value
+}
+
+const handleLastNameSignupInput = (event) => {
+  lastName.value = event.target.value
+}
+
+const handleEmailSignupInput = (event) => {
+  emailSignup.value = event.target.value
+}
+
+const handlePasswordSignupInput = (event) => {
+  passwordSignup.value = event.target.value
+}
+
+const handleRepeatPasswordSignupInput = (event) => {
+  repeatPasswordSignup.value = event.target.value
+}
+
+const signupHandler = () => {
+  const user = usersStore.signup({
+    firstName: firstName.value,
+    lastName: lastName.value,
+    email: emailSignup.value,
+    password: passwordSignup.value,
+    repeatPassword: repeatPasswordSignup.value
+  })
+}
+
 </script>
 
 <style scoped>

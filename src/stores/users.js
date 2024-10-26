@@ -41,20 +41,23 @@ export const useUsersStore = defineStore('users', () => {
     //localStorage.clear()
 
     const users = ref(initialUsers)
+    const loggedIn = ref(false)
 
-    //Esto debería chequear cantidad de transferencias y ordenar por eso
     const recentContacts = computed(() => users.value.slice(0, 6))
+    //Esto debería chequear cantidad de transferencias y ordenar por eso
 
     function signup(user) {
-        if (users.value.find(u => u.email === newUser.email))
+        if (users.value.find(u => u.email === user.email) || user.password !== user.repeatPassword)
             return null
         const newUser = {
             id: users.value.length + 1,
             ...user
         }
+        newUser.repeatPassword = undefined
         users.value.push(newUser)
         //localStorage.setItem('users', JSON.stringify(users.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
-        localStorage.setItem(userLoggedInKey, JSON.stringify(users.value))
+        localStorage.setItem(userLoggedInKey, JSON.stringify(newUser))
+        loggedIn.value = true
         return newUser
     }
 
@@ -63,6 +66,7 @@ export const useUsersStore = defineStore('users', () => {
         const user = users.value.find(user => user.email === email && user.password === password)
         if (user) {
           localStorage.setItem(userLoggedInKey, JSON.stringify(user))
+          loggedIn.value = true
           return user
         }
         return null
@@ -70,6 +74,7 @@ export const useUsersStore = defineStore('users', () => {
 
     function logout() {
       localStorage.removeItem(userLoggedInKey)
+      loggedIn.value = false
     }
 
     //Devuelve null si no hay usuario logueado
@@ -90,5 +95,5 @@ export const useUsersStore = defineStore('users', () => {
         return users.value.find(user => user.id === id)
     }
 
-    return {users, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserById, logout}
+    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserById, logout}
 })
