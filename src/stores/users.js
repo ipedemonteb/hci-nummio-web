@@ -1,17 +1,18 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
+import { useMovementsStore } from './movements'
 
 export const useUsersStore = defineStore('users', () => {
     const initialUsers = [
         {
             id: 1,
-            firstName: 'John',
-            lastName: 'Doe',
-            cvu: 1234567890,
-            alias: 'john.doe',
+            firstName: 'Bienvenida a nummio',
+            lastName: '',
+            cvu: 0,
+            alias: 'nummio',
             profileImage: '/pfp.jpg',
-            email: 'johndoe@gmail.com',
-            password: 'password123'
+            email: '',
+            password: ''
         },
         {
             id: 2,
@@ -38,6 +39,8 @@ export const useUsersStore = defineStore('users', () => {
     const cvuCounter = ref(1000000000)
     const userLoggedInKey = 'userLoggedIn'
 
+    const movementsStore = useMovementsStore()
+
     //localStorage.setItem(userLoggedInKey, JSON.stringify(initialUsers[0]))
     //localStorage.clear()
 
@@ -60,6 +63,7 @@ export const useUsersStore = defineStore('users', () => {
         users.value.push(newUser)
         //localStorage.setItem('users', JSON.stringify(users.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
         localStorage.setItem(userLoggedInKey, JSON.stringify(newUser))
+        movementsStore.welcomeMovement()
         loggedIn.value = true
         return newUser
     }
@@ -95,16 +99,16 @@ export const useUsersStore = defineStore('users', () => {
     }
 
     function getUserByCVU(cvu) {
-        return users.value.find(user => user.cvu === cvu)
+        return cvu != 0 && users.value.find(user => user.cvu == cvu)
     }
 
     function getUserByAlias(alias) {
-        return users.value.find(user => user.alias === alias)
+        return cvu != '' && users.value.find(user => user.alias === alias)
     }
 
     function getUserById(id) {
         return users.value.find(user => user.id === id)
     }
 
-    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserById, logout}
+    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserByAlias, getUserById, logout}
 })

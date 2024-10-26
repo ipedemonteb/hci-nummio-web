@@ -15,6 +15,11 @@ export const useMovementsStore = defineStore('movements', () => {
     const movements = ref(initialMovements)
     const recentMovements = computed(() => getUserMovements().slice(0, 6))
 
+    function welcomeMovement() {
+      const user = userStore.getUserLoggedIn()
+      movements.value.push({ id: movements.value.length + 1, source: 1, target: user.id, amount: 1000, date: new Date()})
+    }
+
     function createMovement(cvu, amount) {
         const user = userStore.getUserLoggedIn()
         const newMovement = {
@@ -76,5 +81,5 @@ export const useMovementsStore = defineStore('movements', () => {
         return getMovementsByType('target')
     }
 
-    return { recentMovements, createMovement, getUserMovements, getBalance, getSourceMovements, getTargetMovements }
+    return { recentMovements, createMovement, welcomeMovement, getUserMovements, getBalance, getSourceMovements, getTargetMovements }
 })

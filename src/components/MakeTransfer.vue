@@ -2,17 +2,17 @@
     <div class="makeTransfer">
         <h1>Transferir:</h1>
         <div class="transferInput">
-            <v-text-field 
-                v-model="inputValue" 
+            <v-text-field
+                v-model="inputValue"
                 clearable
-                variant="outlined" 
+                variant="outlined"
                 label="Ingrese el alias o CBU/CVU"
                 class="input"
                 append-icon="mdi-chevron-right"
                 @click:append="handleClick"
             >
             </v-text-field>
-            
+
             <v-dialog v-model="dialog" max-width="600px">
                 <ConfirmTransfer :closeDialog="closeDialog" />
             </v-dialog>
@@ -45,21 +45,31 @@
 </style>
 
 <script setup>
+import { useUsersStore } from '@/stores/users';
 import { ref } from 'vue';
 
 const dialog = ref(false);
 const snackbar = ref(false);
 const inputValue = ref('');
 const snackbarMessage = ref('Ingrese un alias o CBU/CVU para continuar.');
+const usersStore = useUsersStore()
 
 const handleClick = () => {
     if (inputValue.value) {
-        openDialog();
+      const byCVU = usersStore.getUserByCVU(inputValue.value)
+      if(!byCVU) {
+        const byAlias = usersStore.getUserByAlias(inputValue.value)
+        if(!byAlias) {
+          snackbar.value = true
+          snackbarMessage.value = "No existe usuario con ese CVU o alias"
+          return
+        }
+      }
+      openDialog();
     } else {
         snackbar.value = true;
     }
 };
-
 
 const openDialog = () => {
     dialog.value = true;
