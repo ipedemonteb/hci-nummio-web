@@ -38,6 +38,8 @@
             </v-col>
         </v-row>
     </v-container>
+
+    <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar> <!-- Mensaje de error -->
 </template>
 
 <style scoped>
@@ -101,14 +103,32 @@ const props = defineProps({
 })
 const movementsStore = useMovementsStore()
 const inputValue = ref('')
+const snackbar = ref(false)
+const snackbarMessage = ref("")
 
 const handleAmountInput = (event) => {
   inputValue.value = event.target.value
 }
 
 const confirmTransfer = () => {
-  const amountToNumber = parseFloat(inputValue.value)
-  movementsStore.createMovement(props.userToTransfer, amountToNumber)
+  const amountNumber = parseFloat(inputValue.value)
+  if(isNaN(amountNumber)){
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar un numero"
+    return
+  }
+  if(amountNumber <= 0) {
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar un monto positivo"
+    return
+  }
+  if(amountNumber > movementsStore.getBalance()) {
+    snackbar.value = true
+    snackbarMessage.value = "Saldo insuficiente"
+    return
+  }
+  snackbar.value = false
+  movementsStore.createMovement(props.userToTransfer, amountNumber)
   props.closeDialog()
 }
 
