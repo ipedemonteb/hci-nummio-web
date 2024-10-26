@@ -27,7 +27,7 @@
                 <v-icon size="large" icon="mdi-credit-card-outline"/>
                 <h3 class="optionText">Tus Tarjetas</h3>
             </RouterLink>
-            <RouterLink to="/" class="optionContainer">
+            <RouterLink to="/pago" class="optionContainer">
                 <v-icon size="large" icon="mdi-account-credit-card-outline"/>
                 <h3 class="optionText">Recibir Pago</h3>
             </RouterLink>
