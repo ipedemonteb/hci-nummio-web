@@ -42,10 +42,10 @@
                 <v-icon size="large" icon="mdi-file-document-outline"/>
                 <h3 class="optionText">Pago de Servicios</h3>
             </RouterLink>
-            <RouterLink to="/" class="optionContainer">
+            <!-- <RouterLink to="/" class="optionContainer">
                 <v-icon size="large" icon="mdi-sale"/>
                 <h3 class="optionText">Beneficios</h3>
-            </RouterLink>
+            </RouterLink> -->
             <RouterLink to="/contactos" class="optionContainer">
                 <v-icon size="large" icon="mdi-account-multiple-outline"/>
                 <h3 class="optionText">Contactos</h3>

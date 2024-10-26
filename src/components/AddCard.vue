@@ -63,7 +63,7 @@ watch(cardNumber, (newValue) => {
             <v-col cols="12" class="noVerPad">
               <v-text-field
                 label="Número de Tarjeta"
-                outlined
+                variant="outlined"
                 clearable
                 maxlength="16"
                 v-model="cardNumber"
@@ -72,7 +72,7 @@ watch(cardNumber, (newValue) => {
           </v-row>
           <v-row class="noMargin">
             <v-col cols="6">
-              <v-text-field label="Titular" outlined clearable density="compact"></v-text-field>
+              <v-text-field label="Titular" variant="outlined" clearable density="compact"></v-text-field>
               <div class="creditCardDate">
                 <label for="expiryDate">Fecha de Expiración (MM/AAAA):</label>
                 <div class="expiryDateInput">
@@ -101,10 +101,10 @@ watch(cardNumber, (newValue) => {
     </v-row>
     <v-row>
       <v-col cols="8" class="d-flex justify-center">
-        <v-text-field label="Banco Emisor" outlined clearable></v-text-field>
+        <v-text-field label="Banco Emisor" variant="outlined" clearable></v-text-field>
       </v-col>
       <v-col cols="4" class="d-flex justify-center">
-        <v-text-field label="Código" outlined clearable maxlength="4"></v-text-field>
+        <v-text-field label="Código" variant="outlined" clearable maxlength="4"></v-text-field>
       </v-col>
     </v-row>
     <v-row>
