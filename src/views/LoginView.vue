@@ -89,6 +89,7 @@
             @click:append-inner="visible = !visible"
           ></v-text-field>
         </template>
+        <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar>
       </div>
 
       <div class="buttonsContainer">
@@ -143,8 +144,30 @@ const handlePasswordInput = (event) => {
   password.value = event.target.value
 }
 
+const isEmail = (email) => {
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  return email != null && emailPattern.test(email)
+}
+
 const loginHandler = () => {
+  if(!isEmail(email.value)) {
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar un correo electrónico válido"
+    return
+  }
+  if(!password.value || password.value.trim() === "") {
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar una contraseña"
+    return
+  }
   const user = usersStore.login({email: email.value, password: password.value})
+  if(user == null) {
+    snackbar.value = true
+    snackbarMessage.value = "Correo electrónico y/o contraseña incorrectos"
+  } else {
+    snackbar.value = false
+    snackbarMessage.value = ""
+  }
 }
 
 const handleFirstNameSignupInput = (event) => {
@@ -168,6 +191,31 @@ const handleRepeatPasswordSignupInput = (event) => {
 }
 
 const signupHandler = () => {
+  if(!firstName.value || firstName.value.trim() === "") {
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar un nombre"
+    return
+  }
+  if(!lastName.value || lastName.value.trim() === "") {
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar un apellido"
+    return
+  }
+  if(!isEmail(emailSignup.value)) {
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar un correo electrónico válido"
+    return
+  }
+  if(!passwordSignup.value || passwordSignup.value.trim() === "") {
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar una contraseña"
+    return
+  }
+  if(passwordSignup.value !== repeatPasswordSignup.value) {
+    snackbar.value = true
+    snackbarMessage.value = "Las contraseñas no coinciden"
+    return
+  }
   const user = usersStore.signup({
     firstName: firstName.value,
     lastName: lastName.value,
@@ -175,7 +223,17 @@ const signupHandler = () => {
     password: passwordSignup.value,
     repeatPassword: repeatPasswordSignup.value
   })
+  if(user == null) {
+    snackbar.value = true
+    snackbarMessage.value = "Ya existe un usuario con ese correo electrónico"
+    return
+  }
+  snackbar.value = false
+  snackbarMessage.value = ""
 }
+
+const snackbar = ref(false)
+const snackbarMessage = ref("")
 
 </script>
 
