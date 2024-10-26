@@ -12,10 +12,9 @@
                 <v-icon size="large" icon="mdi-arrow-right-circle-outline"/>
                 <h3 class="optionText">Transferir</h3>
             </RouterLink>
-            <div class="optionContainer" @click="showInfoPopup=true">
+            <div class="optionContainer" @click="openModal">
                 <v-icon size="large" icon="mdi-card-account-details-outline"/>
                 <h3 class="optionText">Mis Datos</h3>
-                <InfoPopUp :showInfoPopup="showInfoPopup" @update:showInfoPopup="showInfoPopup = $event" />
             </div>
             <RouterLink to="/movimientos" class="optionContainer">
                 <v-icon size="large" icon="mdi-history"/>
@@ -64,6 +63,12 @@
             </RouterLink>
         </div>
     </div>
+
+    <div v-if="isModalOpen" class="modalOverlay" @click.self="closeModal">
+        <div class="modalContent">
+            <InfoPopUp :closeModal="closeModal" />
+        </div>
+    </div>
 </template>
 
 <style scoped>
@@ -99,11 +104,32 @@
         color: black;
     }
 
+    .modalOverlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }   
+
 </style>
 
 <script setup>
     import { ref } from 'vue';
     import InfoPopUp from './InfoPopUp.vue';
 
-    const showInfoPopup = ref(false);
+    const isModalOpen = ref(false);
+    
+    function openModal() {
+        isModalOpen.value = true;
+    }
+
+    function closeModal() {
+        isModalOpen.value = false;
+    }
 </script>
