@@ -8,6 +8,7 @@ import ContactView from "./views/ContactView.vue";
 import InvestView from "./views/InvestView.vue";
 import HelpView from "./views/HelpView.vue";
 import PaymentView from "./views/PaymentView.vue";
+import ServiceView from "./views/ServiceView.vue";
 
 const routes = [
   { path: "/", component: HomeView },
@@ -17,7 +18,8 @@ const routes = [
   { path: "/contactos", component: ContactView},
   { path: "/inversiones", component: InvestView},
   { path: "/ayuda", component: HelpView},
-  { path: "/pago", component: PaymentView},
+  { path: "/cobros", component: PaymentView},
+  { path: "/servicios", component: ServiceView},
 ];
 
 const router = createRouter({
