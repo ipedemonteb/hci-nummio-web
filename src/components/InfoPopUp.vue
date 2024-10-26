@@ -31,7 +31,7 @@
       <div class="cvu-container">
         <div class="infoCard">
           <div class="copyableText">
-            {{alias}}
+            {{ alias != null ? alias : "Sin definir"}}
           </div>
         </div>
         <button class="copyButton" @click="copyAlias">

@@ -35,6 +35,7 @@ export const useUsersStore = defineStore('users', () => {
         }
     ]
 
+    const cvuCounter = ref(1000000000)
     const userLoggedInKey = 'userLoggedIn'
 
     //localStorage.setItem(userLoggedInKey, JSON.stringify(initialUsers[0]))
@@ -51,8 +52,10 @@ export const useUsersStore = defineStore('users', () => {
             return null
         const newUser = {
             id: users.value.length + 1,
-            ...user
+            ...user,
+            cvu: cvuCounter.value,
         }
+        cvuCounter.value++
         newUser.repeatPassword = undefined
         users.value.push(newUser)
         //localStorage.setItem('users', JSON.stringify(users.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
@@ -70,6 +73,14 @@ export const useUsersStore = defineStore('users', () => {
           return user
         }
         return null
+    }
+
+    function setAlias(alias) {
+      if(!alias || alias === "" || users.value.find(user => user.alias === alias))
+        return false
+      const user = getUserLoggedIn()
+      user.alias = alias
+      return true
     }
 
     function logout() {
