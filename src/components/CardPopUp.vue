@@ -1,71 +1,89 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineProps } from 'vue';
 
 const isFlipped = ref(false);
-
 function flipCard() {
-    isFlipped.value = !isFlipped.value;
+  isFlipped.value = !isFlipped.value;
 }
+
+const props = defineProps({
+  closeModal: Function
+});
 </script>
 
 <template>
-    <v-container class="cardContainer" @click="flipCard">
-        <div class="cardWrapper" :class="{ flipped: isFlipped }">
-            <v-container class="card front">
-                <v-row class="cardType">
-                    <h3>Tarjeta de Crédito</h3>
-                </v-row>
-                <v-row class="noMargin">
-                    <v-col cols="1">
-                        <v-icon icon="mdi-credit-card-chip" class="icon"/>
-                    </v-col>
-                    <v-col cols="1">
-                        <v-icon icon="mdi-contactless-payment" class="icon"/>
-                    </v-col>
-                </v-row>
-                <v-row class="noMargin">
-                    <v-col cols="3" v-for="n in 4" :key="n">
-                        <h3 class="cardNumber">1234</h3>
-                    </v-col>
-                </v-row>
-                <v-row class="noMargin">
-                    <v-col cols="9">
-                        <p class="cardInfo">Fernando Alonso</p>
-                        <p class="cardInfo">Vto: 12/24</p>
-                    </v-col>
-                    <v-col cols="3">
-                        <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
-                    </v-col>
-                </v-row>
-            </v-container>
-
-            <v-container class="card back">
-                <div class="blackBar"></div>
-                <v-container class="lowerContainer">
-                    <v-row>
-                        <v-col cols="6" class="backInfoContainer">
-                            <div class="backInfo"></div>
+    <v-container class="cardContainer">
+        <v-row>
+            <v-col cols="10" align-content="center">
+                <h2>Banco Ejemplo</h2>
+            </v-col>
+            <v-col cols="2" class="closeIcon">
+                <v-icon icon="mdi-close" @click="props.closeModal"/>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col>
+            <div class="cardWrapper" :class="{ flipped: isFlipped }">
+                <v-container class="card front" @click="flipCard">
+                    <v-row class="cardType">
+                        <h3>Tarjeta de Crédito</h3>
+                    </v-row>
+                    <v-row class="noMargin">
+                        <v-col cols="1">
+                            <v-icon icon="mdi-credit-card-chip" class="icon"/>
                         </v-col>
-                        <v-col cols="3" class="codeContainer">
-                            <div class="code">
-                                <p>123</p>
-                            </div>
+                        <v-col cols="1">
+                            <v-icon icon="mdi-contactless-payment" class="icon"/>
                         </v-col>
                     </v-row>
-                    <v-row class="backLogo">
-                        <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
+                    <v-row class="noMargin">
+                        <v-col cols="3" v-for="n in 4" :key="n">
+                            <h3 class="cardNumber">1234</h3>
+                        </v-col>
+                    </v-row>
+                    <v-row class="noMargin">
+                        <v-col cols="9">
+                            <p class="cardInfo">Fernando Alonso</p>
+                            <p class="cardInfo">Vto: 12/24</p>
+                        </v-col>
+                        <v-col cols="3">
+                            <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
+                        </v-col>
                     </v-row>
                 </v-container>
-            </v-container>
-        </div>
+
+                <v-container class="card back" @click="flipCard">
+                    <div class="blackBar"></div>
+                    <v-container class="lowerContainer">
+                        <v-row>
+                            <v-col cols="6" class="backInfoContainer">
+                                <div class="backInfo"></div>
+                            </v-col>
+                            <v-col cols="3" class="codeContainer">
+                                <div class="code">
+                                    <p>123</p>
+                                </div>
+                            </v-col>
+                        </v-row>
+                        <v-row class="backLogo">
+                            <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
+                        </v-row>
+                    </v-container>
+                </v-container>
+            </div>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col cols="12" class="d-flex justify-center">
+                <v-btn class="deleteButton" @click="deleteCard">Eliminar Tarjeta</v-btn> 
+            </v-col>
+        </v-row>
     </v-container>
 </template>
 
 <style scoped>
 .cardContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block !important;
     perspective: 1000px;
 }
 
@@ -76,6 +94,10 @@ function flipCard() {
     height: 220px;
     transform-style: preserve-3d;
     transition: transform 0.6s;
+}
+
+.closeIcon {
+    text-align: right;
 }
 
 .flipped {
@@ -160,5 +182,9 @@ function flipCard() {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.deleteButton {
+    color: red;
 }
 </style>

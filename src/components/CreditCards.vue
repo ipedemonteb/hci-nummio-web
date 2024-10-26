@@ -29,10 +29,10 @@ function closeModal() {
   </div>
 
   <div v-if="isModalOpen" class="modalOverlay" @click.self="closeModal">
-    <div class="modalContent">
-      <CardPopUp />
-    </div>
+  <div class="modalContent">
+    <CardPopUp :closeModal="closeModal" />
   </div>
+</div>
 </template>
 
 <style scoped>
