@@ -15,14 +15,14 @@ const props = defineProps({
     <v-container class="cardContainer">
         <v-row>
             <v-col cols="10" align-content="center">
-                <h2>Banco Ejemplo</h2>
+                <h1>Banco Ejemplo</h1>
             </v-col>
             <v-col cols="2" class="closeIcon">
                 <v-icon icon="mdi-close" @click="props.closeModal"/>
             </v-col>
         </v-row>
         <v-row>
-            <v-col>
+            <v-col cols="12" class="d-flex justify-center">
             <div class="cardWrapper" :class="{ flipped: isFlipped }">
                 <v-container class="card front" @click="flipCard">
                     <v-row class="cardType">
@@ -84,6 +84,8 @@ const props = defineProps({
 <style scoped>
 .cardContainer {
     display: block !important;
+    padding: 30px;
+    min-width: 600px;
     perspective: 1000px;
 }
 
@@ -186,5 +188,7 @@ const props = defineProps({
 
 .deleteButton {
     color: red;
+    border-radius: 20px;
+    height: 40px;
 }
 </style>

@@ -2,8 +2,10 @@
 import { ref } from 'vue';
 import CardBox from './CardBox.vue';
 import CardPopUp from './CardPopUp.vue';
+import AddCard from './AddCard.vue';
 
 const isModalOpen = ref(false);
+const isAddCardOpen = ref(false);
 
 function openModal() {
   isModalOpen.value = true;
@@ -12,13 +14,21 @@ function openModal() {
 function closeModal() {
   isModalOpen.value = false;
 }
+
+function openAddCard() {
+  isAddCardOpen.value = true;
+}
+
+function closeAddCard() {
+  isAddCardOpen.value = false;
+}
 </script>
 
 <template>
   <div class="cardsContainer">
     <div class="topContainer">
       <h1>Tarjetas de Crédito</h1>
-      <v-btn density="default" icon="mdi-plus" elevation="0" class="plusButton"></v-btn>
+      <v-btn density="default" icon="mdi-plus" elevation="0" class="plusButton" @click="openAddCard"></v-btn>
     </div>
     <div class="cards">
       <div class="cardContainer" v-for="(card, index) in 2" :key="index">
@@ -29,10 +39,16 @@ function closeModal() {
   </div>
 
   <div v-if="isModalOpen" class="modalOverlay" @click.self="closeModal">
-  <div class="modalContent">
-    <CardPopUp :closeModal="closeModal" />
+    <div class="modalContent">
+      <CardPopUp :closeModal="closeModal" />
+    </div>
   </div>
-</div>
+
+  <div v-if="isAddCardOpen" class="modalOverlay" @click.self="closeAddCard">
+    <div class="modalContent">
+      <AddCard :closeModal="closeAddCard" />
+    </div>
+  </div>
 </template>
 
 <style scoped>
