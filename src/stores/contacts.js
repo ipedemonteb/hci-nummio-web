@@ -1,16 +1,19 @@
 import { defineStore } from "pinia";
 import { useUsersStore } from "./users";
 import { ref } from "vue";
+import { useMovementsStore } from "./movements";
 
 export const useContactsStore = defineStore('contacts', () => {
   const usersStore = useUsersStore()
+  const movementsStore = useMovementsStore()
+
   const contacts = ref([
     {
       id: 1,
       user: 4,
       contactUser: {
         name: 'Jane Smith',
-        cvu: 9876543210,
+        cvu: '9876543210987654321098',
         alias: 'jane.smith'
       }
     }
@@ -24,7 +27,9 @@ export const useContactsStore = defineStore('contacts', () => {
       if(contact.user === user.id) {
         const contactData = {
           id: contact.id,
-          name: contact.contactUser.name
+          name: contact.contactUser.name,
+          cvu: contact.contactUser.cvu,
+          alias: contact.contactUser.alias
         }
         userContacts.push(contactData)
       }
@@ -32,10 +37,24 @@ export const useContactsStore = defineStore('contacts', () => {
     return userContacts
   }
 
+  function getFrequentlyContacts(top) {
+    const userContacts = getContacts()
+    const userMovements = movementsStore.getSourceMovements()
+    const frequentlyContacts = []
+    userMovements.forEach(movement => {
+      const targetUser = usersStore.getUserById(movement.target)
+      const userContact = userContacts.find(contact => contact.cvu === targetUser.cvu)
+      if(userContact && !frequentlyContacts.find(freqContact => freqContact.cvu === targetUser.cvu)){
+        frequentlyContacts.push(userContact)
+      }
+    })
+    return frequentlyContacts.slice(0, top)
+  }
+
   function addContact(cvuOrAlias) {
     var contactUser = usersStore.getUserByCVU(cvuOrAlias)
     if(user == null) {
-      user = usersStore.getUserByAlias(cvuOrAlias)
+      contactUser = usersStore.getUserByAlias(cvuOrAlias)
       if(user == null)
         return false
     }
@@ -43,7 +62,7 @@ export const useContactsStore = defineStore('contacts', () => {
       return false
     const user = usersStore.getUserLoggedIn()
     const newContact = {
-      id: contacts.value.length + 1,
+      id: idCounter.value,
       user: user.id,
       contactUser: {
         name: `${contactUser.firstName} ${contactUser.lastName}`,
@@ -51,9 +70,10 @@ export const useContactsStore = defineStore('contacts', () => {
         alias: contactUser.alias
       },
     }
+    idCounter.value++
     contacts.value.push(newContact)
     return true
   }
 
-  return {getContacts, addContact}
+  return {getContacts, addContact, getFrequentlyContacts}
 })

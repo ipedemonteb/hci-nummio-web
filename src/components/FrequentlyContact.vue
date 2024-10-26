@@ -3,9 +3,9 @@
         <h1>Contactos Frecuentes:</h1>
 
         <div class="contactsContainer">
-            <ContactBox 
-                v-for="contact in freqContacts" 
-                :key="contact.id" 
+            <ContactBox
+                v-for="contact in freqContacts"
+                :key="contact.id"
                 :name="contact.name"
             />
         </div>
@@ -45,8 +45,10 @@
 </style>
 
 <script setup>
+import { useContactsStore } from '@/stores/contacts';
 import ContactBox from './ContactBox.vue';
 import { useRouter } from 'vue-router';
+import { computed } from 'vue';
 
 const router = useRouter()
 
@@ -54,12 +56,7 @@ const goToPage = () => {
   router.push('/contactos')
 }
 
-const props = defineProps({
-    freqContacts: {
-        type: Array,
-        required: true,
-        default: () => []
-    }
-});
+const contactsStore = useContactsStore()
+const freqContacts = computed(() => contactsStore.getFrequentlyContacts(3))
 
 </script>
