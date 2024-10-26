@@ -1,4 +1,13 @@
-<script>
+<script setup>
+import CardBox from './CardBox.vue';
+
+const props = defineProps({
+    cards: {
+        type: Array,
+        required: true,
+        default: () => []
+    }
+});
 </script>
 
 <template>
@@ -8,12 +17,8 @@
       <v-btn density="default" icon="mdi-plus" elevation="0" class="plusButton"></v-btn>
     </div>
     <div class="cards">
-      <div class="cardContainer">
-        <CardBox />
-        <v-icon class="icon" icon="mdi-chevron-right"></v-icon>
-      </div>
-      <div class="cardContainer">
-        <CardBox />
+      <div class="cardContainer" v-for="card in cards" :key="card.id">
+        <CardBox :bankName="card.bank.name" :cardLogo="card.bank.image" :cardNumber="card.number.toString().slice(0, 4)" />
         <v-icon class="icon" icon="mdi-chevron-right"></v-icon>
       </div>
     </div>

@@ -1,17 +1,19 @@
 <script setup>
 import RecentPurchase from '@/components/RecentPurchase.vue';
+import { useCardsStore } from '@/stores/cards';
 
+const cardsStore = useCardsStore();
 
 </script>
 
 <template>
     <div class="contentContainer">
       <div class="columnContainer half-width">
-        <CreditCards />
-        <DebitCards />
+        <CreditCards  :cards="cardsStore.getUserCreditCards()"/>
+        <DebitCards :cards="cardsStore.getUserDebitCards() " />
       </div>
       <div class="columnContainer half-width">
-        <RecentPurchase />
+        <RecentPurchase />  
       </div>
     </div>
 </template>
