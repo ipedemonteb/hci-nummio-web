@@ -18,7 +18,7 @@
       <UserMovements :lastMovements="movementsStore.getUserMovements()"/>
     </div>
     <div class="columnContainer half-width">
-      <FrequentlyContact :freqContacts="contactsStore.getContacts()"/>
+      <FrequentlyContact />
       <WalletCards/>
     </div>
   </div>

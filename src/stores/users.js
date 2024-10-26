@@ -98,6 +98,10 @@ export const useUsersStore = defineStore('users', () => {
         return item == null ? null : JSON.parse(item)
     }
 
+    function getUserById(id) {
+      return users.value.find(user => user.id === id)
+    }
+
     function getUserByCVU(cvu) {
         return cvu != 0 && users.value.find(user => user.cvu == cvu)
     }
