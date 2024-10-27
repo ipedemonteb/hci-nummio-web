@@ -57,17 +57,20 @@ const handleRepeatPasswordSignupInput = (value) => {
                     :error-messages="emailValid === false ? 'Correo no válido' : ''"
                 ></v-text-field>
                 
-                <v-text-field
-                    v-if="isCodeFieldVisible"
-                    class="input"
-                    v-model="code"
-                    placeholder="Ingresa el código enviado"
-                    prepend-inner-icon="mdi-lock-outline"
-                    variant="outlined"
-                    density="compact"
-                    :error="codeValid === false"
-                    :error-messages="codeValid === false ? 'Código incorrecto' : ''"
-                ></v-text-field>
+                <div>
+                    <v-text-field
+                        v-if="isCodeFieldVisible"
+                        class="input"
+                        v-model="code"
+                        placeholder="Ingresa el código enviado"
+                        prepend-inner-icon="mdi-lock-outline"
+                        variant="outlined"
+                        density="compact"
+                        :error="codeValid === false"
+                        :error-messages="codeValid === false ? 'Código incorrecto' : ''"
+                    ></v-text-field>
+                    <p v-if="!isPasswordFieldsVisible && isCodeFieldVisible" class="reset">Reenviar Código</p>
+                </div>
 
                 <v-text-field
                     v-if="isPasswordFieldsVisible"
@@ -185,5 +188,10 @@ const handleRepeatPasswordSignupInput = (value) => {
     color: #5538EE;
     cursor: pointer;
     text-decoration: none;
+}
+.reset {
+    margin-top: 0px;
+    color: #5538EE;
+    cursor: pointer;
 }
 </style>

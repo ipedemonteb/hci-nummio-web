@@ -10,8 +10,8 @@
         </div>
       </div>
 
-      <!-- <PasswordRecoverView v-else /> -->
-      <LoginView v-else/>
+      <PasswordRecoverView v-else />
+      <!-- <LoginView v-else/> -->
     </main>
 </template>
 
