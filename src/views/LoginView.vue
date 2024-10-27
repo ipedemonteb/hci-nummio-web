@@ -24,7 +24,7 @@
               Contraseña
               <a
                 class="forgotPassword text-decoration-none"
-                href="#"
+                href="/"
                 rel="noopener noreferrer"
                 target="_blank"
               >

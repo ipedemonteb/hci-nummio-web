@@ -10,6 +10,7 @@
         </div>
       </div>
 
+      <!-- <PasswordRecoverView v-else /> -->
       <LoginView v-else/>
     </main>
 </template>
@@ -74,6 +75,7 @@
   import LoginView from './views/LoginView.vue';
   import { useUsersStore } from './stores/users';
 import { computed } from 'vue';
+import PasswordRecoverView from './views/PasswordRecoverView.vue';
 
   const usersStore = useUsersStore()
   const loggedIn = computed(() => usersStore.loggedIn)
