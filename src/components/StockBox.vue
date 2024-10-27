@@ -1,7 +1,7 @@
 <template>
     <div class="stock">
         <div class="stockHeader">
-            <h2>{{ name }}</h2>
+            <h3>{{ name }}</h3>
             <p>{{ symbol }}</p>
         </div>
         <div class="stockBody">

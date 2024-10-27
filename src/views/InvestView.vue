@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import FixedTerm from '@/components/FixedTerm.vue';
 import StockMarket from '@/components/StockMarket.vue';
 import UserInvestments from '@/components/UserInvestments.vue';
 </script>
@@ -14,7 +15,7 @@ import UserInvestments from '@/components/UserInvestments.vue';
     </div>
     <div class="contentContainer">
         <div class="columnContainer full-width">
-            
+            <FixedTerm />
         </div>    
     </div>
 </template>

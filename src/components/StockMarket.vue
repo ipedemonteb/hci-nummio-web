@@ -4,7 +4,7 @@ import StockBox from './StockBox.vue';
 
 <template>
     <div class="holdings">
-        <h1>Mercado de Capitales:</h1>
+        <h2 class="mainTitle">Mercado de Capitales:</h2>
         <div class="stocks">
             <StockBox name="Apple Inc." symbol="AAPL" :price="123.45" :change="1.23"/>
             <StockBox name="Tesla" symbol="TSLA" :price="678.90" :change="-0.56"/>
@@ -28,12 +28,11 @@ import StockBox from './StockBox.vue';
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: 30px 40px;
-        flex: 1;
     }
 
     .stocks {
         margin: 20px 0px;
-        height: 250px;
+        height: 230px;
         overflow-y: auto;
     }
 </style>

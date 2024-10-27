@@ -4,7 +4,7 @@
 
 <template>
     <div class="investments">
-        <h1>Rendimientos:</h1>
+        <h2 class="mainTitle">Rendimientos:</h2>
         <div class="investmentContainer">
             <InvestmentGraph />
         </div>
@@ -12,10 +12,11 @@
 </template>
 
 <style scoped>
-    .investments {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        padding: 30px 40px;
-    }
+.investments {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 30px 40px;
+    flex: 1;
+}
 </style>
