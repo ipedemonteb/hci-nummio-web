@@ -14,7 +14,7 @@
             </RouterLink>
             <div class="optionContainer" @click="openModal">
                 <v-icon size="large" icon="mdi-card-account-details-outline"/>
-                <h3 class="optionText">Datos</h3>
+                <h3 class="optionText">Datos Personales</h3>
             </div>
             <RouterLink to="/movimientos" class="optionContainer">
                 <v-icon size="large" icon="mdi-history"/>
@@ -77,7 +77,7 @@
         position: relative;
         background-color: #E7E7FF;
         color: black;
-        width: 15%;
+        width: 18%;
         height: 100%;
         overflow-y: auto;
         z-index: 999;

@@ -1,15 +1,19 @@
 <template>
     <div class="header">
         <div class="headerContainer">
-            <ProfileLogo/>
-
-            <div class="logoContainer">
-                <h1 class="text-primary">nummio</h1>
+            
+            <div class="logoContainer">  
+                <RouterLink to="/" class="optionContainer">
+                    <h1 class="text-primary">nummio</h1>
+                </RouterLink>
             </div>
 
-            <div class="configurationContainer">
+            <div class="profileContainer" @click="openEditDialog">
+                <ProfileLogo/>
+            </div>
+            <!-- <div class="configurationContainer">
                 <v-icon color="#6B4EFF" size="large" icon="mdi-cog" @click="openEditDialog"></v-icon>
-            </div>
+            </div> -->
 
             <v-dialog v-model="isEditDialogVisible" max-width="700">
                 <EditData @closeDialog="closeEditDialog" />
@@ -20,26 +24,34 @@
 </template>
 
 <style scoped>
-    .header {
-        width: 100%;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        background-color: white;
-        position: fixed;
-        z-index: 1000;
-    }
+.header {
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    position: fixed;
+    z-index: 1000;
+    padding: 30px 50px;
+}
 
-    .headerContainer {
-        margin: 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-    .logoContainer {
-        position: absolute;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+/* .logoContainer {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+} */
+
+.profileContainer {
+    cursor: pointer;
+}
+
+.optionContainer {
+    text-decoration: none;
+}
 
 </style>
 
