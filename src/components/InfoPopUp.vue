@@ -194,6 +194,7 @@ const handleKeyDown = (event) => {
         padding: 10px;
         border-radius: 5px;
         outline: none;
+        width: 100%;
     }
 
     .aliasInput:focus {
