@@ -27,7 +27,7 @@
                 <v-icon size="large" icon="mdi-credit-card-outline"/>
                 <h3 class="optionText">Tus Tarjetas</h3>
             </RouterLink>
-            <RouterLink to="/pago" class="optionContainer">
+            <RouterLink to="/cobros" class="optionContainer">
                 <v-icon size="large" icon="mdi-account-credit-card-outline"/>
                 <h3 class="optionText">Recibir Pago</h3>
             </RouterLink>
@@ -38,7 +38,7 @@
         </div>
         <v-divider class="customDivider" :thickness="2"/>
         <div class="multOptionContainer">
-            <RouterLink to="/" class="optionContainer">
+            <RouterLink to="/servicios" class="optionContainer">
                 <v-icon size="large" icon="mdi-file-document-outline"/>
                 <h3 class="optionText">Pago de Servicios</h3>
             </RouterLink>

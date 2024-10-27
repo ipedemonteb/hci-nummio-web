@@ -15,16 +15,10 @@
                 </template>
                 <v-list>
                     <v-list-item>
-                        <v-btn class="editButton" prepend-icon="mdi-pencil-outline" @click="openEditDialog">Editar</v-btn>
-                    </v-list-item>
-                    <v-list-item>
                         <v-btn class="deleteButton" prepend-icon="mdi-delete-outline">Eliminar</v-btn>
                     </v-list-item>
                 </v-list>
             </v-menu>
-            <v-dialog v-model="isEditDialogVisible" max-width="700">
-                <EditContact @closeDialog="closeEditDialog" />
-            </v-dialog>
         </div>
     </div>
 </template>
@@ -72,7 +66,6 @@
 <script setup lang="ts">
 
 import { ref } from 'vue';
-import EditContact from './EditContact.vue';
 
 const props = defineProps({
   name: String,
