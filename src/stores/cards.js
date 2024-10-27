@@ -8,13 +8,13 @@ export const CardType = Object.freeze({
     VISA: { name: 'Visa', image: '/logos/visa.png' }
 });
 
-export const useCardsStore = defineStore('card  s', () => {
+export const useCardsStore = defineStore('cards', () => {
     const initialCards = [
         {
             id: 1,
             bank: CardType.AMEX,
             type: 'credit',
-            number: 378282246310,
+            number: 378282246310111,
             CVV: 123,
             expirationMonth: 12,
             expirationYear: 2025,

@@ -15,9 +15,16 @@
           </v-col>
       </v-row>
     </v-card>
-  </template>
+</template>
   
   <style scoped>
+    .outerContainer {
+      width:100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .cardContainer {
       background-color: rgb(149, 149, 149);
       border-radius: 20px;

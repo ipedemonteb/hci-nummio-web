@@ -7,7 +7,10 @@ import AddCard from './AddCard.vue';
 const isModalOpen = ref(false);
 const isAddCardOpen = ref(false);
 
-function openModal() {
+const popUpCard = ref({bank: {name: '', image: ''}, number: 0});
+
+function openModal(card) {
+  popUpCard.value = card;
   isModalOpen.value = true;
 }
 
@@ -40,15 +43,15 @@ const props = defineProps({
     </div>
     <div class="cards">
       <div class="cardContainer" v-for="card in cards" :key="card.id">
-        <CardBox :bankName="card.bank.name" :cardLogo="card.bank.image" :cardNumber="card.number.toString().slice(0, 4)" />
-        <v-icon class="icon" icon="mdi-chevron-right" @click="openModal"></v-icon>
+        <CardBox :bankName="card.bank.name" :cardLogo="card.bank.image" :cardNumber="card.number.toString().slice(12, 16)" />
+        <v-icon class="icon" icon="mdi-chevron-right" @click="openModal(card)"></v-icon>
       </div>
     </div>
   </div>
 
   <div v-if="isModalOpen" class="modalOverlay" @click.self="closeModal">
     <div class="modalContent">
-      <CardPopUp :closeModal="closeModal" />
+      <CardPopUp :closeModal="closeModal" :card="popUpCard" />
     </div>
   </div>
 
