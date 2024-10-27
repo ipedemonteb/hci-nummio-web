@@ -1,23 +1,25 @@
 <script setup>
+
 import RecentPurchase from '@/components/RecentPurchase.vue';
 import { useCardsStore } from '@/stores/cards';
+import CreditCards from '@/components/CreditCards.vue';
+import { computed } from 'vue';
 
 const cardsStore = useCardsStore();
-
+const cards = computed(() => cardsStore.getUserCreditCards()) //@TODO: si no se actualizan las tarjetas al agregar, cambiar parametro de creditCards por esto y descomentar linea
 </script>
 
 <template>
     <div class="contentContainer">
       <div class="columnContainer half-width">
-        <CreditCards  :cards="cardsStore.getUserCreditCards()"/>
-        <DebitCards :cards="cardsStore.getUserDebitCards() " />
+        <CreditCards :cards="cards"/>
       </div>
       <div class="columnContainer half-width">
-        <RecentPurchase />  
+        <RecentPurchase />
       </div>
     </div>
 </template>
 
 <style scoped>
-  
+
 </style>

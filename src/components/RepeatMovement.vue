@@ -1,9 +1,6 @@
 <template>
     <div class="repeatMovement">
-        <h1>Repetir Transferencia:</h1>
-        <!-- <div class="searchBar">
-            <SearchBar/>
-        </div> -->
+        <h2 class="mainTitle">Repetir Transferencia:</h2>
         <div class="repeatMovements">
             <MovementBox
                 v-for="(movement) in sourceMovements"
@@ -15,7 +12,7 @@
             />
         </div>
         <div class="buttonContainer">
-            <v-btn variant="outlined" rounded="xl" class="button">
+            <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
                 Ver Más
             </v-btn>
         </div>
@@ -44,6 +41,9 @@
     }
 
     .button {
+        border-radius: 40px;
+        background-color: white;
+        color: #5538EE;
         width: 200px;
     }
 
@@ -59,8 +59,13 @@
 import { computed } from 'vue';
 import MovementBox from './MovementBox.vue';
 import { useMovementsStore } from '@/stores/movements';
+import { useRouter } from 'vue-router';
 
 const movementsStore = useMovementsStore()
 const sourceMovements = computed(() => movementsStore.getSourceMovements())
+const router = useRouter()
 
+const goToPage = () => {
+  router.push('/movimientos')
+}
 </script>

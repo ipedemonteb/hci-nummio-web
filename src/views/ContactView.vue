@@ -1,4 +1,5 @@
 <script setup>
+import AddContact from '@/components/AddContact.vue';
 import ContactBox from '@/components/ContactBox.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import { useContactsStore } from '@/stores/contacts';
@@ -36,17 +37,24 @@ const paginatedContacts = computed(() => {
   return allContacts.value.slice(start, end);
 });
 
+const isAddDialogVisible = ref(false);
+const openAddDialog = () => {
+    isAddDialogVisible.value = true;
+};
+const closeAddDialog = () => {
+    isAddDialogVisible.value = false;
+};
 
 </script>
 
 <template>
     <div class="contentContainer">
       <div class="allContacts full-width">
-        <h1>Contactos: </h1>
+        <h1 class="mainTitle title">Contactos: </h1>
 
         <div class="searchContainer">
           <SearchBar class="searchBar"/>
-          <v-btn size="large" append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined"/>
+          <v-btn append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined" @click="openAddDialog"/>
         </div>
 
         <div class="movementsContainer">
@@ -68,30 +76,40 @@ const paginatedContacts = computed(() => {
         </div>
 
       </div>
+
+      <v-dialog v-model="isAddDialogVisible" max-width="700">
+        <AddContact @closeDialog="closeAddDialog" />
+      </v-dialog>
+
     </div>
-  </template>
+</template>
 
-  <style scoped>
-    .allContacts {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border: 1px solid #ccc;
-      padding: 30px 40px;
-      border-radius: 10px;
-    }
+<style scoped>
+  .title {
+    display: flex;
+    justify-content: center;
+  }
 
-    .searchContainer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 15px;
-    }
+  .allContacts {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    padding: 30px 40px;
+    border-radius: 10px;
+  }
 
-    .selectContainer {
-      max-width: 200px;
-    }
+  .searchContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
 
-    .searchBar {
-          width: 300px;
-    }
+  .selectContainer {
+    max-width: 200px;
+  }
 
-  </style>
+  .searchBar {
+        width: 300px;
+  }
+
+</style>

@@ -1,12 +1,12 @@
 <template>
     <div class="wallet">
-        <h1>Billetera:</h1>
+        <h2 class="mainTitle">Tarjetas:</h2>
 
         <WalletBox />
 
         <div class="buttonContainer">
             <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
-                    Ver Todas
+                    Ver Más
             </v-btn>
         </div>
     </div>
@@ -27,6 +27,9 @@
     }
 
     .button {
+        border-radius: 40px;
+        background-color: white;
+        color: #5538EE;
         width: 200px;
     }
 

@@ -28,7 +28,7 @@ const isFormValid = computed(() => {
     <div class="payService">
         <v-container>
             <div class="title">
-                <h1>Pagar Servicio:</h1>
+                <h1 class="mainTitle">Pagar Servicio:</h1>
             </div>
             <div class="input">
                 <p class="text">Ingresá el código de la factura:</p>
@@ -80,10 +80,10 @@ const isFormValid = computed(() => {
 
             <v-row v-if="isFormValid">
                 <v-col cols="6" class="d-flex justify-center">
-                    <v-btn @click="cancelPayment">Cancelar</v-btn>
+                    <v-btn variant="outlined" rounded="xl" @click="cancelPayment">Cancelar</v-btn>
                 </v-col>
                 <v-col cols="6" class="d-flex justify-center">
-                    <v-btn class="confirm" @click="confirmPayment">Confirmar</v-btn>
+                    <v-btn variant="outlined" rounded="xl" class="confirm" @click="confirmPayment">Confirmar</v-btn>
                 </v-col>
             </v-row>
         </v-container>
@@ -101,6 +101,7 @@ const isFormValid = computed(() => {
 .title {
     display: flex;
     justify-content: center;
+    margin-bottom: 50px;
 }
 
 .text {

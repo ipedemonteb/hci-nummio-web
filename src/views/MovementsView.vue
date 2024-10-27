@@ -22,8 +22,9 @@ const totalPages = computed(() => Math.ceil(movementsStore.getUserMovements().le
 <template>
   <div class="contentContainer">
     <div class="allMovements full-width">
-      <h1>Últimos Movimientos: </h1>
-      
+      <div class="title">
+        <h1 class="mainTitle">Movimientos: </h1>
+      </div>
       <div class="searchContainer">
         <v-select 
           density="compact"
@@ -62,6 +63,12 @@ const totalPages = computed(() => Math.ceil(movementsStore.getUserMovements().le
 </template>
 
 <style scoped>
+  .title {
+    display:flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+
   .allMovements {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border: 1px solid #ccc;
@@ -84,5 +91,6 @@ const totalPages = computed(() => Math.ceil(movementsStore.getUserMovements().le
     width: 300px;
     margin-top: 0px;
   }
+
 
 </style>

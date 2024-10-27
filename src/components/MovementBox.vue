@@ -2,11 +2,7 @@
     <div class="movement">
         <div class="movementContainer">
             <div class="iconInfoContainer">
-                <v-icon
-                    color="black"
-                    size="48px"
-                    :icon="isSent ? 'mdi-arrow-top-right-bold-box-outline' : 'mdi-arrow-bottom-left-bold-box-outline'"
-                />
+                <v-icon color="#6B4EFF" class="icon" size="45px" :icon="isSent ? 'mdi-arrow-top-right-bold-box-outline' : 'mdi-arrow-bottom-left-bold-box-outline'" />
                 <div class="actionContainer">
                     <h4>{{ isSent ? "Transferencia enviada" : "Transferencia recibida" }}</h4>
                     <h5>{{ isSent ? "A " : "De "}} {{ otherUser }}</h5>
@@ -14,7 +10,7 @@
             </div>
             <div class="rightContainer">
                 <div class="amountContainer">
-                    <h3>$ {{ amount }}</h3>
+                    <h4>$ {{ amount }}</h4>
                     <h5>{{ timeAgo.toLocaleDateString('en-GB') }}</h5>
                 </div>
                 <v-menu>
@@ -24,63 +20,116 @@
 
                     <v-list>
                         <v-list-item>
-                            <v-btn class="detailsButton" prepend-icon="mdi-format-list-bulleted">Detalles</v-btn>
+                            <v-btn class="detailsButton" prepend-icon="mdi-format-list-bulleted" @click="openModal">Detalles</v-btn>
                         </v-list-item>
                     </v-list>
                 </v-menu>
+            </div>
+
+            <div v-if="isModalOpen" class="modalOverlay" @click.self="closeModal">
+                <div class="modalContent">
+                    <TransferInfo
+                        :closeModal="closeModal"
+                        :cvuRem="cvuRem"
+                        :cvuDest="cvuDest"
+                        :amount="amount"
+                        :date="timeAgo"
+                    />
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <style scoped>
-    .movement {
-        border: 1px solid #ccc;
-        border-radius: 10px;
-        margin: 5px 0px;
-    }
+.movement {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 5px 0px;
+}
 
-    .movementContainer {
-        margin: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+.icon {
+    margin-right: 8px;
+}
 
-    .iconInfoContainer {
-        display: flex;
-        align-items: center;
-    }
+.movementContainer {
+    margin: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-    .rightContainer {
-        display: flex;
-        align-items: center;
-    }
+.iconInfoContainer {
+    display: flex;
+    align-items: center;
+}
 
-    .moreOptions {
-        margin-left: 10px;
-    }
+.rightContainer {
+    display: flex;
+    align-items: center;
+}
 
-    .actionContainer h5 {
-        margin-top: 0px;
-        color: grey;
-    }
+.moreOptions {
+    margin-left: 10px;
+}
 
-    .amountContainer {
-        margin-right: 5px;
-    }
+.actionContainer h5 {
+    margin-top: 0px;
+    color: grey;
+}
 
-    .detailsButton {
-        width: 100%;
-    }
+.amountContainer {
+    margin-right: 5px;
+}
 
+.detailsButton {
+    width: 100%;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
 </style>
 
 <script setup>
-    const props = defineProps({
-        otherUser: String,
-        amount: Number,
-        timeAgo: Date,
-        isSent: Boolean
-    });
+
+import { ref, defineProps } from 'vue';
+import TransferInfo from './TransferInfo.vue';
+import { useUsersStore } from '@/stores/users';
+
+const props = defineProps({
+    otherUser: String,
+    amount: Number,
+    timeAgo: Date,
+    isSent: Boolean
+});
+const usersStore = useUsersStore()
+const userLoggedIn = usersStore.getUserLoggedIn()
+
+const isModalOpen = ref(false);
+const cvuRem = props.isSent ? userLoggedIn.cvu : props.otherUser.cvu
+const cvuDest = props.isSent ? props.otherUser.cvu : userLoggedIn.cvu
+
+function openModal() {
+  isModalOpen.value = true;
+}
+function closeModal() {
+  isModalOpen.value = false;
+}
 </script>

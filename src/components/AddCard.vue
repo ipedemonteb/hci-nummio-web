@@ -79,11 +79,6 @@ watch(cardNumber, (newValue) => {
         cardLogo.value = '/logos/mastercard.png';
         break;
       case '3':
-        /* if (newValue[1] === '4' || newValue[1] === '7') {
-          cardLogo.value = '/logos/amex.png';
-        } else {
-          cardLogo.value = '';
-        } */
         cardLogo.value = '/logos/amex.png';
         break;
       default:
@@ -98,26 +93,16 @@ watch(cardNumber, (newValue) => {
 <template>
   <v-container class="cardContainer">
     <v-row>
-      <v-col cols="10" align-content="center">
-        <h1>Agregar Tarjeta</h1>
-      </v-col>
-      <v-col cols="2" class="closeIcon">
-        <v-icon icon="mdi-close" @click="props.closeModal"/>
-      </v-col>
+      <div class="topContainer mainTitle">
+        <h2>Agregar Tarjeta:</h2>
+        <v-icon icon="mdi-close" class="icon" @click="props.closeModal"/>
+      </div>
     </v-row>
     <v-row>
       <v-col cols="12" class="d-flex justify-center">
         <v-container class="card" @click="flipCard">
           <v-row class="cardType">
             <h2>Tarjeta de Crédito</h2>
-          </v-row>
-          <v-row class="noMargin">
-            <v-col cols="1">
-              <v-icon icon="mdi-credit-card-chip" class="icon"/>
-            </v-col>
-            <v-col cols="1">
-              <v-icon icon="mdi-contactless-payment" class="icon"/>
-            </v-col>
           </v-row>
           <v-row class="noMargin">
             <v-col cols="12" class="noVerPad">
@@ -137,23 +122,31 @@ watch(cardNumber, (newValue) => {
               <div class="creditCardDate">
                 <label for="expiryDate">Fecha de Expiración (MM/AAAA):</label>
                 <div class="expiryDateInput">
-                  <input
+                  <v-text-field
                     id="expiryMonth"
                     type="text"
                     minlength="2"
                     maxlength="2"
                     placeholder="MM"
                     v-model="expiryMonth"
-                  />
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                    style="width: 20px; color: white;"
+                  ></v-text-field>
                   <span>/</span>
-                  <input
+                  <v-text-field
                     id="expiryYear"
                     type="text"
                     minlength="4"
                     maxlength="4"
                     placeholder="AAAA"
                     v-model="expiryYear"
-                  />
+                    variant="outlined"
+                    density="compact"
+                    hide-details
+                    style="width: 60px; color: white;"
+                  ></v-text-field>
                 </div>
               </div>
             </v-col>
@@ -175,9 +168,9 @@ watch(cardNumber, (newValue) => {
     <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar>
     <v-row>
       <v-col cols="12" class="d-flex justify-center">
-        <v-btn class="addButton" @click="handleAddCard">Agregar Tarjeta</v-btn> 
+        <v-btn variant="outlined" rounded="xl" class="addButton" @click="handleAddCard">Agregar Tarjeta</v-btn>
       </v-col>
-    </v-row> 
+    </v-row>
   </v-container>
 </template>
 
@@ -185,103 +178,50 @@ watch(cardNumber, (newValue) => {
 /*@input="handleCardNumberInput"
 cardsStore.addCard(parseInt(cardNumber), cardHolder, parseInt(expiryMonth), parseInt(expiryYear), bank, parseInt(cvv))" */
 .cardContainer {
-    display: block !important;
-    min-width: 600px;
-    perspective: 1000px;
+  display: block !important;
+  min-width: 600px;
+  perspective: 1000px;
 }
 
-.cardWrapper {
-    
-}
-
-.closeIcon {
-    text-align: right;
-}
-
-.card {
-    position: relative;
-    width: 600px;
-    min-height: 220px;
-    border-radius: 10px;
-    background-color: rgb(149, 149, 149);
-}
-
-.cardType {
-    margin: 0px;
-}
-
-.cardLogoContainer {
-    text-align: right;
-}
-
-.cardLogo {
-    width: 70px;
+.topContainer {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .icon {
-    font-size: 35px;
+  font-size: 32px;
 }
 
-.cardNumber {
-    font-size: 25px;
-    letter-spacing: 1px;
-    margin: 0px 2px;
+.card {
+  position: relative;
+  width: 600px;
+  min-height: 220px;
+  border-radius: 10px;
+  background-color: #9990FF;
+  color: white;
+}
+
+.cardType {
+  margin: 0px;
+}
+
+.cardLogoContainer {
+  text-align: right;
+}
+
+.cardLogo {
+  width: 70px;
 }
 
 .noMargin {
-    margin-top: 0px;
+  margin-top: 0px;
 }
 
 .noVerPad {
-    padding-bottom: 0px;
-}
-
-.cardInfo {
-    font-size: 18px;
-}
-
-.blackBar {
-    background-color: black;
-    height: 40px;
-    margin: 10px -16px;
-}
-
-.backInfoContainer {
-    padding: 20px 0px;
-}
-
-.codeContainer {
-    padding: 20px 20px 0px 5px;
-}
-
-.lowerContainer {
-    padding: 0px 10px;
-}
-
-.backInfo {
-    background-color: grey;
-    height: 30px;
-    border-radius: 10px;
-}
-
-.backLogo {
-    margin-top: 30px;
-}
-
-.code {
-    background-color: white;
-    height: 30px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.addButton {
-    border-radius: 20px;
-    height: 40px;
-    background-color: #5538EE;
-    color: white;
+  padding-bottom: 0px;
 }
 
 .creditCardDate {
@@ -296,16 +236,15 @@ cardsStore.addCard(parseInt(cardNumber), cardHolder, parseInt(expiryMonth), pars
   gap: 5px;
 }
 
-.expiryDateInput input {
-  width: 50px;
-  padding: 8px;
-  font-size: 16px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
 .expiryDateInput span {
   font-size: 18px;
+  color: white;
+}
+
+.addButton {
+  border-radius: 40px;
+  background-color: white;
+  color: #5538EE;
+  margin-bottom: 30px;
 }
 </style>

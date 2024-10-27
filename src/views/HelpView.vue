@@ -7,7 +7,7 @@ import SearchBar from '@/components/SearchBar.vue';
     <div class="contentContainer">
         <v-container fluid class="faq">
             <v-row justify="center" class="mb-5">
-                <h1 class="title">FAQs: </h1>
+                <h1 class="mainTitle">FAQs: </h1>
             </v-row>
             <v-row justify="center">
                 <v-col cols="6">
@@ -29,10 +29,6 @@ import SearchBar from '@/components/SearchBar.vue';
 </template>
 
 <style scoped>
-    .title {
-        font-size: 35px;
-    }
-
     .faq {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         border: 1px solid #ccc;

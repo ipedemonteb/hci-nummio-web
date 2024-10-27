@@ -1,6 +1,6 @@
 <template>
     <div class="movements">
-        <h1>Últimos Movimientos:</h1>
+        <h2 class="mainTitle">Últimos Movimientos:</h2>
 
         <div class="historyContainer">
             <MovementBox
@@ -42,6 +42,9 @@
     }
 
     .button {
+        border-radius: 40px;
+        background-color: white;
+        color: #5538EE;
         width: 200px;
     }
 

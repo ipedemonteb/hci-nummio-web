@@ -28,6 +28,10 @@
     gap: 30px;
   }
 
+  .mainTitle {
+    color: #39288E;
+  }
+
   .full-width {
     width: 100%;
   }

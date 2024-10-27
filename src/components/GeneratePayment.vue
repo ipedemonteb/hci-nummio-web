@@ -84,9 +84,7 @@ const showAlert = (message, type) => {
             </v-col>
 
             <v-col cols="12" class="center-button">
-                <v-btn color="primary" @click="generatePaymentLink">
-                    Generar Link de Pago
-                </v-btn>
+                <v-btn variant="outlined" rounded="xl" class="button" @click="generatePaymentLink">Generar Link de Pago</v-btn>
             </v-col>
         </v-row>
 
@@ -151,6 +149,12 @@ const showAlert = (message, type) => {
     width: auto;
     max-width: 80%;
     z-index: 9999;
+}
+
+.button {
+    border-radius: 40px;
+    background-color: white;
+    color: #5538EE;
 }
 
 .text {

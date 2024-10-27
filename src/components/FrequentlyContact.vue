@@ -1,6 +1,6 @@
 <template>
     <div class="frequentlyContact">
-        <h1>Contactos Frecuentes:</h1>
+        <h2 class="mainTitle">Contactos Frecuentes:</h2>
 
         <div class="contactsContainer">
             <ContactBox
@@ -12,7 +12,7 @@
 
         <div class="buttonContainer">
             <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
-                    Ver Todos
+                    Ver Más
             </v-btn>
         </div>
     </div>
@@ -39,6 +39,9 @@
     }
 
     .button {
+        border-radius: 40px;
+        background-color: white;
+        color: #5538EE;
         width: 200px;
     }
 

@@ -2,7 +2,7 @@
     <div class="sideMenu">
         <div class="multOptionContainer">
             <RouterLink to="/" class="optionContainer">
-                    <v-icon size="large" icon="mdi-home"/>
+                    <v-icon size="large" icon="mdi-home-outline"/>
                     <h3 class="optionText">Inicio</h3>
             </RouterLink>
         </div>
@@ -14,7 +14,7 @@
             </RouterLink>
             <div class="optionContainer" @click="openModal">
                 <v-icon size="large" icon="mdi-card-account-details-outline"/>
-                <h3 class="optionText">Mis Datos</h3>
+                <h3 class="optionText">Datos Personales</h3>
             </div>
             <RouterLink to="/movimientos" class="optionContainer">
                 <v-icon size="large" icon="mdi-history"/>
@@ -25,7 +25,7 @@
         <div class="multOptionContainer">
             <RouterLink to="/billetera" class="optionContainer">
                 <v-icon size="large" icon="mdi-credit-card-outline"/>
-                <h3 class="optionText">Tus Tarjetas</h3>
+                <h3 class="optionText">Tarjetas</h3>
             </RouterLink>
             <RouterLink to="/cobros" class="optionContainer">
                 <v-icon size="large" icon="mdi-account-credit-card-outline"/>
@@ -73,14 +73,14 @@
 
 <style scoped>
 .sideMenu {
-  padding: 20px 30px;
-  position: relative;
-  background-color: #C6C4FF;
-  color: black;
-  width: 15%;
-  height: 100%;
-  overflow-y: auto;
-  z-index: 999;
+    padding: 20px 30px;
+    position: relative;
+    background-color: #E7E7FF;
+    color: black;
+    width: 17%;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 999;
 }
 
 .multOptionContainer {
@@ -97,7 +97,8 @@
 }
 
 .optionText {
-  margin-left: 7px;
+    margin-left: 7px;
+    font-size: 16px;
 }
 
 .customDivider {

@@ -40,7 +40,7 @@
         width: 45px;
         height: 45px;
         border-radius: 50%;
-        border: 3px solid #000;
+        border: 3px solid #5538EE;
         object-fit: cover;
     }
     .iconInfoContainer {

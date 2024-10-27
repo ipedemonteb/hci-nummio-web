@@ -7,7 +7,7 @@ import AddCard from './AddCard.vue';
 const isModalOpen = ref(false);
 const isAddCardOpen = ref(false);
 
-const popUpCard = ref({bank: {name: '', image: ''}, number: 0});
+const popUpCard = ref({ bank: {name: '', image: ''}, number: 0});
 
 function openModal(card) {
   popUpCard.value = card;
@@ -33,19 +33,27 @@ const props = defineProps({
         default: () => []
     }
 });
+
+console.log(props.cards)
 </script>
 
 <template>
   <div class="cardsContainer">
     <div class="topContainer">
-      <h1>Tarjetas de Crédito</h1>
-      <v-btn density="default" icon="mdi-plus" elevation="0" class="plusButton" @click="openAddCard"></v-btn>
+      <h2 class="mainTitle">Tarjetas de Crédito:</h2>
     </div>
-    <div class="cards">
-      <div class="cardContainer" v-for="card in cards" :key="card.id">
-        <CardBox :bankName="card.bank.name" :cardLogo="card.bank.image" :cardNumber="card.number.toString().slice(12, 16)" />
-        <v-icon class="icon" icon="mdi-chevron-right" @click="openModal(card)"></v-icon>
+
+    <div class="cardsScrollContainer">
+      <div class="cards">
+        <div class="cardContainer" v-for="card in cards" :key="index">
+          <CardBox :bankName="card.bank.name" :cardLogo="card.bank.image" :cardNumber="card.number.toString().slice(12, 16)" />
+          <v-icon class="icon" icon="mdi-chevron-right" @click="openModal(card)"></v-icon>
+        </div>
       </div>
+    </div>
+
+    <div class="buttonContainer">
+      <v-btn variant="outlined" rounded="xl" class="button" @click="openAddCard">Agregar Tarjeta</v-btn>
     </div>
   </div>
 
@@ -68,6 +76,7 @@ const props = defineProps({
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 30px 40px;
+  flex: 1;
 }
 
 .topContainer {
@@ -76,8 +85,15 @@ const props = defineProps({
   align-items: center;
 }
 
-.plusButton {
-  border: 1px solid #000;
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0px;
+}
+
+.cardsScrollContainer {
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .cardContainer {
@@ -118,5 +134,12 @@ const props = defineProps({
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+  border-radius: 40px;
+  background-color: white;
+  color: #5538EE;
+  width: 200px;
 }
 </style>

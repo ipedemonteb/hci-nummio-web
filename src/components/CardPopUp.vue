@@ -4,7 +4,6 @@ import { useCardsStore } from '@/stores/cards';
 
 const cardsStore = useCardsStore();
 
-
 const isFlipped = ref(false);
 function flipCard() {
     isFlipped.value = !isFlipped.value;
@@ -24,12 +23,10 @@ function handleDeleteCard() {
 <template>
     <v-container class="cardContainer">
         <v-row>
-            <v-col cols="10" align-content="center">
-                <h1>{{ card.bank.name }}</h1>
-            </v-col>
-            <v-col cols="2" class="closeIcon">
-                <v-icon icon="mdi-close" @click="props.closeModal"/>
-            </v-col>
+            <div class="topContainer mainTitle">
+                <h2>{{ card.bank.name }}</h2>
+                <v-icon icon="mdi-close" class="icon" @click="closeModal"/>
+            </div>
         </v-row>
         <v-row>
             <v-col cols="12" class="d-flex justify-center">
@@ -85,13 +82,21 @@ function handleDeleteCard() {
         </v-row>
         <v-row>
             <v-col cols="12" class="d-flex justify-center">
-                <v-btn class="deleteButton" @click="handleDeleteCard">Eliminar Tarjeta</v-btn> 
+                <v-btn variant="outlined" class="deleteButton" @click="handleDeleteCard">Eliminar Tarjeta</v-btn>
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <style scoped>
+.topContainer {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .cardContainer {
     display: block !important;
     padding: 30px;
@@ -106,6 +111,7 @@ function handleDeleteCard() {
     height: 220px;
     transform-style: preserve-3d;
     transition: transform 0.6s;
+    color:white;
 }
 
 .closeIcon {
@@ -125,11 +131,11 @@ function handleDeleteCard() {
 }
 
 .front {
-    background-color: rgb(149, 149, 149);
+    background-color: #9990FF;
 }
 
 .back {
-    background-color: rgb(149, 149, 149);
+    background-color: #9990FF;
     transform: rotateY(180deg);
 }
 
@@ -178,7 +184,7 @@ function handleDeleteCard() {
 }
 
 .backInfo {
-    background-color: grey;
+    background-color: #6B4EFF;
     height: 30px;
     border-radius: 10px;
 }
@@ -194,6 +200,7 @@ function handleDeleteCard() {
     display: flex;
     align-items: center;
     justify-content: center;
+    color: black;
 }
 
 .deleteButton {
