@@ -1,12 +1,72 @@
 <script setup>
 import { ref, watch, defineProps } from 'vue';
+import { useCardsStore } from '@/stores/cards';
 
 const props = defineProps({
   closeModal: Function
 });
 
+const cardsStore = useCardsStore();
+
+const snackBarNumberMessage= ref('');
+const snackbar = ref(false);
+const snackbarMessage = ref('');
+
 const cardNumber = ref('');
 const cardLogo = ref('');
+const cardHolder = ref('');
+const expiryMonth = ref('');
+const expiryYear = ref('');
+const bank = ref('');
+const cvv = ref('');
+
+function isCardNumberValid(cardNumber) {
+  return true; //@TODO: ver si hace falta y sacarla si no
+}
+
+function isExpiryDateValid(expiryMonth, expiryYear) {
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth() + 1;
+  const currentYear = currentDate.getFullYear();
+
+  if (expiryYear < currentYear || (expiryYear == currentYear && expiryMonth < currentMonth)) {
+    return false;
+  }
+  return true;
+}
+
+const handleAddCard = (event) => {
+  if ( isNaN(parseInt(cardNumber.value)) || !isCardNumberValid(event.target.value)) {
+    snackbar.value = true;
+    snackbarMessage.value = 'Ingrese un número de tarjeta válido';
+  }
+  else if(cardHolder.value === "") {
+    snackbar.value = true;
+    snackbarMessage.value = "Debe ingresar un titular";
+  }
+  else if (isNaN(parseInt(expiryMonth.value)) || isNaN(parseInt(expiryYear.value))) {
+    snackbar.value = true;
+    snackbarMessage.value = 'Ingrese una fecha de vencimiento válida';
+  }
+  else if(!isExpiryDateValid(parseInt(expiryMonth.value), parseInt(expiryYear.value))) {
+    snackbar.value = true;
+    snackbarMessage.value = 'La tarjeta de crédito ya expiró';
+  }
+  else if(bank.value === "") {
+    snackbar.value = true;
+    snackbarMessage.value = "Debe ingresar un banco emisor";
+  }
+  else if (isNaN(parseInt(cvv.value)) || cvv.value.length < 3) {
+    snackbar.value = true;
+    snackbarMessage.value = 'Ingrese un código de seguridad válido';
+  }
+  else {
+    snackbar.value = false;
+    snackbarMessage.value = "";
+    cardsStore.addCard(parseInt(cardNumber.value), cardHolder.value, parseInt(expiryMonth.value), parseInt(expiryYear.value), bank.value, parseInt(cvv.value))
+    props.closeModal();
+  }
+};
 
 watch(cardNumber, (newValue) => {
   if (newValue) {
@@ -65,6 +125,7 @@ watch(cardNumber, (newValue) => {
                 label="Número de Tarjeta"
                 variant="outlined"
                 clearable
+                minlength="16"
                 maxlength="16"
                 v-model="cardNumber"
               ></v-text-field>
@@ -72,22 +133,26 @@ watch(cardNumber, (newValue) => {
           </v-row>
           <v-row class="noMargin">
             <v-col cols="6">
-              <v-text-field label="Titular" variant="outlined" clearable density="compact"></v-text-field>
+              <v-text-field label="Titular" variant="outlined" clearable density="compact" v-model="cardHolder"></v-text-field>
               <div class="creditCardDate">
                 <label for="expiryDate">Fecha de Expiración (MM/AAAA):</label>
                 <div class="expiryDateInput">
                   <input
                     id="expiryMonth"
                     type="text"
+                    minlength="2"
                     maxlength="2"
                     placeholder="MM"
+                    v-model="expiryMonth"
                   />
                   <span>/</span>
                   <input
                     id="expiryYear"
                     type="text"
+                    minlength="4"
                     maxlength="4"
                     placeholder="AAAA"
+                    v-model="expiryYear"
                   />
                 </div>
               </div>
@@ -101,21 +166,24 @@ watch(cardNumber, (newValue) => {
     </v-row>
     <v-row>
       <v-col cols="8" class="d-flex justify-center">
-        <v-text-field label="Banco Emisor" variant="outlined" clearable></v-text-field>
+        <v-text-field label="Banco Emisor" variant="outlined" clearable v-model="bank"></v-text-field>
       </v-col>
       <v-col cols="4" class="d-flex justify-center">
-        <v-text-field label="Código" variant="outlined" clearable maxlength="4"></v-text-field>
+        <v-text-field label="Código" variant="outlined" clearable maxlength="4" v-model="cvv"></v-text-field>
       </v-col>
     </v-row>
+    <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar>
     <v-row>
       <v-col cols="12" class="d-flex justify-center">
-        <v-btn class="addButton" @click="deleteCard">Agregar Tarjeta</v-btn> 
+        <v-btn class="addButton" @click="handleAddCard">Agregar Tarjeta</v-btn> 
       </v-col>
-    </v-row>
+    </v-row> 
   </v-container>
 </template>
 
 <style scoped>
+/*@input="handleCardNumberInput"
+cardsStore.addCard(parseInt(cardNumber), cardHolder, parseInt(expiryMonth), parseInt(expiryYear), bank, parseInt(cvv))" */
 .cardContainer {
     display: block !important;
     min-width: 600px;
