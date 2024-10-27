@@ -5,7 +5,7 @@
       <p class="virtualWalletText">Tu billetera virtual</p>
     </div>
     <div class="rightContainer">
-      <h1 class="loginTitle">{{ isRegistering ? "Registrate" : "Inicio de sesión" }}</h1>
+      <h1 class="loginTitle">{{ isRegistering ? "Registrarse" : "Inicio de sesión" }}</h1>
       <div class="inputsContainer">
         <template v-if="!isRegistering">
           <div>
@@ -16,6 +16,7 @@
               placeholder="Direccion de correo electrónico"
               prepend-inner-icon="mdi-email-outline"
               variant="outlined"
+              density="compact"
             ></v-text-field>
           </div>
           <div>
@@ -37,6 +38,7 @@
               placeholder="Contraseña"
               prepend-inner-icon="mdi-lock-outline"
               variant="outlined"
+              density="compact"
               @click:append-inner="visible = !visible"
             ></v-text-field>
           </div>
@@ -49,6 +51,7 @@
             placeholder="Tu nombre"
             prepend-inner-icon="mdi-account-outline"
             variant="outlined"
+            density="compact"
           ></v-text-field>
 
           <v-text-field
@@ -57,6 +60,7 @@
             placeholder="Tu apellido"
             prepend-inner-icon="mdi-account-outline"
             variant="outlined"
+            density="compact"
           ></v-text-field>
 
           <v-text-field
@@ -65,6 +69,7 @@
             placeholder="Tu correo"
             prepend-inner-icon="mdi-email-outline"
             variant="outlined"
+            density="compact"
           ></v-text-field>
 
           <v-text-field
@@ -76,6 +81,7 @@
             :type="visible ? 'text' : 'password'"
             variant="outlined"
             @click:append-inner="visible = !visible"
+            density="compact"
           ></v-text-field>
 
           <v-text-field
@@ -86,6 +92,7 @@
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
             variant="outlined"
+            density="compact"
             @click:append-inner="visible = !visible"
           ></v-text-field>
         </template>
@@ -94,13 +101,13 @@
 
       <div class="buttonsContainer">
         <template v-if="!isRegistering">
-          <v-btn class="loginBtn" size="large" @click="loginHandler()">Iniciar Sesión</v-btn>
-          <v-btn class="registerBtn" size="large" @click="isRegistering = true">Registrarse</v-btn>
+          <v-btn variant="outlined" class="loginBtn" @click="loginHandler()">Iniciar Sesión</v-btn>
+          <v-btn variant="outlined" class="registerBtn" @click="isRegistering = true">Registrarse</v-btn>
         </template>
 
         <template v-else>
-          <v-btn class="confirmBtn" size="large" @click="signupHandler()">Confirmar</v-btn>
-          <v-btn class="accountBtn" size="large" @click="isRegistering = false">Ya tengo cuenta</v-btn>
+          <v-btn variant="outlined" class="confirmBtn" @click="signupHandler()">Confirmar</v-btn>
+          <v-btn variant="outlined" class="accountBtn" @click="isRegistering = false">Ya tengo cuenta</v-btn>
         </template>
       </div>
 
@@ -289,6 +296,7 @@ const snackbarMessage = ref("")
         flex-direction: column;
         align-items: center;
         gap: 20px;
+
     }
 
     .forgotPassword {
@@ -305,15 +313,15 @@ const snackbarMessage = ref("")
 
     .registerBtn, .accountBtn {
         border-radius: 20px;
-        background-color: #E7E7FF;
-        color: black;
+        background-color: white;
+        color: #5538EE;
         width: 70%;
     }
 
     .socialIcons {
         display: flex;
         justify-content: center;
-        margin: 60px 0px;
+        margin-top: 40px;
         gap: 15px;
     }
 
