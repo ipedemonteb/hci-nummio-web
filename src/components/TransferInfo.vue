@@ -22,6 +22,7 @@ const props = defineProps({
             <v-col cols="12" class="info">
                 <p class="text">CVU destinatario:</p>
                 <v-text-field
+                    density="compact"
                     variant="outlined"
                     :value="props.cvuDest"
                     readonly
@@ -32,6 +33,7 @@ const props = defineProps({
             <v-col cols="12" class="info">
                 <p class="text">CVU remitente:</p>
                 <v-text-field
+                    density="compact"
                     variant="outlined"
                     :value="props.cvuRem"
                     readonly
@@ -42,6 +44,7 @@ const props = defineProps({
             <v-col cols="6" class="info">
                 <p class="text">Fecha:</p>
                 <v-text-field
+                    density="compact"
                     variant="outlined"
                     :value="props.date"
                     readonly
@@ -51,6 +54,7 @@ const props = defineProps({
             <v-col cols="6" class="info">
                 <p class="text">Monto:</p>
                 <v-text-field
+                    density="compact"
                     variant="outlined"
                     :value="props.amount"
                     readonly

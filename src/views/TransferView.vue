@@ -1,10 +1,7 @@
 <template>
   <div class="contentContainer">
-    <div class="columnContainer half-width">
+    <div class="columnContainer full-width">
       <MakeTransfer/>
-      <RecentContacts/>
-    </div>
-    <div class="columnContainer half-width">
       <RepeatMovement/>
     </div>
   </div>
