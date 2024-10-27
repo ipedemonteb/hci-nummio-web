@@ -49,7 +49,7 @@ const handleKeyDown = (event) => {
     <v-container class="infoContainer">
         <v-row>
             <div class="topContainer mainTitle">
-                <h2 class="title">Mis Datos</h2>
+                <h2 class="title">Datos Personales:</h2>
                 <v-icon icon="mdi-close" class="icon" @click="props.closeModal"/>
             </div>
         </v-row>

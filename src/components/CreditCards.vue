@@ -27,7 +27,7 @@ function closeAddCard() {
 <template>
   <div class="cardsContainer">
     <div class="topContainer">
-      <h2 class="mainTitle">Tarjetas de Crédito</h2>
+      <h2 class="mainTitle">Tarjetas de Crédito:</h2>
     </div>
     
     <div class="cardsScrollContainer">

@@ -8,7 +8,7 @@ import GeneratePayment from '@/components/GeneratePayment.vue';
     <div class="contentContainer">
         <v-container fluid class="payment">
             <v-row justify="center" class="mb-5">
-                <h2 class="mainTitle">Generar Cobro: </h2>
+                <h1 class="mainTitle">Generar Cobro: </h1>
             </v-row>
             <v-row>
                 <v-col cols="12">

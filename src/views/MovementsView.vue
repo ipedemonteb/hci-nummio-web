@@ -35,7 +35,7 @@ const totalPages = computed(() => Math.ceil(movements.value.length / itemsPerPag
   <div class="contentContainer">
     <div class="allMovements full-width">
       <div class="title">
-        <h1 class="mainTitle">Últimos Movimientos: </h1>
+        <h1 class="mainTitle">Movimientos: </h1>
       </div>
       <div class="searchContainer">
         <v-select 

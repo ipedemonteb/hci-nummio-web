@@ -10,7 +10,7 @@
 
         <div class="buttonContainer">
             <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
-                    Ver Todos
+                    Ver Más
             </v-btn>
         </div>
     </div>

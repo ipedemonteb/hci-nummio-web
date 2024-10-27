@@ -1,12 +1,12 @@
 <template>
     <div class="wallet">
-        <h2 class="mainTitle">Billetera:</h2>
+        <h2 class="mainTitle">Tarjetas:</h2>
 
         <WalletBox />
 
         <div class="buttonContainer">
             <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
-                    Ver Todas
+                    Ver Más
             </v-btn>
         </div>
     </div>
