@@ -2,7 +2,7 @@
     <div class="sideMenu">
         <div class="multOptionContainer">
             <RouterLink to="/" class="optionContainer">
-                    <v-icon size="large" icon="mdi-home"/>
+                    <v-icon size="large" icon="mdi-home-outline"/>
                     <h3 class="optionText">Inicio</h3>
             </RouterLink>
         </div>
@@ -75,7 +75,7 @@
     .sideMenu {
         padding: 20px 30px;
         position: relative;
-        background-color: #C6C4FF;
+        background-color: #E7E7FF;
         color: black;
         width: 15%;
         height: 100%;
@@ -98,6 +98,7 @@
 
     .optionText {
         margin-left: 7px;
+        font-size: 16px;
     }
 
     .customDivider {

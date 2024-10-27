@@ -1,6 +1,6 @@
 <template>
     <div class="frequentlyContact">
-        <h1>Contactos Frecuentes:</h1>
+        <h2 class="mainTitle">Contactos Frecuentes:</h2>
         
         <div class="contactsContainer">
             <ContactBox />
@@ -37,6 +37,9 @@
     }
 
     .button {
+        border-radius: 40px;
+        background-color: white;
+        color: #5538EE;
         width: 200px;
     }
 

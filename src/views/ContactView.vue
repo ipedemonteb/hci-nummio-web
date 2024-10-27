@@ -37,57 +37,64 @@ const paginatedContacts = computed(() => {
 </script>
 
 <template>
-    <div class="contentContainer">
-      <div class="allContacts full-width">
-        <h1>Contactos: </h1>
-        
-        <div class="searchContainer">
-          <SearchBar class="searchBar"/>
-          <v-btn size="large" append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined"/>
-        </div>
-  
-        <div class="movementsContainer">
-            <ContactBox
-                v-for="contact in paginatedContacts"
-                :key="contact.id"
-                :contact="contact"
-            />
-        </div>
-  
-        <div class="paginationContainer">
-          <v-pagination
-            v-model="currentPage"
-            :length="totalPages"
-            total-visible="7"
-            color="primary"
-          ></v-pagination> 
-        </div>
-  
+  <div class="contentContainer">
+    <div class="allContacts full-width">
+      <div>
+        <h1 class="mainTitle title">Contactos: </h1>
       </div>
+      
+      <div class="searchContainer">
+        <SearchBar class="searchBar"/>
+        <v-btn append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined"/>
+      </div>
+
+      <div class="movementsContainer">
+          <ContactBox
+              v-for="contact in paginatedContacts"
+              :key="contact.id"
+              :contact="contact"
+          />
+      </div>
+
+      <div class="paginationContainer">
+        <v-pagination
+          v-model="currentPage"
+          :length="totalPages"
+          total-visible="7"
+          color="primary"
+        ></v-pagination> 
+      </div>
+
     </div>
-  </template>
-  
-  <style scoped>
-    .allContacts {
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      border: 1px solid #ccc;
-      padding: 30px 40px;
-      border-radius: 10px;
-    }
-  
-    .searchContainer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 15px;
-    }
-  
-    .selectContainer {
-      max-width: 200px;
-    }
-  
-    .searchBar {
-          width: 300px;
-    }
-  
-  </style>
+  </div>
+</template>
+
+<style scoped>
+  .title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .allContacts {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    padding: 30px 40px;
+    border-radius: 10px;
+  }
+
+  .searchContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .selectContainer {
+    max-width: 200px;
+  }
+
+  .searchBar {
+        width: 300px;
+  }
+
+</style>

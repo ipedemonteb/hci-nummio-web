@@ -1,7 +1,7 @@
 <template>
     <div class="balance">
         <div class="balanceContainer">
-            <h1>Saldo Actual:</h1>
+            <h2 class="mainTitle">Saldo Actual:</h2>
             <div class="infoContainer">
                 <h2>{{ isVisible ? '$ 1000.00' : '$ • • • • • • •' }}</h2>
                 <v-icon 

@@ -1,6 +1,6 @@
 <script setup>
 import RecentPurchase from '@/components/RecentPurchase.vue';
-
+import CreditCards from '@/components/CreditCards.vue';
 
 </script>
 
@@ -8,7 +8,6 @@ import RecentPurchase from '@/components/RecentPurchase.vue';
     <div class="contentContainer">
       <div class="columnContainer half-width">
         <CreditCards />
-        <DebitCards />
       </div>
       <div class="columnContainer half-width">
         <RecentPurchase />

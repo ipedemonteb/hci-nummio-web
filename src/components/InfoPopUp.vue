@@ -48,8 +48,8 @@ const handleKeyDown = (event) => {
 <template>
     <v-container class="infoContainer">
         <v-row>
-            <div class="topContainer">
-                <h1>Mis Datos</h1>
+            <div class="topContainer mainTitle">
+                <h2 class="title">Mis Datos</h2>
                 <v-icon icon="mdi-close" class="icon" @click="props.closeModal"/>
             </div>
         </v-row>
@@ -101,8 +101,12 @@ const handleKeyDown = (event) => {
 </template>
 
 <style scoped>
+    .title {
+        font-size: 28px;
+    }
+
     .infoContainer {
-        width: 800px;
+        width: 700px;
         min-height: 500px;
         background-color: white;
         border-radius: 10px;
@@ -116,6 +120,7 @@ const handleKeyDown = (event) => {
         display: flex;
         justify-content: space-between;
         align-items: center;
+        margin-bottom: 15px;
     }
 
     .icon {
@@ -129,13 +134,13 @@ const handleKeyDown = (event) => {
     }
 
     .profileName {
-        margin-left: 10px;
-        font-size: 25px;
+        margin-left: 20px;
+        font-size: 24px;
     }
 
     .profilePicture {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
         border-radius: 50%;
         border: 3px solid #6B4EFF;
         object-fit: cover;
@@ -144,7 +149,7 @@ const handleKeyDown = (event) => {
     .data {
         margin: 15px 0px;
         width: 100%;
-        font-size: 20px;
+        font-size: 18px;
     }
 
     .cvu {
@@ -206,6 +211,7 @@ const handleKeyDown = (event) => {
     }
 
     .copyData {
+        font-size: 18px;
         margin-top: 30px;
         cursor: pointer;
     }

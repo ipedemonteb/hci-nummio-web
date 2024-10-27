@@ -1,6 +1,6 @@
 <template>
     <div class="wallet">
-        <h1>Billetera:</h1>
+        <h2 class="mainTitle">Billetera:</h2>
 
         <WalletBox />
 
@@ -27,6 +27,9 @@
     }
 
     .button {
+        border-radius: 40px;
+        background-color: white;
+        color: #5538EE;
         width: 200px;
     }
 

@@ -1,8 +1,8 @@
 <template>
     <div class="recentContacts">
-        <h1>Contactos:</h1>
+        <h2 class="mainTitle">Contactos:</h2>
         <div class="recentInfo">
-            <h2 class="necessarySpace">Recientes:</h2>
+            <h3 class="necessarySpace">Recientes:</h3>
             <SearchBar class="searchBar"/>
         </div>
         <div class="contactsContainer">
@@ -35,6 +35,7 @@
     }
 
     .necessarySpace {
+        font-size: 21px;
         margin-bottom: 22px;
     }
 </style>

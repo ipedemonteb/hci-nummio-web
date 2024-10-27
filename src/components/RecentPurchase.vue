@@ -1,10 +1,11 @@
 <template>
     <div class="recentPurchase">
-        <h1>Consumos Recientes:</h1>
+        <h2 class="mainTitle">Consumos Recientes:</h2>
         <div class="selectors">
             <v-select 
           clearable
           label="Filtrar Por"
+          density="compact"
           :items="['Mas Recientes', 'Mas Antiguos', 'Monto Mayor', 'Monto Menor']"
           variant="outlined"
           class="selectContainer"
@@ -37,7 +38,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin: 20px 0px;
+        margin-top: 25px;
     }
 
     .searchBar {
@@ -52,7 +53,7 @@
         border: 1px solid #ccc;
         padding: 10px;
         overflow-y: auto;
-        max-height: 590px;
+        max-height: 400px;
         flex: 1;
     }
 

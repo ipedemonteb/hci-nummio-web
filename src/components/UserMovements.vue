@@ -1,6 +1,6 @@
 <template>
     <div class="movements">
-        <h1>Últimos Movimientos:</h1>
+        <h2 class="mainTitle">Últimos Movimientos:</h2>
 
         <div class="historyContainer">
             <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
@@ -40,6 +40,9 @@
     }
 
     .button {
+        border-radius: 40px;
+        background-color: white;
+        color: #5538EE;
         width: 200px;
     }
 

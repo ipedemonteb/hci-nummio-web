@@ -1,6 +1,6 @@
 <template>
     <div class="makeTransfer">
-        <h1>Transferir:</h1>
+        <h2 class="mainTitle">Transferir:</h2>
         <div class="transferInput">
             <v-text-field 
                 v-model="inputValue" 

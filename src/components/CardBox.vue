@@ -19,7 +19,7 @@
   
   <style scoped>
     .cardContainer {
-      background-color: rgb(149, 149, 149);
+      background-color: #9990FF;
       border-radius: 20px;
       padding: 20px 30px;
       color: white;
@@ -45,7 +45,7 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        background-color: #6c6c6c;
+        background-color: #6B4EFF;
         border-radius: 4px;
         flex-grow: 0;
         max-width: fit-content;

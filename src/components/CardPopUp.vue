@@ -14,12 +14,10 @@ const props = defineProps({
 <template>
     <v-container class="cardContainer">
         <v-row>
-            <v-col cols="10" align-content="center">
-                <h1>Banco Ejemplo</h1>
-            </v-col>
-            <v-col cols="2" class="closeIcon">
-                <v-icon icon="mdi-close" @click="props.closeModal"/>
-            </v-col>
+            <div class="topContainer mainTitle">
+                <h2>Mis Datos</h2>
+                <v-icon icon="mdi-close" class="icon" @click="props.closeModal"/>
+            </div>
         </v-row>
         <v-row>
             <v-col cols="12" class="d-flex justify-center">
@@ -75,13 +73,21 @@ const props = defineProps({
         </v-row>
         <v-row>
             <v-col cols="12" class="d-flex justify-center">
-                <v-btn class="deleteButton" @click="deleteCard">Eliminar Tarjeta</v-btn> 
+                <v-btn variant="outlined" class="deleteButton" @click="deleteCard">Eliminar Tarjeta</v-btn> 
             </v-col>
         </v-row>
     </v-container>
 </template>
 
 <style scoped>
+.topContainer {
+  width: 100%;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .cardContainer {
     display: block !important;
     padding: 30px;
@@ -96,6 +102,7 @@ const props = defineProps({
     height: 220px;
     transform-style: preserve-3d;
     transition: transform 0.6s;
+    color:white;
 }
 
 .closeIcon {
@@ -115,11 +122,11 @@ const props = defineProps({
 }
 
 .front {
-    background-color: rgb(149, 149, 149);
+    background-color: #9990FF;
 }
 
 .back {
-    background-color: rgb(149, 149, 149);
+    background-color: #9990FF;
     transform: rotateY(180deg);
 }
 
@@ -168,7 +175,7 @@ const props = defineProps({
 }
 
 .backInfo {
-    background-color: grey;
+    background-color: #6B4EFF;
     height: 30px;
     border-radius: 10px;
 }
@@ -184,6 +191,7 @@ const props = defineProps({
     display: flex;
     align-items: center;
     justify-content: center;
+    color: black;
 }
 
 .deleteButton {

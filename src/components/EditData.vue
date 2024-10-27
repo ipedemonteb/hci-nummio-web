@@ -1,12 +1,12 @@
 <template>
     <v-container class="editContact">
         <v-row>
-            <div class="headerContainer">
-                <h1>Editar Datos:</h1>
+            <div class="headerContainer mainTitle">
+                <h2>Editar Datos:</h2>
                 <v-icon class="closeIcon" @click="$emit('closeDialog')">mdi-close</v-icon>
             </div>
         </v-row>
-        <v-row align-content="center">
+        <v-row align-content="center" class="profileImg">
             <v-container>
                 <v-row>
                     <v-col class="d-flex justify-center" cols="12">
@@ -18,6 +18,7 @@
                 <v-row>
                     <v-col class="d-flex justify-center" cols="12">
                         <v-file-input
+                            density="compact"
                             :rules="rules"
                             accept="image/png, image/jpeg, image/bmp"
                             label="Avatar"
@@ -30,14 +31,15 @@
                 </v-row>
             </v-container>
         </v-row>
-        <v-row>
+        <v-row class="noMarginTop">
             <v-container>
-                <h2 class="title">Datos de la Cuenta:</h2>
-                <v-text-field label="Nombre" variant="outlined" clearable></v-text-field>
-                <v-text-field label="Apellido" variant="outlined" clearable></v-text-field>
-                <v-text-field label="Alias" variant="outlined" clearable></v-text-field>
-                <h2 class="title">Cambiar Contraseña:</h2>
+                <h3 class="title">Datos de la Cuenta:</h3>
+                <v-text-field density="compact" label="Nombre" variant="outlined" clearable></v-text-field>
+                <v-text-field density="compact"label="Apellido" variant="outlined" clearable></v-text-field>
+                <v-text-field density="compact"label="Alias" variant="outlined" clearable></v-text-field>
+                <h3 class="title">Cambiar Contraseña:</h3>
                 <v-text-field
+                    density="compact"
                     v-model="newPassword"
                     :type="showPassword ? 'text' : 'password'"
                     label="Nueva Contraseña"
@@ -47,6 +49,7 @@
                     @click:append="togglePasswordVisibility('new')"
                 ></v-text-field>
                 <v-text-field
+                    density="compact"
                     v-model="repeatPassword"
                     :type="showRepeatPassword ? 'text' : 'password'"
                     label="Repetir Contraseña"
@@ -59,8 +62,8 @@
         </v-row>
         <v-row class="buttonsRow">
             <v-col class="d-flex justify-center" cols="12">
-                <v-btn class="cancelButton mx-2" @click="$emit('closeDialog')">Cancelar</v-btn>
-                <v-btn class="confirmButton mx-2" append-icon="mdi-arrow-right">Confirmar</v-btn>
+                <v-btn variant="outlined" class="cancelButton mx-2" @click="$emit('closeDialog')">Cancelar</v-btn>
+                <v-btn variant="outlined" class="confirmButton mx-2">Confirmar</v-btn>
             </v-col>
         </v-row>
     </v-container>
@@ -84,6 +87,10 @@
     padding: 0px;
 }
 
+.profileImg {
+    margin-top: 30px;
+}
+
 .confirmButton {
     border-radius: 20px;
     background-color: #5538EE;
@@ -96,6 +103,10 @@
     background-color: white;
     color: #5538EE;
     width: 35%;
+}
+
+.noMarginTop {
+    margin-top: 0px !important;
 }
 
 .profilePicture {
@@ -121,7 +132,7 @@
 
 .closeIcon {
     cursor: pointer;
-    font-size: 35px;
+    font-size: 30px;
 }
 </style>
 

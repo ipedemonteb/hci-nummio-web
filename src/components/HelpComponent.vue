@@ -3,7 +3,7 @@
         <v-divider class="divider"/>
         <v-row>
             <v-col cols="12">
-                <h1>{{ question }}</h1>
+                <h2>{{ question }}</h2>
             </v-col>
         </v-row>
         <v-row>
@@ -34,6 +34,6 @@
     }
 
   .faq-answer {
-    font-size: 18px;
+    font-size: 17px;
   }
   </style>

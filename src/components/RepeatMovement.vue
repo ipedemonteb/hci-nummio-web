@@ -1,9 +1,6 @@
 <template>
     <div class="repeatMovement">
-        <h1>Repetir Transferencia:</h1>
-        <!-- <div class="searchBar">
-            <SearchBar/>
-        </div> -->
+        <h2 class="mainTitle">Repetir Transferencia:</h2>
         <div class="repeatMovements">
             <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
             <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
@@ -14,7 +11,7 @@
             <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
         </div>
         <div class="buttonContainer">
-            <v-btn variant="outlined" rounded="xl" class="button">
+            <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
                 Ver Más
             </v-btn>
         </div>
@@ -43,6 +40,9 @@
     }
 
     .button {
+        border-radius: 40px;
+        background-color: white;
+        color: #5538EE;
         width: 200px;
     }
 
@@ -56,7 +56,11 @@
 
 <script setup>
 import MovementBox from './MovementBox.vue';
-import SearchBar from './SearchBar.vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 
+const goToPage = () => {
+  router.push('/movimientos')
+}
 </script>

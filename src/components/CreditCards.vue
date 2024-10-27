@@ -27,14 +27,20 @@ function closeAddCard() {
 <template>
   <div class="cardsContainer">
     <div class="topContainer">
-      <h1>Tarjetas de Crédito</h1>
-      <v-btn density="default" icon="mdi-plus" elevation="0" class="plusButton" @click="openAddCard"></v-btn>
+      <h2 class="mainTitle">Tarjetas de Crédito</h2>
     </div>
-    <div class="cards">
-      <div class="cardContainer" v-for="(card, index) in 2" :key="index">
-        <CardBox />
-        <v-icon class="icon" icon="mdi-chevron-right" @click="openModal"></v-icon>
+    
+    <div class="cardsScrollContainer">
+      <div class="cards">
+        <div class="cardContainer" v-for="(card, index) in 6" :key="index">
+          <CardBox />
+          <v-icon class="icon" icon="mdi-chevron-right" @click="openModal"></v-icon>
+        </div>
       </div>
+    </div>
+    
+    <div class="buttonContainer">
+      <v-btn variant="outlined" rounded="xl" class="button" @click="openAddCard">Agregar Tarjeta</v-btn>
     </div>
   </div>
 
@@ -57,6 +63,7 @@ function closeAddCard() {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 30px 40px;
+  flex: 1;
 }
 
 .topContainer {
@@ -65,8 +72,15 @@ function closeAddCard() {
   align-items: center;
 }
 
-.plusButton {
-  border: 1px solid #000;
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0px;
+}
+
+.cardsScrollContainer {
+  max-height: 400px; 
+  overflow-y: auto;
 }
 
 .cardContainer {
@@ -107,5 +121,12 @@ function closeAddCard() {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.button {
+  border-radius: 40px;
+  background-color: white;
+  color: #5538EE;
+  width: 200px;
 }
 </style>
