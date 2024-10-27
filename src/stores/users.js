@@ -98,6 +98,76 @@ export const useUsersStore = defineStore('users', () => {
       return true
     }
 
+    function updateFirstName(newFirstName) {
+      if (newFirstName === '') 
+        return false
+      const userLoggedIn = getUserLoggedIn()
+      var i = 0;
+      var found = false
+      users.value.forEach(user => {
+        if(!found && user.id === userLoggedIn.id){
+          found = true
+        }
+        if(!found) i++
+      })
+      users.value[i].firstName = newFirstName
+      localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
+      return true
+    }
+ 
+    function updateLastName(newLastName) {
+      if (newLastName === '') 
+        return false
+      const userLoggedIn = getUserLoggedIn()
+      var i = 0;
+      var found = false
+      users.value.forEach(user => {
+        if(!found && user.id === userLoggedIn.id){
+          found = true
+        }
+        if(!found) i++
+      })
+      users.value[i].lastName = newLastName
+      localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
+      return true
+    }
+ 
+    function updatePassword(newPassword) {
+      if (newPassword === '') 
+        return false
+      const userLoggedIn = getUserLoggedIn()
+      var i = 0;
+      var found = false
+      users.value.forEach(user => {
+        if(!found && user.id === userLoggedIn.id){
+          found = true
+        }
+        if(!found) i++
+      })
+      users.value[i].password = newPassword
+      localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
+      return true
+    }
+
+    function updateUser(newFirstName, newLastName, newPassword, newProfileImage) {
+      if (newFirstName === '' || newLastName === '' || newPassword === '') 
+        return false
+      const userLoggedIn = getUserLoggedIn()
+      var i = 0;
+      var found = false
+      users.value.forEach(user => {
+        if(!found && user.id === userLoggedIn.id){
+          found = true
+        }
+        if(!found) i++
+      })
+      users.value[i].firstName = newFirstName
+      users.value[i].lastName = newLastName
+      users.value[i].password = newPassword
+      users.value[i].profileImage = newProfileImage
+      localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
+      return true
+    }
     /*function setAlias(alias) {
       if(!alias || alias === "" || users.value.find(user => user.alias === alias))
         return false
@@ -133,5 +203,6 @@ export const useUsersStore = defineStore('users', () => {
         return users.value.find(user => user.id === id)
     }
 
-    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserByAlias, getUserById, updateAlias, logout}
+
+    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserByAlias, getUserById, updateAlias, logout, updateFirstName, updateLastName, updatePassword, updateUser}
 })
