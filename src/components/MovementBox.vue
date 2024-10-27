@@ -11,7 +11,7 @@
             <div class="rightContainer">
                 <div class="amountContainer">
                     <h4>$ {{ amount }}</h4>
-                    <h5>{{ timeAgo.toLocaleDateString('en-GB') }}</h5>
+                    <h5>{{ timeDifference }}</h5>
                 </div>
                 <v-menu>
                     <template v-slot:activator="{ props }">
@@ -112,6 +112,7 @@
 import { ref, defineProps } from 'vue';
 import TransferInfo from './TransferInfo.vue';
 import { useUsersStore } from '@/stores/users';
+import { onMounted, onUnmounted } from 'vue';
 
 const props = defineProps({
     otherUser: String,
@@ -125,6 +126,40 @@ const userLoggedIn = usersStore.getUserLoggedIn()
 const isModalOpen = ref(false);
 const cvuRem = props.isSent ? userLoggedIn.cvu : props.otherUser.cvu
 const cvuDest = props.isSent ? props.otherUser.cvu : userLoggedIn.cvu
+const today = new Date()
+
+
+const timeDifference = ref(getTimeDifference());
+let intervalId;
+
+function getTimeDifference() {
+    const diffInMs = today - new Date(props.timeAgo);
+    const diffInMinutes = Math.floor(diffInMs / (1000 * 60));
+    const diffInHours = Math.floor(diffInMs / (1000 * 60 * 60));
+
+    if (diffInMinutes < 5) {
+        return "justo ahora";
+    } else if (diffInMinutes >= 15 && diffInMinutes < 60) {
+        return `hace ${diffInMinutes} minutos`;
+    } else if (diffInHours < 24) {
+        return `hace ${diffInHours} horas`;
+    } else {
+        const diffInDays = Math.floor(diffInHours / 24);
+        return `hace ${diffInDays} días`;
+    }
+}
+
+
+onMounted(() => {
+    intervalId = setInterval(() => {
+        timeDifference.value = getTimeDifference();
+    }, 1800000); 
+});
+
+onUnmounted(() => {
+    clearInterval(intervalId);
+});
+
 
 function openModal() {
   isModalOpen.value = true;

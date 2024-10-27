@@ -4,7 +4,7 @@
             <div class="iconInfoContainer">
                 <v-icon color="#6B4EFF" class="icon" size="40px" icon="mdi-cash-multiple" />
                 <div class="actionContainer">
-                    <h4>Pago Realizado</h4>
+                    <h4>{{ action }}</h4>
                     <h5>Tarjeta {{ source }}</h5>
                 </div>
             </div>

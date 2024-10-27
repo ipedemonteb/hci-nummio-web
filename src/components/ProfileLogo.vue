@@ -1,12 +1,15 @@
 <template>
     <div class="profileContainer">
-        <img src="/pfp.jpg" alt="Profil picture for user" class="profilePicture"/>
+        <img :src="user.profileImage" alt="Profil picture for user" class="profilePicture"/>
         <h3 class="profileName text-primary">{{ name }}</h3>
     </div>
 </template>
 
 <script setup>
+import { useUsersStore } from '@/stores/users';
 
+const usersStore = useUsersStore();
+const user = usersStore.getUserLoggedIn();
 const props = defineProps({
   name: String
 })

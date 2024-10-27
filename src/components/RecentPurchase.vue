@@ -23,13 +23,13 @@
                 :timeAgo="movement.timeAgo"
                 :isSent="movement.isSent"
             /> @TODO: resolver bien para que tome los pagos con tarjeta-->
-            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
-            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
-            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
-            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
-            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
-            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
-            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 2543" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 8736" amount="750.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 8736" amount="200.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 2543" amount="430.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 9375" amount="345.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 2543" amount="100.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 9375" amount="235.00" timeAgo="2 horas"/>
         </div>
     </div>
 </template>

@@ -51,6 +51,10 @@ const handleKeyDown = (event) => {
         updateAlias();
     }
 };
+
+const getCvuAndAlias = () => {
+    return 'Alias: ' + copyAlias.value + '\n' + 'CVU: ' + cvu
+}
 </script>
 
 <template>
@@ -100,7 +104,7 @@ const handleKeyDown = (event) => {
         </div>
         <v-row>
             <v-col cols="12" class="d-flex justify-center align-center copyData">
-                <p>Copiar todos mis datos</p>
+                <p @click="copyToClipboard(getCvuAndAlias())">Copiar todos mis datos</p>
             </v-col>
         </v-row>
     </v-container>
