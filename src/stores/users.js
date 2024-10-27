@@ -203,6 +203,26 @@ export const useUsersStore = defineStore('users', () => {
         return users.value.find(user => user.id === id)
     }
 
+    function getUserByMail(email) {
+        return email != '' && users.value.find(user => user.email === email)
+    }
 
-    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserByAlias, getUserById, updateAlias, logout, updateFirstName, updateLastName, updatePassword, updateUser}
+    function recoverPassword(newPassword, email) {
+      if (newPassword === '') 
+        return false
+      const userLoggedIn = getUserByMail(email)
+      var i = 0;
+      var found = false
+      users.value.forEach(user => {
+        if(!found && user.id === userLoggedIn.id){
+          found = true
+        }
+        if(!found) i++
+      })
+      users.value[i].password = newPassword
+      console.log("Updated password")
+      return true
+    }
+
+    return {users, loggedIn, recentContacts, signup, login, getUserLoggedIn, getUserByCVU, getUserByAlias, getUserById, getUserByMail, updateAlias, logout, updateFirstName, updateLastName, updatePassword, updateUser, recoverPassword}
 })

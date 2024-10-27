@@ -13,6 +13,7 @@ export const useCardsStore = defineStore('cards', () => {
         {
             id: 1,
             bank: CardType.AMEX,
+            cardBank: 'Amex',
             type: 'credit',
             number: 378282246310111,
             CVV: 123,
@@ -24,6 +25,7 @@ export const useCardsStore = defineStore('cards', () => {
         {
             id: 2,
             bank: CardType.MASTERCARD,
+            cardBank: 'Santander',
             type: 'debit',
             number: 510510510510,
             CVV: 123,
@@ -35,6 +37,7 @@ export const useCardsStore = defineStore('cards', () => {
         {
             id: 3,
             bank: CardType.VISA,
+            cardBank: 'BBVA',
             type: 'credit',
             number: 411111111111,
             CVV: 123,
@@ -71,6 +74,7 @@ export const useCardsStore = defineStore('cards', () => {
         const newCard = {
             id: cards.value.length + 1,
             bank: cardBank,
+            cardBank: bank,
             type: 'credit',
             number: cardNumber,
             CVV,

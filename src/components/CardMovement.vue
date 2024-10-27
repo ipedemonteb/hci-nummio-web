@@ -13,17 +13,6 @@
                     <h4>$ {{ amount }}</h4>
                     <h5>hace {{ timeAgo }}</h5>
                 </div>
-                <!-- <v-menu>
-                    <template v-slot:activator="{ props }">
-                        <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
-                    </template>
-
-                    <v-list>
-                        <v-list-item>
-                            <v-btn class="detailsButton" prepend-icon="mdi-format-list-bulleted">Detalles</v-btn>
-                        </v-list-item>
-                    </v-list>
-                </v-menu> -->
             </div>   
         </div>
 

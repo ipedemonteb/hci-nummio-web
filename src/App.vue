@@ -7,11 +7,11 @@
           <div class="view-container">
             <RouterView />
           </div>
-        </div>
+        </div>recoverPassword
       </div>
 
-      <PasswordRecoverView v-else />
-      <!-- <LoginView v-else/> -->
+      <LoginView v-else-if="!isRecoveringPassword" @recoverPassword="showPasswordRecover" />
+      <PasswordRecoverView v-else  @doneRecoveringPassword="resetRecoveringPassword"/>
     </main>
 </template>
 
@@ -70,13 +70,24 @@
 </style>
 
 <script setup lang="ts">
+  import { ref } from 'vue';
   import AppHeader from './components/AppHeader.vue';
   import SideMenu from './components/SideMenu.vue';
   import LoginView from './views/LoginView.vue';
   import { useUsersStore } from './stores/users';
-import { computed } from 'vue';
-import PasswordRecoverView from './views/PasswordRecoverView.vue';
+  import { computed } from 'vue';
+  import PasswordRecoverView from './views/PasswordRecoverView.vue';
 
   const usersStore = useUsersStore()
   const loggedIn = computed(() => usersStore.loggedIn)
+  const isRecoveringPassword = ref(false);
+
+  function showPasswordRecover() {
+    isRecoveringPassword.value = true;
+  }
+
+  function resetRecoveringPassword() {
+    isRecoveringPassword.value = false;
+  }
+
 </script>

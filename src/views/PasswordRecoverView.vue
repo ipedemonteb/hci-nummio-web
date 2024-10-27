@@ -1,6 +1,9 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
+import { useUsersStore } from '@/stores/users';
 
+const emit= defineEmits();
+const usersStore = useUsersStore();
 const email = ref('');
 const code = ref('');
 const newPassword = ref('');
@@ -16,7 +19,9 @@ const validateEmail = () => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     emailValid.value = emailPattern.test(email.value);
     if (emailValid.value) {
-        isCodeFieldVisible.value = true;
+        const user = usersStore.getUserByMail(email.value);
+        if (user)
+            isCodeFieldVisible.value = true;
     }
 };
 
@@ -34,6 +39,16 @@ const handlePasswordSignupInput = (value) => {
 const handleRepeatPasswordSignupInput = (value) => {
     confirmPassword.value = value;
 };
+
+function handleRecoverPassword() {
+    if (newPassword.value !== confirmPassword.value) {
+        console.log("Las contraseñas no coinciden");
+        return;
+    }
+    console.log(newPassword)
+    usersStore.recoverPassword(newPassword.value, email.value);
+    emit('doneRecoveringPassword');
+}
 </script>
 
 <template>
@@ -76,7 +91,8 @@ const handleRepeatPasswordSignupInput = (value) => {
                     v-if="isPasswordFieldsVisible"
                     label="Contraseña"
                     placeholder="Contraseña"
-                    @input="handlePasswordSignupInput"
+                    
+                    v-model="newPassword"
                     prepend-inner-icon="mdi-lock-outline"
                     :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                     :type="visible ? 'text' : 'password'"
@@ -89,7 +105,8 @@ const handleRepeatPasswordSignupInput = (value) => {
                     v-if="isPasswordFieldsVisible"
                     label="Repetir Contraseña"
                     placeholder="Repetir contraseña"
-                    @input="handleRepeatPasswordSignupInput"
+                    
+                    v-model="confirmPassword"
                     prepend-inner-icon="mdi-lock-outline"
                     :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
                     :type="visible ? 'text' : 'password'"
@@ -99,10 +116,10 @@ const handleRepeatPasswordSignupInput = (value) => {
                 ></v-text-field>
             </div>
             <div class="buttonsContainer">
-                <v-btn v-if="isPasswordFieldsVisible" variant="outlined" class="confirmBtn">Aceptar</v-btn>
+                <v-btn v-if="isPasswordFieldsVisible" variant="outlined" class="confirmBtn" @click.prevent="handleRecoverPassword">Aceptar</v-btn>
                 <v-btn v-if="!isCodeFieldVisible" variant="outlined" class="confirmBtn" @click="validateEmail">Aceptar</v-btn>
                 <v-btn v-if="isCodeFieldVisible && !isPasswordFieldsVisible" variant="outlined" class="confirmBtn" @click="validateCode">Aceptar</v-btn>
-                <v-btn variant="outlined" class="backBtn">Volver</v-btn>
+                <v-btn variant="outlined" class="backBtn" @click="$emit('doneRecoveringPassword')">Volver</v-btn>
             </div>
             <div class="socialIcons">
                 <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">

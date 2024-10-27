@@ -9,9 +9,11 @@ import InvestView from "./views/InvestView.vue";
 import HelpView from "./views/HelpView.vue";
 import PaymentView from "./views/PaymentView.vue";
 import ServiceView from "./views/ServiceView.vue";
+import PasswordRecoverView from "./views/PasswordRecoverView.vue";
 
 const routes = [
   { path: "/", component: HomeView },
+  { path: "/recuperar", component: PasswordRecoverView },
   { path: "/movimientos", component: MovementsView },
   { path: "/transferir", component: TransferView },
   { path: "/billetera", component: WalletView},

@@ -27,6 +27,7 @@
                 href="/"
                 rel="noopener noreferrer"
                 target="_blank"
+                @click.prevent="$emit('recoverPassword')"
               >
               ¿Olvidaste tu contraseña?
               </a>
@@ -128,7 +129,7 @@
 
 <script setup lang="ts">
 import { useUsersStore } from '@/stores/users';
-import { ref } from 'vue';
+import { ref, defineEmits } from 'vue';
 
 const usersStore = useUsersStore()
 var visible = false

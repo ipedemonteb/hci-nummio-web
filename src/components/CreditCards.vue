@@ -33,8 +33,6 @@ const props = defineProps({
         default: () => []
     }
 });
-
-console.log(props.cards)
 </script>
 
 <template>
@@ -46,7 +44,7 @@ console.log(props.cards)
     <div class="cardsScrollContainer">
       <div class="cards">
         <div class="cardContainer" v-for="card in cards" :key="index">
-          <CardBox :bankName="card.bank.name" :cardLogo="card.bank.image" :cardNumber="card.number.toString().slice(12, 16)" />
+          <CardBox :bankName="card.cardBank" :cardLogo="card.bank.image" :cardNumber="card.number.toString().slice(12, 16)" />
           <v-icon class="icon" icon="mdi-chevron-right" @click="openModal(card)"></v-icon>
         </div>
       </div>
