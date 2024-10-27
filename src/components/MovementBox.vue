@@ -2,16 +2,16 @@
     <div class="movement">
         <div class="movementContainer">
             <div class="iconInfoContainer">
-                <v-icon color="#6B4EFF" class="icon" size="45px" icon="mdi-arrow-top-right-bold-box-outline" />
+                <v-icon color="#6B4EFF" class="icon" size="45px" :icon="isSent ? 'mdi-arrow-top-right-bold-box-outline' : 'mdi-arrow-bottom-left-bold-box-outline'" />
                 <div class="actionContainer">
-                    <h4>{{ action }}</h4>
-                    <h5>Por {{ source }}</h5>
+                    <h4>{{ isSent ? "Transferencia enviada" : "Transferencia recibida" }}</h4>
+                    <h5>{{ isSent ? "A " : "De "}} {{ otherUser }}</h5>
                 </div>
             </div>
             <div class="rightContainer">
                 <div class="amountContainer">
                     <h4>$ {{ amount }}</h4>
-                    <h5>hace {{ timeAgo }}</h5>
+                    <h5>{{ timeAgo.toLocaleDateString('en-GB') }}</h5>
                 </div>
                 <v-menu>
                     <template v-slot:activator="{ props }">
@@ -24,16 +24,16 @@
                         </v-list-item>
                     </v-list>
                 </v-menu>
-            </div>  
-            
+            </div>
+
             <div v-if="isModalOpen" class="modalOverlay" @click.self="closeModal">
                 <div class="modalContent">
-                    <TransferInfo 
+                    <TransferInfo
                         :closeModal="closeModal"
                         :cvuRem="cvuRem"
                         :cvuDest="cvuDest"
                         :amount="amount"
-                        :date="date"
+                        :date="timeAgo"
                     />
                 </div>
             </div>
@@ -108,15 +108,23 @@
 </style>
 
 <script setup>
+
 import { ref, defineProps } from 'vue';
 import TransferInfo from './TransferInfo.vue';
+import { useUsersStore } from '@/stores/users';
 
-defineProps(['action', 'source', 'amount', 'timeAgo']);
+const props = defineProps({
+    otherUser: String,
+    amount: Number,
+    timeAgo: Date,
+    isSent: Boolean
+});
+const usersStore = useUsersStore()
+const userLoggedIn = usersStore.getUserLoggedIn()
 
 const isModalOpen = ref(false);
-const cvuRem = ref('823742374283472834');
-const cvuDest = ref('1234567890123456789012');
-const date = ref('12/12/2021');
+const cvuRem = props.isSent ? userLoggedIn.cvu : props.otherUser.cvu
+const cvuDest = props.isSent ? props.otherUser.cvu : userLoggedIn.cvu
 
 function openModal() {
   isModalOpen.value = true;

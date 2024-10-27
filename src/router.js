@@ -12,7 +12,7 @@ import ServiceView from "./views/ServiceView.vue";
 
 const routes = [
   { path: "/", component: HomeView },
-  { path: "/movimientos", component: MovementsView }, 
+  { path: "/movimientos", component: MovementsView },
   { path: "/transferir", component: TransferView },
   { path: "/billetera", component: WalletView},
   { path: "/contactos", component: ContactView},

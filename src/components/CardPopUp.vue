@@ -1,22 +1,31 @@
 <script setup>
 import { ref, defineProps } from 'vue';
+import { useCardsStore } from '@/stores/cards';
+
+const cardsStore = useCardsStore();
 
 const isFlipped = ref(false);
 function flipCard() {
-  isFlipped.value = !isFlipped.value;
+    isFlipped.value = !isFlipped.value;
 }
 
 const props = defineProps({
-  closeModal: Function
+    closeModal: Function,
+    card: Object
 });
+
+function handleDeleteCard() {
+    cardsStore.removeCard(props.card.id);
+    props.closeModal();
+}
 </script>
 
 <template>
     <v-container class="cardContainer">
         <v-row>
             <div class="topContainer mainTitle">
-                <h2>Banco Ejemplo</h2>
-                <v-icon icon="mdi-close" class="icon" @click="props.closeModal"/>
+                <h2>{{ card.bank.name }}</h2>
+                <v-icon icon="mdi-close" class="icon" @click="closeModal"/>
             </div>
         </v-row>
         <v-row>
@@ -36,16 +45,16 @@ const props = defineProps({
                     </v-row>
                     <v-row class="noMargin">
                         <v-col cols="3" v-for="n in 4" :key="n">
-                            <h3 class="cardNumber">1234</h3>
+                            <h3 class="cardNumber">{{ card.number.toString().slice((n-1)*4, (n-1)*4+4) }}</h3>
                         </v-col>
                     </v-row>
                     <v-row class="noMargin">
                         <v-col cols="9">
-                            <p class="cardInfo">Fernando Alonso</p>
-                            <p class="cardInfo">Vto: 12/24</p>
+                            <p class="cardInfo">{{ card.cardHolder }}</p>
+                            <p class="cardInfo">Vto: {{ card.expirationMonth }}/{{ card.expirationYear }}</p>
                         </v-col>
                         <v-col cols="3">
-                            <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
+                            <img :src="card.bank.image" alt="logo" class="cardLogo"/>
                         </v-col>
                     </v-row>
                 </v-container>
@@ -64,7 +73,7 @@ const props = defineProps({
                             </v-col>
                         </v-row>
                         <v-row class="backLogo">
-                            <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
+                            <img :src="card.bank.image" alt="logo" class="cardLogo"/>
                         </v-row>
                     </v-container>
                 </v-container>
@@ -73,7 +82,7 @@ const props = defineProps({
         </v-row>
         <v-row>
             <v-col cols="12" class="d-flex justify-center">
-                <v-btn variant="outlined" class="deleteButton" @click="deleteCard">Eliminar Tarjeta</v-btn> 
+                <v-btn variant="outlined" class="deleteButton" @click="handleDeleteCard">Eliminar Tarjeta</v-btn>
             </v-col>
         </v-row>
     </v-container>

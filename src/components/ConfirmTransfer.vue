@@ -7,34 +7,39 @@
             <v-container class="dataContainer">
                 <div class="dataItem">
                     <h3>Destinatario:</h3>
-                    <p>Fernando Alonso</p>
+                    <p>{{ `${userToTransfer.firstName} ${userToTransfer.lastName}` }}</p>
                 </div>
                 <div class="dataItem">
                     <h3>CVU:</h3>
-                    <p>00000000000123456673</p>
+                    <p>{{ userToTransfer.cvu }}</p>
                 </div>
             </v-container>
-        </v-row> 
+        </v-row>
         <v-row>
             <v-container class="amountContainer">
-                <v-text-field 
-                    v-model="inputValue" 
+                <v-text-field
+                    @input="handleAmountInput"
                     clearable
-                    variant="outlined" 
+                    variant="outlined"
                     label="Ingrese el monto"
                     class="input"
                 >
                 </v-text-field>
-                <p>Saldo Disponible: $1.000,00</p>
+                <div class="dataItem">
+                  <h3>Saldo disponible:</h3>
+                  <p>${{ movementsStore.getBalance() }}</p>
+                </div>
             </v-container>
         </v-row>
         <v-row class="buttonsRow">
             <v-col class="d-flex justify-center" cols="12">
                 <v-btn variant="outlined" class="cancelButton mx-2" @click="closeDialog">Cancelar</v-btn>
-                <v-btn variant="outlined" class="confirmButton mx-2">Confirmar</v-btn>
+                <v-btn variant="outlined" class="confirmButton mx-2" @click="confirmTransfer()">Confirmar</v-btn>
             </v-col>
         </v-row>
     </v-container>
+
+    <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar> <!-- Mensaje de error -->
 </template>
 
 <style scoped>
@@ -69,7 +74,7 @@
     }
 
     .buttonsRow {
-        margin-top: 30px !important; 
+        margin-top: 30px !important;
         padding: 0px;
     }
 
@@ -88,18 +93,43 @@
     }
 </style>
 
-<script>
-export default {
-    props: {
-        closeDialog: {
-            type: Function,
-            required: true
-        }
-    },
-    data() {
-        return {
-            inputValue: ''
-        };
-    }
-};
+<script setup lang="ts">
+import { useMovementsStore } from '@/stores/movements';
+import { ref } from 'vue';
+
+const props = defineProps({
+  closeDialog: Function,
+  userToTransfer: Object
+})
+const movementsStore = useMovementsStore()
+const inputValue = ref('')
+const snackbar = ref(false)
+const snackbarMessage = ref("")
+
+const handleAmountInput = (event) => {
+  inputValue.value = event.target.value
+}
+
+const confirmTransfer = () => {
+  const amountNumber = parseFloat(inputValue.value)
+  if(isNaN(amountNumber)){
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar un numero"
+    return
+  }
+  if(amountNumber <= 0) {
+    snackbar.value = true
+    snackbarMessage.value = "Debe ingresar un monto positivo"
+    return
+  }
+  if(amountNumber > movementsStore.getBalance()) {
+    snackbar.value = true
+    snackbarMessage.value = "Saldo insuficiente"
+    return
+  }
+  snackbar.value = false
+  movementsStore.createMovement(props.userToTransfer, amountNumber)
+  props.closeDialog()
+}
+
 </script>

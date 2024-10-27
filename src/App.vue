@@ -1,8 +1,6 @@
 <template>
     <main class="mainPage">
-      <!-- <LoginView /> -->
-       
-      <div class="mainContent full-width">
+      <div class="mainContent full-width" v-if="loggedIn">
         <AppHeader />
         <div class="row app-content">
           <SideMenu />
@@ -11,6 +9,8 @@
           </div>
         </div>
       </div>
+
+      <LoginView v-else/>
     </main>
 </template>
 
@@ -52,7 +52,7 @@
     display: flex;
     flex-direction: column;
   }
-  
+
   .app-content {
     margin-top: 110px;
     display: flex;
@@ -68,8 +68,13 @@
   }
 </style>
 
-<script setup>
+<script setup lang="ts">
   import AppHeader from './components/AppHeader.vue';
   import SideMenu from './components/SideMenu.vue';
   import LoginView from './views/LoginView.vue';
+  import { useUsersStore } from './stores/users';
+import { computed } from 'vue';
+
+  const usersStore = useUsersStore()
+  const loggedIn = computed(() => usersStore.loggedIn)
 </script>

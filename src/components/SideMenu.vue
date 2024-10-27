@@ -57,7 +57,7 @@
         </div>
         <v-divider class="customDivider" :thickness="2"/>
         <div class="multOptionContainer">
-            <RouterLink to="/" class="optionContainer">
+            <RouterLink to="/" class="optionContainer" @click="logoutHandler()">
                 <v-icon size="large" icon="mdi-logout"/>
                 <h3 class="optionText">Cerrar Sesión</h3>
             </RouterLink>
@@ -72,65 +72,72 @@
 </template>
 
 <style scoped>
-    .sideMenu {
-        padding: 20px 30px;
-        position: relative;
-        background-color: #E7E7FF;
-        color: black;
-        width: 17%;
-        height: 100%;
-        overflow-y: auto;
-        z-index: 999;
-    }
+.sideMenu {
+    padding: 20px 30px;
+    position: relative;
+    background-color: #E7E7FF;
+    color: black;
+    width: 17%;
+    height: 100%;
+    overflow-y: auto;
+    z-index: 999;
+}
 
-    .multOptionContainer {
-        margin: 30px 0px;
-    }
+.multOptionContainer {
+  margin: 30px 0px;
+}
 
-    .optionContainer {
-        display: flex;
-        align-items: center;
-        margin-bottom: 30px;
-        text-decoration: none;
-        color: inherit;
-        cursor: pointer;
-    }
+.optionContainer {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
 
-    .optionText {
-        margin-left: 7px;
-        font-size: 16px;
-    }
+.optionText {
+    margin-left: 7px;
+    font-size: 16px;
+}
 
-    .customDivider {
-        color: black;
-    }
-
-    .modalOverlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 1000;
-    }   
+.customDivider {
+  color: black;
+}
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
 </style>
 
-<script setup>
-    import { ref } from 'vue';
-    import InfoPopUp from './InfoPopUp.vue';
+<script setup lang="ts">
+import { ref } from 'vue';
+import InfoPopUp from './InfoPopUp.vue';
+import { useUsersStore } from '@/stores/users';
 
-    const isModalOpen = ref(false);
-    
-    function openModal() {
-        isModalOpen.value = true;
-    }
+const showInfoPopup = ref(false)
+const usersStore = useUsersStore()
 
-    function closeModal() {
-        isModalOpen.value = false;
-    }
+const logoutHandler = () => {
+  usersStore.logout()
+}
+
+const isModalOpen = ref(false);
+
+function openModal() {
+    isModalOpen.value = true;
+}
+
+function closeModal() {
+    isModalOpen.value = false;
+}
 </script>

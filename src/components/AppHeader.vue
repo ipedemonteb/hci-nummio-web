@@ -1,8 +1,8 @@
 <template>
     <div class="header">
         <div class="headerContainer">
-            
-            <div class="logoContainer">  
+
+            <div class="logoContainer">
                 <RouterLink to="/" class="optionContainer">
                     <h1 class="text-primary">nummio</h1>
                 </RouterLink>
@@ -62,6 +62,7 @@
 </style>
 
 <script setup>
+import { useUsersStore } from '@/stores/users';
 import ProfileLogo from './ProfileLogo.vue';
 import EditData from './EditData.vue';
 import { ref } from 'vue';
@@ -76,4 +77,7 @@ const closeEditDialog = () => {
     isEditDialogVisible.value = false;
 };
 
+    const usersStore = useUsersStore();
+    const user = usersStore.getUserLoggedIn()
+    const name = `${user.firstName} ${user.lastName}`
 </script>

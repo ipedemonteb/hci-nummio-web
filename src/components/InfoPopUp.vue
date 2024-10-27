@@ -1,11 +1,16 @@
 <script setup>
+import ProfileLogo from './ProfileLogo.vue';
+import { useUsersStore } from '@/stores/users';
 import { ref } from 'vue';
+
+const usersStore = useUsersStore()
+const {firstName, lastName, alias, cvu} = usersStore.getUserLoggedIn()
+const copyAlias = ref(alias ? alias : "")
+const name = `${firstName} ${lastName}`
 
 const props = defineProps({
   closeModal: Function
 });
-
-const alias = ref("PERRO.GATO.PERILLA");
 const isEditingAlias = ref(false);
 const copyMessage = ref('');
 const aliasError = ref('');
@@ -25,18 +30,21 @@ const copyToClipboard = (text) => {
 
 const editAlias = () => {
     isEditingAlias.value = !isEditingAlias.value;
-    aliasError.value = '';
+    if(!isEditingAlias.value)
+      updateAlias()
 };
 
 const updateAlias = () => {
-    if (alias.value.length < 10) {
-        aliasError.value = 'Alias inválido. Debe tener al menos 10 caracteres.';
+    if (copyAlias.value.length < 10) {
+      aliasError.value = 'Alias inválido. Debe tener al menos 10 caracteres.'
+      isEditingAlias.value = true
+    } else if(!usersStore.updateAlias(copyAlias.value)) {
+      isEditingAlias.value = true
+      aliasError.value = 'Ya existe un usuario con ese alias'
     } else {
-        aliasError.value = '';
-        isEditingAlias.value = false;
+      aliasError.value = ''
     }
 };
-
 
 const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -56,7 +64,7 @@ const handleKeyDown = (event) => {
         <v-row>
             <div class="profileContainer">
                 <img src="/pfp.jpg" alt="Profil picture for user" class="profilePicture"/>
-                <h4 class="profileName text-primary">Fernando Alonso</h4>
+                <h4 class="profileName text-primary">{{ name }}</h4>
             </div>
         </v-row>
         <v-row>
@@ -64,9 +72,9 @@ const handleKeyDown = (event) => {
                 <p>Tu CVU:</p>
                 <div class="dataContainer">
                     <div class="cvu">
-                        <p>00123109182378127381728</p>
+                        <p>{{ cvu }}</p>
                     </div>
-                    <v-icon icon="mdi-content-copy" class="copy" @click="copyToClipboard('00123109182378127381728')"/>
+                    <v-icon icon="mdi-content-copy" class="copy" @click="copyToClipboard(cvu)"/>
                 </div>
             </div>
         </v-row>
@@ -75,19 +83,18 @@ const handleKeyDown = (event) => {
             <div class="dataContainer">
                 <div class="cvu fixed-height">
                     <template v-if="isEditingAlias">
-                        <input 
-                            v-model="alias" 
-                            class="aliasInput" 
-                            @blur="updateAlias" 
-                            @keydown="handleKeyDown" 
+                        <input
+                            v-model="copyAlias"
+                            class="aliasInput"
+                            @keydown="handleKeyDown"
                         />
                     </template>
                     <template v-else>
-                        <p>{{ alias }}</p>
+                        <p>{{ copyAlias ? copyAlias : "Sin definir"}}</p>
                     </template>
                 </div>
                 <v-icon icon="mdi-pencil-outline" class="copy" @click="editAlias" />
-                <v-icon icon="mdi-content-copy" class="copy" @click="copyToClipboard(alias)" />
+                <v-icon icon="mdi-content-copy" class="copy" @click="copyToClipboard(copyAlias)" />
             </div>
             <div v-if="aliasError" class="errorMessage">{{ aliasError }}</div>
         </div>
@@ -121,6 +128,17 @@ const handleKeyDown = (event) => {
         justify-content: space-between;
         align-items: center;
         margin-bottom: 15px;
+    }
+
+    .infoCard {
+      flex: 0 0 60%;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background-color: white;
+      padding: 10px;
+      margin-right: 10px;
+      margin-left: 50px;
     }
 
     .icon {
@@ -163,7 +181,7 @@ const handleKeyDown = (event) => {
     .dataContainer {
         display: flex;
         align-items: center;
-        width: 100%;   
+        width: 100%;
     }
 
     .copy {
@@ -181,6 +199,7 @@ const handleKeyDown = (event) => {
         padding: 10px;
         border-radius: 5px;
         outline: none;
+        width: 100%;
     }
 
     .aliasInput:focus {

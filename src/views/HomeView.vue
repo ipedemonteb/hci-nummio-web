@@ -3,16 +3,22 @@
   import UserMovements from '@/components/UserMovements.vue';
   import FrequentlyContact from '@/components/FrequentlyContact.vue';
   import WalletCards from '@/components/WalletCards.vue';
+
+  import { useMovementsStore } from '@/stores/movements';
+  import { useContactsStore } from '@/stores/contacts';
+
+  const movementsStore = useMovementsStore();
+  const contactsStore = useContactsStore();
 </script>
 
 <template>
   <div class="contentContainer">
     <div class="columnContainer half-width">
-      <UserBalance/>
-      <UserMovements/>
+      <UserBalance :balance="movementsStore.getBalance()"/>
+      <UserMovements :lastMovements="movementsStore.getUserMovements()"/>
     </div>
     <div class="columnContainer half-width">
-      <FrequentlyContact/>
+      <FrequentlyContact />
       <WalletCards/>
     </div>
   </div>

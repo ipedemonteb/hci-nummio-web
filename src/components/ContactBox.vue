@@ -4,10 +4,11 @@
             <div class="iconInfoContainer">
                 <img src="/pfp.jpg" alt="Profile picture for user" class="profilePicture"/>
                 <div class="iconInfo">
-                    <h4>Franco Colapinto</h4>
-                    <h5>Cuenta Galicia</h5>
+                    <h4>{{ name }}</h4>
+                    <h5>Cuenta nummio</h5>
                 </div>
-            </div> 
+            </div>
+
             <v-menu>
                 <template v-slot:activator="{ props }">
                     <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
@@ -17,7 +18,7 @@
                         <v-btn class="deleteButton" prepend-icon="mdi-delete-outline">Eliminar</v-btn>
                     </v-list-item>
                 </v-list>
-            </v-menu> 
+            </v-menu>
         </div>
     </div>
 </template>
@@ -28,6 +29,7 @@
         border-radius: 10px;
         margin: 5px 0px;
     }
+
     .contactBoxContainer {
         margin: 12px;
         display: flex;
@@ -61,5 +63,22 @@
     }
 </style>
 
-<script setup>
+<script setup lang="ts">
+
+import { ref } from 'vue';
+
+const props = defineProps({
+  name: String,
+})
+
+const isEditDialogVisible = ref(false);
+
+const openEditDialog = () => {
+    isEditDialogVisible.value = true;
+};
+
+const closeEditDialog = () => {
+    isEditDialogVisible.value = false;
+};
+
 </script>

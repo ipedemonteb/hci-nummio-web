@@ -3,10 +3,10 @@
         <div class="balanceContainer">
             <h2 class="mainTitle">Saldo Actual:</h2>
             <div class="infoContainer">
-                <h2>{{ isVisible ? '$ 1000.00' : '$ • • • • • • •' }}</h2>
-                <v-icon 
-                    color="black" 
-                    size="large" 
+                <h2>{{ isVisible ? `$ ${balance}` : '$ • • • • • • •' }}</h2>
+                <v-icon
+                    color="black"
+                    size="large"
                     @click="toggleVisibility"
                 >
                     {{ isVisible ? 'mdi-eye' : 'mdi-eye-off' }}
@@ -40,9 +40,15 @@
 <script setup>
 import { ref } from 'vue';
 
+const props = defineProps({
+        balance: Number
+    });
+
 const isVisible = ref(true);
 
 function toggleVisibility() {
     isVisible.value = !isVisible.value;
 }
+
+
 </script>

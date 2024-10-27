@@ -50,7 +50,7 @@ watch(invoiceCode, (newVal) => {
       </div>
     </v-row>
     <v-row v-if="contactFound">
-        <v-col cols="12" class="noPad"> 
+        <v-col cols="12" class="noPad">
             <p class="text">Usuario encontrado:</p>
             <v-text-field
                 density="comfortable"
@@ -61,7 +61,7 @@ watch(invoiceCode, (newVal) => {
         </v-col>
     </v-row>
     <v-snackbar v-model="showSnackbar" color="red" timeout="3000">
-      No se pudo encontrar el contacto
+      No se pudo encontrar el usuario
     </v-snackbar>
     <v-row class="buttonsRow">
       <v-col class="d-flex justify-center" cols="12">
@@ -94,7 +94,7 @@ watch(invoiceCode, (newVal) => {
 }
 
 .buttonsRow {
-  margin-top: 30px !important; 
+  margin-top: 30px !important;
   padding: 0px;
 }
 

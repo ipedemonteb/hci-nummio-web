@@ -3,21 +3,28 @@
       <v-row>
           <v-col cols="8" class="d-flex flex-column justify-center">
           <div class="cardDetails">
-              <h3 class="bankName">Banco Galicia</h3>
+              <h3 class="bankName">{{ bankName }}</h3>
               <div class="cardNumberCont">
               <p class="cardNumber">****</p>
-              <p class="cardNumber">1234</p>
+              <p class="cardNumber">{{ cardNumber }}</p>
               </div>
           </div>
           </v-col>
           <v-col cols="4" class="d-flex justify-center align-center">
-          <img src="/logos/mastercard.png" alt="logo" class="cardLogo"/>
+          <img :src="cardLogo" alt="logo" class="cardLogo"/>
           </v-col>
       </v-row>
     </v-card>
-  </template>
+</template>
   
   <style scoped>
+    .outerContainer {
+      width:100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
     .cardContainer {
       background-color: #9990FF;
       border-radius: 20px;
@@ -57,5 +64,11 @@
   </style>
   
   <script setup>
+
+  const props = defineProps({
+    bankName: String,
+    cardNumber: String,
+    cardLogo: String
+  });
   </script>
   

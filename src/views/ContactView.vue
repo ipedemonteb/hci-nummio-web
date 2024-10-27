@@ -2,9 +2,10 @@
 import AddContact from '@/components/AddContact.vue';
 import ContactBox from '@/components/ContactBox.vue';
 import SearchBar from '@/components/SearchBar.vue';
+import { useContactsStore } from '@/stores/contacts';
 import { ref, computed } from 'vue';
 
-const allContacts = ref([
+/*const allContacts = ref([
   { id: 1, name: 'Contacto 1' },
   { id: 2, name: 'Contacto 2' },
   { id: 3, name: 'Contacto 3' },
@@ -19,7 +20,9 @@ const allContacts = ref([
   { id: 12, name: 'Contacto 12' },
   { id: 13, name: 'Contacto 13' },
   { id: 14, name: 'Contacto 14' },
-]);
+]);*/
+const contactsStore = useContactsStore()
+const allContacts = computed(() => contactsStore.getContacts())
 
 const currentPage = ref(1);
 const contactsPerPage = 10;
@@ -45,40 +48,40 @@ const closeAddDialog = () => {
 </script>
 
 <template>
-  <div class="contentContainer">
-    <div class="allContacts full-width">
-      <div>
+    <div class="contentContainer">
+      <div class="allContacts full-width">
         <h1 class="mainTitle title">Contactos: </h1>
-      </div>
-      
-      <div class="searchContainer">
-        <SearchBar class="searchBar"/>
-        <v-btn append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined" @click="openAddDialog"/>
+
+        <div class="searchContainer">
+          <SearchBar class="searchBar"/>
+          <v-btn append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined" @click="openAddDialog"/>
+        </div>
+
+        <div class="movementsContainer">
+            <ContactBox
+                v-for="contact in paginatedContacts"
+                :key="contact.id"
+                :name="contact.name"
+                :contact="contact"
+            />
+        </div>
+
+        <div class="paginationContainer">
+          <v-pagination
+            v-model="currentPage"
+            :length="totalPages"
+            total-visible="7"
+            color="primary"
+          ></v-pagination>
+        </div>
+
       </div>
 
       <v-dialog v-model="isAddDialogVisible" max-width="700">
         <AddContact @closeDialog="closeAddDialog" />
       </v-dialog>
 
-      <div class="movementsContainer">
-          <ContactBox
-              v-for="contact in paginatedContacts"
-              :key="contact.id"
-              :contact="contact"
-          />
-      </div>
-
-      <div class="paginationContainer">
-        <v-pagination
-          v-model="currentPage"
-          :length="totalPages"
-          total-visible="7"
-          color="primary"
-        ></v-pagination> 
-      </div>
-
     </div>
-  </div>
 </template>
 
 <style scoped>

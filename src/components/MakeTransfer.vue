@@ -2,19 +2,19 @@
     <div class="makeTransfer">
         <h2 class="mainTitle">Transferir:</h2>
         <div class="transferInput">
-            <v-text-field 
-                v-model="inputValue" 
+            <v-text-field
+                v-model="inputValue"
                 clearable
-                variant="outlined" 
+                variant="outlined"
                 label="Ingrese el alias o CBU/CVU"
                 class="input"
                 append-icon="mdi-chevron-right"
                 @click:append="handleClick"
             >
             </v-text-field>
-            
+
             <v-dialog v-model="dialog" max-width="600px">
-                <ConfirmTransfer :closeDialog="closeDialog" />
+                <ConfirmTransfer :userToTransfer="userToTransfer" :closeDialog="closeDialog" />
             </v-dialog>
 
             <v-snackbar v-model="snackbar" :timeout="3000" color="error">{{ snackbarMessage }}</v-snackbar>
@@ -45,6 +45,7 @@
 </style>
 
 <script setup>
+import { useUsersStore } from '@/stores/users';
 import { ref } from 'vue';
 import ConfirmTransfer from './ConfirmTransfer.vue';
 
@@ -52,22 +53,35 @@ const dialog = ref(false);
 const snackbar = ref(false);
 const inputValue = ref('');
 const snackbarMessage = ref('Ingrese un alias o CBU/CVU para continuar.');
+const usersStore = useUsersStore()
+var userToTransfer = ref(null)
 
 const handleClick = () => {
     if (inputValue.value) {
-        openDialog();
+      if(/^[0-9]{22}$/.test(inputValue.value))
+        userToTransfer.value = usersStore.getUserByCVU(inputValue.value)
+      else
+        userToTransfer.value = null
+      if(!userToTransfer.value) {
+        userToTransfer.value = usersStore.getUserByAlias(inputValue.value)
+        if(!userToTransfer.value) {
+          snackbar.value = true
+          snackbarMessage.value = "No existe usuario con ese CVU o alias"
+          return
+        }
+      }
+      snackbar.value = false
+      openDialog()
     } else {
-        snackbar.value = true;
+      snackbar.value = true
     }
 };
-
 
 const openDialog = () => {
     dialog.value = true;
 };
 
-
 const closeDialog = () => {
-    dialog.value = false;
+    dialog.value = false
 };
 </script>

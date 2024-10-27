@@ -7,7 +7,10 @@ import AddCard from './AddCard.vue';
 const isModalOpen = ref(false);
 const isAddCardOpen = ref(false);
 
-function openModal() {
+const popUpCard = ref({ bank: {name: '', image: ''}, number: 0});
+
+function openModal(card) {
+  popUpCard.value = card;
   isModalOpen.value = true;
 }
 
@@ -22,6 +25,16 @@ function openAddCard() {
 function closeAddCard() {
   isAddCardOpen.value = false;
 }
+
+const props = defineProps({
+    cards: {
+        type: Array,
+        required: true,
+        default: () => []
+    }
+});
+
+console.log(props.cards)
 </script>
 
 <template>
@@ -29,16 +42,16 @@ function closeAddCard() {
     <div class="topContainer">
       <h2 class="mainTitle">Tarjetas de Crédito:</h2>
     </div>
-    
+
     <div class="cardsScrollContainer">
       <div class="cards">
-        <div class="cardContainer" v-for="(card, index) in 6" :key="index">
-          <CardBox />
-          <v-icon class="icon" icon="mdi-chevron-right" @click="openModal"></v-icon>
+        <div class="cardContainer" v-for="card in cards" :key="index">
+          <CardBox :bankName="card.bank.name" :cardLogo="card.bank.image" :cardNumber="card.number.toString().slice(12, 16)" />
+          <v-icon class="icon" icon="mdi-chevron-right" @click="openModal(card)"></v-icon>
         </div>
       </div>
     </div>
-    
+
     <div class="buttonContainer">
       <v-btn variant="outlined" rounded="xl" class="button" @click="openAddCard">Agregar Tarjeta</v-btn>
     </div>
@@ -46,7 +59,7 @@ function closeAddCard() {
 
   <div v-if="isModalOpen" class="modalOverlay" @click.self="closeModal">
     <div class="modalContent">
-      <CardPopUp :closeModal="closeModal" />
+      <CardPopUp :closeModal="closeModal" :card="popUpCard" />
     </div>
   </div>
 
@@ -79,7 +92,7 @@ function closeAddCard() {
 }
 
 .cardsScrollContainer {
-  max-height: 400px; 
+  max-height: 400px;
   overflow-y: auto;
 }
 

@@ -2,13 +2,14 @@
     <div class="repeatMovement">
         <h2 class="mainTitle">Repetir Transferencia:</h2>
         <div class="repeatMovements">
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Transferencia enviada" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <MovementBox
+                v-for="(movement) in sourceMovements"
+                :key="movement.id"
+                :otherUser="movement.otherUser"
+                :amount="movement.amount"
+                :timeAgo="movement.timeAgo"
+                :isSent="movement.isSent"
+            />
         </div>
         <div class="buttonContainer">
             <v-btn variant="outlined" rounded="xl" class="button" @click="goToPage">
@@ -55,9 +56,13 @@
 </style>
 
 <script setup>
+import { computed } from 'vue';
 import MovementBox from './MovementBox.vue';
+import { useMovementsStore } from '@/stores/movements';
 import { useRouter } from 'vue-router';
 
+const movementsStore = useMovementsStore()
+const sourceMovements = computed(() => movementsStore.getSourceMovements())
 const router = useRouter()
 
 const goToPage = () => {
