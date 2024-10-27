@@ -77,7 +77,7 @@
         position: relative;
         background-color: #E7E7FF;
         color: black;
-        width: 18%;
+        width: 17%;
         height: 100%;
         overflow-y: auto;
         z-index: 999;

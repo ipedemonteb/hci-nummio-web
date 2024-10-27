@@ -2,10 +2,10 @@
     <div class="movement">
         <div class="movementContainer">
             <div class="iconInfoContainer">
-                <v-icon color="#6B4EFF" class="icon" size="45px" icon="mdi-arrow-top-right-bold-box-outline" />
+                <v-icon color="#6B4EFF" class="icon" size="40px" icon="mdi-cash-multiple" />
                 <div class="actionContainer">
-                    <h4>{{ action }}</h4>
-                    <h5>Por {{ source }}</h5>
+                    <h4>Pago Realizado</h4>
+                    <h5>Tarjeta {{ source }}</h5>
                 </div>
             </div>
             <div class="rightContainer">
@@ -13,7 +13,7 @@
                     <h4>$ {{ amount }}</h4>
                     <h5>hace {{ timeAgo }}</h5>
                 </div>
-                <v-menu>
+                <!-- <v-menu>
                     <template v-slot:activator="{ props }">
                         <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props"></v-btn>
                     </template>
@@ -23,7 +23,7 @@
                             <v-btn class="detailsButton" prepend-icon="mdi-format-list-bulleted">Detalles</v-btn>
                         </v-list-item>
                     </v-list>
-                </v-menu>
+                </v-menu> -->
             </div>   
         </div>
 

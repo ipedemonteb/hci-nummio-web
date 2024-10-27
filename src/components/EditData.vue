@@ -127,7 +127,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #5538EE;
+    color: #39288E;
 }
 
 .closeIcon {

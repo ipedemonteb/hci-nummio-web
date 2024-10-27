@@ -30,7 +30,7 @@
     background-color: white;
     position: fixed;
     z-index: 1000;
-    padding: 30px 50px;
+    padding: 30px 50px 30px 0px;
 }
 
 .headerContainer {
@@ -44,6 +44,12 @@
     left: 50%;
     transform: translateX(-50%);
 } */
+
+.logoContainer {
+    width: 17%;
+    display: flex;
+    justify-content: center;
+}
 
 .profileContainer {
     cursor: pointer;

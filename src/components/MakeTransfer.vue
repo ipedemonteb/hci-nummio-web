@@ -46,6 +46,7 @@
 
 <script setup>
 import { ref } from 'vue';
+import ConfirmTransfer from './ConfirmTransfer.vue';
 
 const dialog = ref(false);
 const snackbar = ref(false);

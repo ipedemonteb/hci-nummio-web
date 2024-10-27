@@ -13,14 +13,13 @@
             <SearchBar class="searchBar"/>
         </div>
         <div class="purchaseContainer">
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
-            <MovementBox action="Pago Realizado" source="Fernando Alonso" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
+            <CardMovement action="Pago Realizado" source=".... 1234" amount="500.00" timeAgo="2 horas"/>
         </div>
     </div>
 </template>
@@ -38,7 +37,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-top: 25px;
+        margin-top: 10px;
     }
 
     .searchBar {
@@ -60,5 +59,6 @@
 </style>
 
 <script setup>
-    import SearchBar from './SearchBar.vue';
+import SearchBar from './SearchBar.vue';
+import CardMovement from './CardMovement.vue';
 </script>

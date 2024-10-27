@@ -30,8 +30,8 @@
         </v-row>
         <v-row class="buttonsRow">
             <v-col class="d-flex justify-center" cols="12">
-                <v-btn class="cancelButton mx-2" @click="closeDialog">Cancelar</v-btn>
-                <v-btn class="confirmButton mx-2" append-icon="mdi-arrow-right">Confirmar</v-btn>
+                <v-btn variant="outlined" class="cancelButton mx-2" @click="closeDialog">Cancelar</v-btn>
+                <v-btn variant="outlined" class="confirmButton mx-2">Confirmar</v-btn>
             </v-col>
         </v-row>
     </v-container>

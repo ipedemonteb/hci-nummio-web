@@ -15,7 +15,7 @@ const props = defineProps({
     <v-container class="cardContainer">
         <v-row>
             <div class="topContainer mainTitle">
-                <h2>Mis Datos</h2>
+                <h2>Banco Ejemplo</h2>
                 <v-icon icon="mdi-close" class="icon" @click="props.closeModal"/>
             </div>
         </v-row>
