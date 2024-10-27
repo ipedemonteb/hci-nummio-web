@@ -1,4 +1,5 @@
 <script setup>
+import AddContact from '@/components/AddContact.vue';
 import ContactBox from '@/components/ContactBox.vue';
 import SearchBar from '@/components/SearchBar.vue';
 import { ref, computed } from 'vue';
@@ -33,6 +34,13 @@ const paginatedContacts = computed(() => {
   return allContacts.value.slice(start, end);
 });
 
+const isAddDialogVisible = ref(false);
+const openAddDialog = () => {
+    isAddDialogVisible.value = true;
+};
+const closeAddDialog = () => {
+    isAddDialogVisible.value = false;
+};
 
 </script>
 
@@ -45,8 +53,12 @@ const paginatedContacts = computed(() => {
       
       <div class="searchContainer">
         <SearchBar class="searchBar"/>
-        <v-btn append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined"/>
+        <v-btn append-icon="mdi-plus-box-multiple-outline" text="Agregar" variant="outlined" @click="openAddDialog"/>
       </div>
+
+      <v-dialog v-model="isAddDialogVisible" max-width="700">
+        <AddContact @closeDialog="closeAddDialog" />
+      </v-dialog>
 
       <div class="movementsContainer">
           <ContactBox

@@ -45,6 +45,7 @@
 
 <script setup>
 import ProfileLogo from './ProfileLogo.vue';
+import EditData from './EditData.vue';
 import { ref } from 'vue';
 
 const isEditDialogVisible = ref(false);

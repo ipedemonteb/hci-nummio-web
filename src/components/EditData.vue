@@ -136,25 +136,21 @@
 }
 </style>
 
-<script>
-export default {
-    emits: ['closeDialog'],
-    data() {
-        return {
-            newPassword: '',
-            repeatPassword: '',
-            showPassword: false,
-            showRepeatPassword: false,
-        };
-    },
-    methods: {
-        togglePasswordVisibility(type) {
-            if (type === 'new') {
-                this.showPassword = !this.showPassword;
-            } else if (type === 'repeat') {
-                this.showRepeatPassword = !this.showRepeatPassword;
-            }
-        }
+<script setup>
+import { ref } from 'vue';
+
+const emits = defineEmits(['closeDialog']);
+
+const newPassword = ref('');
+const repeatPassword = ref('');
+const showPassword = ref(false);
+const showRepeatPassword = ref(false);
+
+function togglePasswordVisibility(type) {
+    if (type === 'new') {
+        showPassword.value = !showPassword.value;
+    } else if (type === 'repeat') {
+        showRepeatPassword.value = !showRepeatPassword.value;
     }
-};
+}
 </script>
