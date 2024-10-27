@@ -1,22 +1,48 @@
 <script setup>
 import { ref, watch } from 'vue';
+import { useUsersStore } from '@/stores/users';
+import { useContactsStore } from '@/stores/contacts';
+
+const usersStore = useUsersStore();
+const contactsStore = useContactsStore();
 
 const emits = defineEmits(['closeDialog']);
 const invoiceCode = ref('');
 const contactFound = ref(null);
 const showSnackbar = ref(false);
 
+const isContactValid = (otherUserByAlias, otherUserByCVU) => {
+  if (!invoiceCode.value || (otherUserByAlias === undefined && otherUserByCVU === undefined)) {
+    return false;
+  }
+  return true;
+};
+
 const searchContact = () => {
-  if (!invoiceCode.value) {
+  const otherUserByAlias = usersStore.getUserByAlias(invoiceCode.value);
+  const otherUserByCVU = usersStore.getUserByCVU(invoiceCode.value);
+  if (!isContactValid(otherUserByAlias, otherUserByCVU)) {
     contactFound.value = null;
     showSnackbar.value = true;
-  } else if (invoiceCode.value === 'aliasEjemplo') {
-    contactFound.value = { firstName: 'Fernando', lastName: 'Alonso' };
   } else {
-    contactFound.value = false;
-    showSnackbar.value = true;
+    showSnackbar.value = false;
+    contactFound.value = { firstName: (otherUserByAlias === undefined)? otherUserByCVU.firstName : otherUserByAlias.firstName, lastName: (otherUserByAlias === undefined)? otherUserByCVU.lastName : otherUserByAlias.lastName };
   }
 };
+
+function handleConfirm() {
+  const otherUserByAlias = usersStore.getUserByAlias(invoiceCode.value);
+  const otherUserByCVU = usersStore.getUserByCVU(invoiceCode.value);
+  if (isContactValid(otherUserByAlias, otherUserByCVU)) {
+    showSnackbar.value = false;
+    contactsStore.addContact(invoiceCode.value);
+    emits('closeDialog')
+  }
+  else {
+    contactFound.value = null;
+    showSnackbar.value = true;
+  }
+}
 
 watch(invoiceCode, (newVal) => {
   if (!newVal) {
@@ -66,7 +92,7 @@ watch(invoiceCode, (newVal) => {
     <v-row class="buttonsRow">
       <v-col class="d-flex justify-center" cols="12">
         <v-btn variant="outlined" class="cancelButton mx-2" @click="$emit('closeDialog')">Cancelar</v-btn>
-        <v-btn variant="outlined" class="confirmButton mx-2">Confirmar</v-btn>
+        <v-btn variant="outlined" class="confirmButton mx-2" @click="handleConfirm">Confirmar</v-btn>
       </v-col>
     </v-row>
   </v-container>

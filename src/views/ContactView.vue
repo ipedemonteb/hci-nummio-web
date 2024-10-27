@@ -5,22 +5,7 @@ import SearchBar from '@/components/SearchBar.vue';
 import { useContactsStore } from '@/stores/contacts';
 import { ref, computed } from 'vue';
 
-/*const allContacts = ref([
-  { id: 1, name: 'Contacto 1' },
-  { id: 2, name: 'Contacto 2' },
-  { id: 3, name: 'Contacto 3' },
-  { id: 4, name: 'Contacto 4' },
-  { id: 5, name: 'Contacto 5' },
-  { id: 6, name: 'Contacto 6' },
-  { id: 7, name: 'Contacto 7' },
-  { id: 8, name: 'Contacto 8' },
-  { id: 9, name: 'Contacto 9' },
-  { id: 10, name: 'Contacto 10' },
-  { id: 11, name: 'Contacto 11' },
-  { id: 12, name: 'Contacto 12' },
-  { id: 13, name: 'Contacto 13' },
-  { id: 14, name: 'Contacto 14' },
-]);*/
+
 const contactsStore = useContactsStore()
 const allContacts = computed(() => contactsStore.getContacts())
 

@@ -15,7 +15,7 @@
                 </template>
                 <v-list>
                     <v-list-item>
-                        <v-btn class="deleteButton" prepend-icon="mdi-delete-outline">Eliminar</v-btn>
+                        <v-btn class="deleteButton" prepend-icon="mdi-delete-outline" @click="deleteContact">Eliminar</v-btn>
                     </v-list-item>
                 </v-list>
             </v-menu>
@@ -66,9 +66,13 @@
 <script setup lang="ts">
 
 import { ref } from 'vue';
+import { useContactsStore } from '@/stores/contacts';
+
+const contactsStore = useContactsStore();
 
 const props = defineProps({
   name: String,
+  contact: Object,
 })
 
 const isEditDialogVisible = ref(false);
@@ -79,6 +83,10 @@ const openEditDialog = () => {
 
 const closeEditDialog = () => {
     isEditDialogVisible.value = false;
+};
+
+const deleteContact = () => {
+    contactsStore.deleteContact(props.contact.id);
 };
 
 </script>

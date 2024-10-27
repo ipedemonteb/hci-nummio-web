@@ -53,14 +53,14 @@ export const useContactsStore = defineStore('contacts', () => {
 
   function addContact(cvuOrAlias) {
     var contactUser = usersStore.getUserByCVU(cvuOrAlias)
-    if(user == null) {
+    if(contactUser == null) {
       contactUser = usersStore.getUserByAlias(cvuOrAlias)
-      if(user == null)
+      if(contactUser == null)
         return false
     }
+    const user = usersStore.getUserLoggedIn()
     if(contacts.value.find(contact => contact.user.id === user.id))
       return false
-    const user = usersStore.getUserLoggedIn()
     const newContact = {
       id: idCounter.value,
       user: user.id,
@@ -75,5 +75,14 @@ export const useContactsStore = defineStore('contacts', () => {
     return true
   }
 
-  return {getContacts, addContact, getFrequentlyContacts}
+  function deleteContact(contactId) {
+    const user = usersStore.getUserLoggedIn()
+    const contactIndex = contacts.value.findIndex(contact => contact.id === contactId && contact.user === user.id)
+    if(contactIndex === -1)
+      return false
+    contacts.value.splice(contactIndex, 1)
+    return true
+  }
+
+  return {getContacts, addContact, getFrequentlyContacts, deleteContact}
 })
