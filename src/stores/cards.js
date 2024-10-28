@@ -46,8 +46,8 @@ export const useCardsStore = defineStore('cards', () => {
             ownerId: 1,
             cardHolder: 'John Doe'
         }
-    ] 
-    
+    ]
+
     const userStore = useUsersStore()
     const cards = ref(initialCards)
 
@@ -69,7 +69,7 @@ export const useCardsStore = defineStore('cards', () => {
         const user = userStore.getUserLoggedIn()
         let cardBank = Object.values(CardType).find(type => type.name.toLowerCase() === bank.toLowerCase());
         if (!cardBank) {
-            cardBank = { name: bank, image: '/logos/mastercard.png' }; //@TODO: cambiar la imagen default
+            cardBank = { name: bank, image: '/logos/mastercard.png' };
         }
         const newCard = {
             id: cards.value.length + 1,
@@ -88,7 +88,7 @@ export const useCardsStore = defineStore('cards', () => {
 
     function removeCard(cardId) {
         const cardIndex = cards.value.findIndex(card => card.id === cardId)
-        if (cardIndex === -1) 
+        if (cardIndex === -1)
             return
         cards.value.splice(cardIndex, 1)
     }

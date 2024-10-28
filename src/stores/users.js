@@ -14,26 +14,6 @@ export const useUsersStore = defineStore('users', () => {
             email: '',
             password: ''
         },
-        {
-            id: 2,
-            firstName: 'Jane',
-            lastName: 'Smith',
-            cvu: '9876543210987654321098',
-            alias: 'jane.smith',
-            profileImage: '/pfp.jpg',
-            email: 'janesmith@gmail.com',
-            password: 'password123'
-        },
-        {
-            id: 3,
-            firstName: 'Alice',
-            lastName: 'Johnson',
-            cvu: '1122334455112233445511',
-            alias: 'alice.johnson',
-            profileImage: '/pfp.jpg',
-            email: 'alicejohnson@gmail.com',
-            password: 'password123'
-        }
     ]
 
     const cvuCounter = ref(10000000000)
@@ -41,14 +21,10 @@ export const useUsersStore = defineStore('users', () => {
 
     const movementsStore = useMovementsStore()
 
-    //localStorage.setItem(userLoggedInKey, JSON.stringify(initialUsers[0]))
-    //localStorage.clear()
-
     const users = ref(initialUsers)
     const loggedIn = ref(false)
 
     const recentContacts = computed(() => users.value.slice(0, 6))
-    //Esto debería chequear cantidad de transferencias y ordenar por eso
 
     function signup(user) {
         if (users.value.find(u => u.email === user.email) || user.password !== user.repeatPassword)
@@ -64,7 +40,6 @@ export const useUsersStore = defineStore('users', () => {
         }
         cvuCounter.value++
         users.value.push(newUser)
-        //localStorage.setItem('users', JSON.stringify(users.value)) @TODO: Analizar si dejar o reemplazar por llamado a la API
         localStorage.setItem(userLoggedInKey, JSON.stringify(newUser))
         movementsStore.welcomeMovement()
         loggedIn.value = true
@@ -100,7 +75,7 @@ export const useUsersStore = defineStore('users', () => {
     }
 
     function updateFirstName(newFirstName) {
-      if (newFirstName === '') 
+      if (newFirstName === '')
         return false
       const userLoggedIn = getUserLoggedIn()
       var i = 0;
@@ -115,9 +90,9 @@ export const useUsersStore = defineStore('users', () => {
       localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
       return true
     }
- 
+
     function updateLastName(newLastName) {
-      if (newLastName === '') 
+      if (newLastName === '')
         return false
       const userLoggedIn = getUserLoggedIn()
       var i = 0;
@@ -132,9 +107,9 @@ export const useUsersStore = defineStore('users', () => {
       localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
       return true
     }
- 
+
     function updatePassword(newPassword) {
-      if (newPassword === '') 
+      if (newPassword === '')
         return false
       const userLoggedIn = getUserLoggedIn()
       var i = 0;
@@ -151,7 +126,7 @@ export const useUsersStore = defineStore('users', () => {
     }
 
     function updateUser(newFirstName, newLastName, newPassword, newProfileImage) {
-      if (newFirstName === '' || newLastName === '' || newPassword === '') 
+      if (newFirstName === '' || newLastName === '' || newPassword === '')
         return false
       const userLoggedIn = getUserLoggedIn()
       var i = 0;
@@ -168,13 +143,6 @@ export const useUsersStore = defineStore('users', () => {
       localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
       return true
     }
-    /*function setAlias(alias) {
-      if(!alias || alias === "" || users.value.find(user => user.alias === alias))
-        return false
-      const user = getUserLoggedIn()
-      user.alias = alias
-      return true
-    }*/
 
     function logout() {
       localStorage.removeItem(userLoggedInKey)
@@ -208,7 +176,7 @@ export const useUsersStore = defineStore('users', () => {
     }
 
     function recoverPassword(newPassword, email) {
-      if (newPassword === '') 
+      if (newPassword === '')
         return false
       const userLoggedIn = getUserByMail(email)
       var i = 0;

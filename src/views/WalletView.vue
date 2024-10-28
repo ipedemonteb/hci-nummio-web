@@ -6,7 +6,7 @@ import CreditCards from '@/components/CreditCards.vue';
 import { computed } from 'vue';
 
 const cardsStore = useCardsStore();
-const cards = computed(() => cardsStore.getUserCreditCards()) //@TODO: si no se actualizan las tarjetas al agregar, cambiar parametro de creditCards por esto y descomentar linea
+const cards = computed(() => cardsStore.getUserCreditCards())
 </script>
 
 <template>

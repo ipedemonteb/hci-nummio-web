@@ -6,13 +6,7 @@ export const useMovementsStore = defineStore('movements', () => {
 
     const userStore = useUsersStore()
 
-    const initialMovements = [
-        // @TODO: arreglar tema timezone para no tener que ponerle a las 3 am
-        { id: 1, source: 1, target: 2, amount: 500, date: new Date('2024-08-12T03:00:00') },
-        { id: 2, source: 2, target: 1, amount: 4000, date: new Date('2024-07-12T03:00:00') },
-    ]
-
-    const movements = ref(initialMovements)
+    const movements = ref([])
     const recentMovements = computed(() => getUserMovements().slice(0, 6))
 
     function welcomeMovement() {

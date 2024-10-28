@@ -21,7 +21,7 @@ const bank = ref('');
 const cvv = ref('');
 
 function isCardNumberValid(cardNumber) {
-  return true; //@TODO: ver si hace falta y sacarla si no
+  return true;
 }
 
 function isExpiryDateValid(expiryMonth, expiryYear) {

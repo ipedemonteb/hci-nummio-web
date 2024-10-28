@@ -13,16 +13,6 @@
             <SearchBar class="searchBar"/>
         </div>
         <div class="purchaseContainer">
-            <!-- @TODO: analizar tema ya no dice Pago Realizado.
-                        quizas lo mas correcto es hacer otra componente pues la data es distinta -->
-            <!-- <MovementBox
-                v-for="(movement) in sourceMovements"
-                :key="movement.id"
-                :otherUser="movement.otherUser"
-                :amount="movement.amount"
-                :timeAgo="movement.timeAgo"
-                :isSent="movement.isSent"
-            /> @TODO: resolver bien para que tome los pagos con tarjeta-->
             <CardMovement action="Pago Realizado" source=".... 2543" amount="500.00" timeAgo="2 horas"/>
             <CardMovement action="Pago Realizado" source=".... 8736" amount="750.00" timeAgo="2 horas"/>
             <CardMovement action="Pago Realizado" source=".... 8736" amount="200.00" timeAgo="2 horas"/>

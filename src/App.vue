@@ -62,7 +62,7 @@
 
 
   .view-container {
-    width: 85%; /* @TODO: ver si hay manera de que se detecte el ancho restante en vez de hacer esto */
+    width: 85%;
     height: 100%;
     flex-grow: 1;
     overflow-y: auto;
