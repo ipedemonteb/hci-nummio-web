@@ -27,6 +27,7 @@
         border-radius: 10px;
         padding: 30px 40px;
         max-height: 600px;
+        flex:1;
     }
 
     .historyContainer {

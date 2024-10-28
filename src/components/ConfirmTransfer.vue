@@ -1,7 +1,7 @@
 <template>
     <v-container class="confirmTransfer">
         <v-row>
-            <h1>Realizar Transferencia:</h1>
+            <h1 class="mainTitle">Realizar Transferencia:</h1>
         </v-row>
         <v-row>
             <v-container class="dataContainer">

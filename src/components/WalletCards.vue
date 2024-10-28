@@ -3,14 +3,7 @@
         <h2 class="mainTitle">Tarjetas:</h2>
 
         <div class="cardStack">
-            <SmallCard v-for="(card, index) in cards" class="smallCard" :key="card.id" :cardholderName="card.cardHolder" :cardNumber="card.number.toString()" :expiryDate="`${card.expirationMonth}/${card.expirationYear}`" backgroundImage="/Violeta.jpeg"  :cvv="card.CVV" :bankName="card.cardBank" :style="{ 
-            zIndex: index+1,
-            top: 50, 
-            position: absolute,
-            transform: `translateY(${index * 40}px)`,
-            marginBottom: index === cards.length - 1 ? '0' : '-200px',
-            }"
-            />
+            <WalletBox />
         </div>
 
         <div class="buttonContainer">
@@ -31,14 +24,12 @@
 
     .cardStack {
         position: relative;
-        height: 300px; /* Adjust based on your card height */
-        margin-bottom: 20px;
     }    
 
     .buttonContainer {
         display: flex;
         justify-content: center;
-        margin: 30px 0px;
+        margin: 0px 0px;
     }
 
     .button {
