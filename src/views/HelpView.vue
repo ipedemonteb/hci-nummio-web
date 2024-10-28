@@ -16,12 +16,10 @@ import SearchBar from '@/components/SearchBar.vue';
             </v-row>
             <v-row>
                 <v-container class="faqsContainer">
-                    <HelpComponent question="¿Cómo inicio Sesión?" answer="Para iniciar sesión, debes ingresar tu correo electrónico y contraseña en la página de inicio de sesión. Si no tienes una cuenta, puedes registrarte en la página de registro." />
-                    <HelpComponent question="¿Cómo restablezco mi contraseña?" answer="Puedes restablecer tu contraseña haciendo clic en el enlace ¿Olvidaste tu contraseña? en la página de inicio de sesión y siguiendo los pasos indicados." />  
-                    <HelpComponent question="¿Cómo puedo actualizar mis datos personales?" answer="Para actualizar tus datos personales, accede a tu perfil desde la configuración de la cuenta y modifica la información que desees." />
-                    <HelpComponent question="¿Cómo elimino mi cuenta?" answer="Si deseas eliminar tu cuenta, ve a la sección de configuración de tu perfil y selecciona la opción Eliminar cuenta. Ten en cuenta que esta acción es irreversible." />  
-                    <HelpComponent question="¿Qué métodos de pago aceptan?" answer="Aceptamos pagos con tarjetas de crédito, débito, y transferencias bancarias a través de nuestra plataforma segura de pagos." />
-                    <HelpComponent question="¿Puedo cambiar mi plan de suscripción?" answer="Sí, puedes cambiar tu plan de suscripción en cualquier momento desde la configuración de tu cuenta, eligiendo la opción que mejor se adapte a tus necesidades." />
+                    <HelpComponent question="¿Cómo restablezco mi contraseña?" answer="Puedes restablecer tu contraseña haciendo clic en el enlace ¿Olvidaste tu contraseña? en la página de inicio de sesión y siguiendo los pasos indicados. También puedes hacerlo desde la configuración de tu cuenta haciendo click en tu foto de perfi en la parte superior derecha." />  
+                    <HelpComponent question="¿Cómo puedo actualizar mis datos personales?" answer="Para actualizar tus datos personales, accede a tu perfil desde la configuración de la cuenta y modifica la información que desees, en la parte superior derecha de la pantalla." />
+                    <HelpComponent question="¿Qué métodos de pago hay disponibles?" answer="Todas las transacciones pueden ser llevadas a cabo utilizando tanto el saldo disponible en tu cuenta como las tarjetas que hayas vinculado previamente en la sección de Tarjetas" />
+                    <HelpComponent question="¿Qué hago si no encuentro solución a mi problema?" answer="Podes comunicarte con el servicio de atención al cliente de nummio al 11 4321-1234 o enviar un mail a atencion@nummio.com.ar las 24hs del día."/>
                 </v-container>
             </v-row>  
         </v-container>

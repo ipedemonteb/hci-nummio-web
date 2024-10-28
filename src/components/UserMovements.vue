@@ -4,7 +4,7 @@
 
         <div class="historyContainer">
             <MovementBox
-                v-for="(movement) in lastMovements"
+                v-for="(movement) in limitedMovements"
                 :key="movement.id"
                 :otherUser="movement.otherUser"
                 :amount="movement.amount"
@@ -26,7 +26,7 @@
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: 30px 40px;
-        flex: 1;
+        max-height: 600px;
     }
 
     .historyContainer {
@@ -52,7 +52,7 @@
 
 <script setup>
 import MovementBox from './MovementBox.vue';
-import { defineProps } from 'vue';
+import { computed } from 'vue';
 import { useRouter } from 'vue-router';
 
 const props = defineProps({
@@ -63,10 +63,11 @@ const props = defineProps({
     }
 });
 
-const router = useRouter()
+const router = useRouter();
 
 const goToPage = () => {
-  router.push('/movimientos')
-}
+  router.push('/movimientos');
+};
 
+const limitedMovements = computed(() => props.lastMovements.slice(0, 5));
 </script>
