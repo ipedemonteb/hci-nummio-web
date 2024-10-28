@@ -11,7 +11,7 @@
                 <v-row>
                     <v-col class="d-flex justify-center" cols="12">
                         <v-avatar size="100">
-                            <img :src="user.profileImage" alt="Profile picture for user" class="profilePicture"/>
+                            <img src="/pfp.jpg" alt="Profile picture for user" class="profilePicture"/>
                         </v-avatar>
                     </v-col>
                 </v-row>

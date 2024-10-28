@@ -28,11 +28,12 @@ import StockBox from './StockBox.vue';
         border: 1px solid #ccc;
         border-radius: 10px;
         padding: 30px 40px;
+        flex: 1;
     }
 
     .stocks {
         margin: 20px 0px;
-        height: 230px;
+        height: 240px;
         overflow-y: auto;
     }
 </style>
