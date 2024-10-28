@@ -6,7 +6,7 @@ const props = defineProps({
   cvuRem: String,
   cvuDest: String,
   amount: String,
-  date: String
+  date: Date,
 });
 </script>
 
@@ -46,7 +46,7 @@ const props = defineProps({
                 <v-text-field
                     density="compact"
                     variant="outlined"
-                    :value="props.date"
+                    :value="date.toLocaleDateString()"
                     readonly
                     class="date"
                 />

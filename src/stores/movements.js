@@ -45,7 +45,7 @@ export const useMovementsStore = defineStore('movements', () => {
                     isSent: sourceUser.id === user.id,
                     amount: movement.amount,
                     timeAgo: movement.date,
-                    otherUser: sourceUser.id === user.id? `${targetUser.firstName} ${targetUser.lastName}` : `${sourceUser.firstName} ${sourceUser.lastName}`,
+                    otherUser: sourceUser.id === user.id? targetUser : sourceUser,
                     ...movement
                 }
                 userMovements.push(movementData)

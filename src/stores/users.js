@@ -60,6 +60,7 @@ export const useUsersStore = defineStore('users', () => {
             email: user.email,
             password: user.password,
             cvu: `03271989546${cvuCounter.value}`,
+            profileImage: '/pfp.jpg',
         }
         cvuCounter.value++
         users.value.push(newUser)
@@ -164,7 +165,6 @@ export const useUsersStore = defineStore('users', () => {
       users.value[i].firstName = newFirstName
       users.value[i].lastName = newLastName
       users.value[i].password = newPassword
-      users.value[i].profileImage = newProfileImage
       localStorage.setItem(userLoggedInKey, JSON.stringify(users.value[i]))
       return true
     }
